@@ -24,15 +24,12 @@ function updateClearButtonState() {
 
 function getFormDataAsUrlEncoded() {
     let formData = new FormData();
-    formData.set("id", $("#group-id").val());
-    formData.set("title", $("#group-title").val());
+    formData.set("group_id", $("#group-group_id").val());
+    formData.set("group_name", $("#group-group_name").val());
     formData.set("description", $("#group-description").val());
-    formData.set("isbn", $("#group-isbn").val());
-    formData.set("publicationYear", $("#group-publication-year").val());
-    formData.set("dateCreated", $("#author-date-created").val());
-    formData.set("dateLastModified", $("#author-date-last-modified").val());
-    formData.set("dateDeleted", $("#author-date-deleted").val());
-    $(".group-authors").each((index, inputElem) => {
+    formData.set("dateCreated", $("#user-date-created").val());
+    formData.set("dateLastModified", $("#user-date-last-modified").val());
+    $(".group-users").each((index, inputElem) => {
         console.log(inputElem);
         formData.set(inputElem.name, $(inputElem).prop("checked"));
     });
@@ -41,41 +38,32 @@ function getFormDataAsUrlEncoded() {
 }
 
 function fillFormFromResponseObject(entityObject) {
-    if ('id' in entityObject) {
-        $("#group-id").val(entityObject.id);
+    if ('group_id' in entityObject) {
+        $("#group-group_id").val(entityObject.group_id);
     }
-    if ('title' in entityObject) {
-        $("#group-title").val(entityObject.title);
+    if ('group_name' in entityObject) {
+        $("#group-group_name").val(entityObject.group_name);
     }
     if ('description' in entityObject) {
         $("#group-description").val(entityObject.description);
     }
-    if ('isbn' in entityObject) {
-        $("#group-isbn").val(entityObject.isbn);
-    }
-    if ('publicationYear' in entityObject) {
-        $("#group-publication-year").val(entityObject.publicationYear);
-    }
     if ('dateCreated' in entityObject) {
-        $("#author-date-created").val(entityObject.dateCreated);
+        $("#user-date-created").val(entityObject.created_at);
     }
     if ('dateLastModified' in entityObject) {
-        $("#author-date-last-modified").val(entityObject.dateLastModified);
-    }
-    if ('dateDeleted' in entityObject) {
-        $("#author-date-deleted").val(entityObject.dateDeleted);
+        $("#user-date-last-modified").val(entityObject.modified_at);
     }
     
-    // uncheck all authors
-    $(".group-authors").each((index, inputElem) => {
+    // uncheck all users
+    $(".group-users").each((index, inputElem) => {
         $(inputElem).prop("checked", false)
     });
     
-    if ('authors' in entityObject) {
-        if (typeof entityObject.authors === "object") {
-            console.log(Object.keys(entityObject.authors));
-            Object.keys(entityObject.authors).forEach((value) => {
-                $(`#group-author-${value}`).prop("checked", true);
+    if ('users' in entityObject) {
+        if (typeof entityObject.users === "object") {
+            console.log(Object.keys(entityObject.users));
+            Object.keys(entityObject.users).forEach((value) => {
+                $(`#group-user-${value}`).prop("checked", true);
             });
         }
     }
@@ -151,13 +139,13 @@ function createGroup() {
      .done((data, status, jqXHR) => {
          console.log("Received data: ", data);
          
-         if ('title' in data) {
+         if ('group_name' in data) {
              let selector = document.getElementById("group-selector");
              let newOptionElement = document.createElement("option");
-             newOptionElement.value = data.id;
-             newOptionElement.innerHTML = `${data.title}`;
+             newOptionElement.value = data.group_id;
+             newOptionElement.innerHTML = `${data.group_name}`;
              selector.appendChild(newOptionElement);
-             selector.value = data.id;
+             selector.value = data.group_id;
          }
          fillFormFromResponseObject(data);
      })
@@ -181,13 +169,13 @@ function updateGroup() {
          console.log("Received data: ", data);
          
          // Replace the text in the selector with the updated values
-         let formIdValue = document.getElementById("group-id").value;
-         if ('title' in data) {
+         let formIdValue = document.getElementById("group-group_id").value;
+         if ('group_name' in data) {
              let selector = /** @type {HTMLSelectElement} */ document.getElementById("group-selector");
              // Note: voluntary non-identity equality check ( == instead of === ): disable warning
              // noinspection EqualityComparisonWithCoercionJS
              [...selector.options].filter(elem => elem.value == formIdValue).forEach(elem => {
-                 elem.innerHTML = `${data.title}`;
+                 elem.innerHTML = `${data.group_name}`;
              });
          }
          fillFormFromResponseObject(data);
@@ -210,7 +198,7 @@ function deleteGroup() {
     $.ajax(options)
      .done((data, status, jqXHR) => {
          console.log("Received data: ", data);
-         let formIdValue = document.getElementById("group-id").value;
+         let formIdValue = document.getElementById("group-group_id").value;
          if (formIdValue) {
              let selector = /** @type {HTMLSelectElement} */ document.getElementById("group-selector");
              // Note: voluntary non-identity equality check ( == instead of === ): disable warning

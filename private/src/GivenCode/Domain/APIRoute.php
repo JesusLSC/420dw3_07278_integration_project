@@ -9,13 +9,13 @@ declare(strict_types=1);
  * (c) Copyright 2024 Marc-Eric Boury 
  */
 
-namespace Teacher\GivenCode\Domain;
+namespace GivenCode\Domain;
 
 use Exception;
-use Teacher\GivenCode\Abstracts\AbstractController;
-use Teacher\GivenCode\Enumerations\HTTPMethodsEnum;
-use Teacher\GivenCode\Exceptions\RequestException;
-use Teacher\GivenCode\Exceptions\ValidationException;
+use GivenCode\Abstracts\AbstractController;
+use GivenCode\Enumerations\HTTPMethodsEnum;
+use GivenCode\Exceptions\RequestException;
+use GivenCode\Exceptions\ValidationException;
 
 /**
  * TODO: Class documentation

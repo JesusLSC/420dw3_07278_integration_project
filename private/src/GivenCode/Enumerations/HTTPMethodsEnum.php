@@ -9,7 +9,7 @@ declare(strict_types=1);
  * (c) Copyright 2024 Marc-Eric Boury 
  */
 
-namespace Teacher\GivenCode\Enumerations;
+namespace GivenCode\Enumerations;
 
 use JetBrains\PhpStorm\Pure;
 

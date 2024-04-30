@@ -12,11 +12,12 @@ declare(strict_types=1);
 namespace Services;
 
 use Exception;
-use Teacher\Examples\DAOs\UserDAO;
-use Teacher\Examples\DTOs\UserDTO;
-use Teacher\GivenCode\Abstracts\IService;
-use Teacher\GivenCode\Exceptions\RuntimeException;
-use Teacher\GivenCode\Services\DBConnectionService;
+use DAOs\UserDAO;
+use DTOs\UserDTO;
+use GivenCode\Abstracts\IService;
+use GivenCode\Exceptions\RuntimeException;
+use GivenCode\Exceptions\ValidationException;
+use GivenCode\Services\DBConnectionService;
 
 /**
  * TODO: Class documentation
@@ -44,10 +45,14 @@ class UserService implements IService {
     public function getAllUsers() : array {
         return $this->dao->getAll();
     }
-    
+
+    /**
+     * @throws RuntimeException
+     * @throws ValidationException
+     */
     public function getUserById(int $id) : ?UserDTO {
         $user = $this->dao->getById($id);
-        $user?->loadBooks();
+        $user?->loadGroups();
         return $user;
     }
     
@@ -71,8 +76,7 @@ class UserService implements IService {
                 if (is_null($user)) {
                     throw new Exception("User id# [$id] not found in the database.");
                 }
-                $user->setFirstName($firstName);
-                $user->setLastName($lastName);
+                $user->setUsername($firstName);
                 $result = $this->dao->update($user);
                 $connection->commit();
                 return $result;
@@ -110,13 +114,21 @@ class UserService implements IService {
             throw new RuntimeException("Failure to delete user id# [$id].", $excep->getCode(), $excep);
         }
     }
-    
-    public function getUserBooks(UserDTO $user) : array {
-        return $this->getUserBooksByUserId($user->getId());
+
+    /**
+     * @throws RuntimeException
+     * @throws ValidationException
+     */
+    public function getUserGroups(UserDTO $user) : array {
+        return $this->getUserGroupsByUserId($user->getId());
     }
-    
-    public function getUserBooksByUserId(int $id) : array {
-        return $this->dao->getBooksByUserId($id);
+
+    /**
+     * @throws RuntimeException
+     * @throws ValidationException
+     */
+    public function getUserGroupsByUserId(int $id) : array {
+        return $this->dao->getGroupsByUserId($id);
     }
     
 }

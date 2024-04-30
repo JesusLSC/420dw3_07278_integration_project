@@ -4,7 +4,7 @@ declare(strict_types=1);
 /*
  * 420DW3_07278_Project GroupService.php
  * 
- * @author Marc-Eric Boury (MEbou)
+ * @user Marc-Eric Boury (MEbou)
  * @since 2024-04-03
  * (c) Copyright 2024 Marc-Eric Boury 
  */
@@ -16,50 +16,53 @@ use DAOs\GroupDAO;
 use DTOs\UserDTO;
 use DTOs\GroupDTO;
 use GivenCode\Abstracts\IService;
+use GivenCode\Exceptions\RuntimeException;
+use GivenCode\Exceptions\ValidationException;
 
 /**
  * TODO: Class documentation
  *
- * @author Marc-Eric Boury
+ * @user Marc-Eric Boury
  * @since  2024-04-03
  */
 class GroupService implements IService {
     
-    private BookDAO $dao;
-    private AuthorBookDAO $authorBookDao;
+    private GroupDAO $dao;
+    private UserGroupDAO $userGroupDao;
     
     public function __construct() {
-        $this->dao = new BookDAO();
-        $this->authorBookDao = new AuthorBookDAO();
+        $this->dao = new GroupDAO();
+        $this->userGroupDao = new UserGroupDAO();
     }
     
     /**
      * TODO: Function documentation
      *
-     * @return BookDTO[]
-     *
-     * @author Marc-Eric Boury
-     * @since  2024-04-04
+     * @return GroupDTO[]
      */
-    public function getAllBooks() : array {
+    public function getAllGroups() : array {
         return $this->dao->getAll();
     }
     
-    public function getById(int $id) : ?BookDTO {
+    public function getById(int $id) : ?GroupDTO {
         return $this->dao->getById($id);
     }
-    
-    public function create(string $title, string $isbn, int $publication_year, ?string $description = null) : BookDTO {
-        $instance = BookDTO::fromValues($title, $isbn, $publication_year, $description);
+
+    /**
+     * @throws ValidationException
+     */
+    public function create(string $name, ?string $description = null) : GroupDTO {
+        $instance = GroupDTO::fromValues($name, $description);
         return $this->dao->insert($instance);
     }
-    
-    public function update(int $id, string $title, string $isbn, int $publication_year, ?string $description = null) : BookDTO {
+
+    /**
+     * @throws ValidationException
+     */
+    public function update(int $id, string $name, ?string $description = null) : GroupDTO {
         // No transaction this time, contrary to the Example stack
         $instance = $this->dao->getById($id);
-        $instance->setTitle($title);
-        $instance->setIsbn($isbn);
-        $instance->setPublicationYear($publication_year);
+        $instance->setName($name);
         $instance->setDescription($description);
         return $this->dao->update($instance);
     }
@@ -67,43 +70,48 @@ class GroupService implements IService {
     public function delete(int $id) : void {
         $this->dao->deleteById($id);
     }
-    
+
     /**
      * TODO: Function documentation
      *
-     * @param BookDTO $book
+     * @param GroupDTO $group
      * @return UserDTO[]
      *
-     * @author Marc-Eric Boury
+     * @user Marc-Eric Boury
+     * @throws RuntimeException
      * @since  2024-04-04
      */
-    public function getBookAuthors(BookDTO $book) : array {
-        return $this->getBookAuthorsByBookId($book->getId());
+    public function getGroupUsers(GroupDTO $group) : array {
+        return $this->getGroupUsersByGroupId($group->getId());
     }
-    
+
     /**
      * TODO: Function documentation
      *
      * @param int $id
      * @return UserDTO[]
-     *
-     * @author Marc-Eric Boury
-     * @since  2024-04-04
+     * @throws RuntimeException
      */
-    public function getBookAuthorsByBookId(int $id) : array {
-        return $this->dao->getAuthorsByBookId($id);
+    public function getGroupUsersByGroupId(int $id) : array {
+        return $this->dao->getUsersByGroupId($id);
     }
     
-    public function deleteAllBookAuthorAssociationsForBook(BookDTO $book) : void {
-        $this->deleteAllBookAuthorAssociationsForBookId($book->getId());
+    public function deleteAllGroupUserAssociationsForGroup(GroupDTO $group) : void {
+        $this->deleteAllGroupUserAssociationsForGroupId($group->getId());
     }
-    
-    public function deleteAllBookAuthorAssociationsForBookId(int $bookId) : void {
-        $this->authorBookDao->deleteAllByBookId($bookId);
+
+    /**
+     * @throws RuntimeException
+     */
+    public function deleteAllGroupUserAssociationsForGroupId(int $groupId) : void {
+        $this->userGroupDao->deleteAllByGroupId($groupId);
     }
-    
-    public function associateBookWithAuthor(int $bookId, int $authorId) : void {
-        $this->authorBookDao->createForAuthorAndBook($authorId, $bookId);
+
+    /**
+     * @throws RuntimeException
+     */
+    public function associateGroupWithUser(int $groupId, int $userId) : void {
+        $this->userGroupDao->createForUserAndGroup($userId, $groupId);
     }
     
 }

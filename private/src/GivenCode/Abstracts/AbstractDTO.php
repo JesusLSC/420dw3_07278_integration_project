@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 /*
  * 420DW3_07278_Project AbstractDTO.php
- * 
+ *
  * @author Marc-Eric Boury (MEbou)
  * @since 2024-03-14
- * (c) Copyright 2024 Marc-Eric Boury 
+ * (c) Copyright 2024 Marc-Eric Boury
  */
 
-namespace Teacher\GivenCode\Abstracts;
+namespace GivenCode\Abstracts;
 
 
 use http\Exception\RuntimeException;

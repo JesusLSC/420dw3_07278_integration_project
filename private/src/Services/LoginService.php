@@ -15,6 +15,8 @@ use Debug;
 use Exception;
 use DTOs\UserDTO;
 use GivenCode\Abstracts\IService;
+use GivenCode\Exceptions\RuntimeException;
+use GivenCode\Exceptions\ValidationException;
 
 class LoginService implements IService {
     
@@ -66,7 +68,11 @@ class LoginService implements IService {
         $_SESSION["LOGGED_IN_USER"] = null;
         Debug::debugToHtmlTable($_SESSION);
     }
-    
+
+    /**
+     * @throws RuntimeException
+     * @throws ValidationException
+     */
     public function doLogin(int $userId) : void {
         $user = $this->userService->getUserById($userId);
         if (is_null($user)) {

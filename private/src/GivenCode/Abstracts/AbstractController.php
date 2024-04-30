@@ -6,11 +6,11 @@ declare(strict_types=1);
 * (c) 2024 Marc-Eric Boury All rights reserved
 */
 
-namespace Teacher\GivenCode\Abstracts;
+namespace GivenCode\Abstracts;
 
 use Debug;
-use Teacher\GivenCode\Enumerations\HTTPMethodsEnum;
-use Teacher\GivenCode\Exceptions\RequestException;
+use GivenCode\Enumerations\HTTPMethodsEnum;
+use GivenCode\Exceptions\RequestException;
 
 abstract class AbstractController implements IController {
     

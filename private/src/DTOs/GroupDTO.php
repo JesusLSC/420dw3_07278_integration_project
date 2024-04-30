@@ -1,14 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/*
- * 420DW3_07278_Project GroupDTO.php
- * 
- * @author Marc-Eric Boury (MEbou)
- * @since 2024-03-21
- * (c) Copyright 2024 Marc-Eric Boury 
- */
-
 namespace DTOs;
 
 use DateTime;
@@ -17,60 +9,43 @@ use DAOs\GroupDAO;
 use GivenCode\Exceptions\RuntimeException;
 use GivenCode\Exceptions\ValidationException;
 
-/**
- * TODO: Class documentation
- *
- * @author Marc-Eric Boury
- * @since  2024-03-21
- */
+
 class GroupDTO {
     
     /**
      * The database table name for this entity type.
      * @const
      */
-    public const TABLE_NAME = "books";
-    public const TITLE_MAX_LENGTH = 256;
+    public const TABLE_NAME = "groups";
+    public const NAME_MAX_LENGTH = 255;
     public const DESCRIPTION_MAX_LENGTH = 1024;
-    public const ISBN_MAX_LENGTH = 32;
-    public const PUBLICATION_YEAR_LOWER_BOUND = -8000;
     
     private int $id;
-    private string $title;
+    private string $name;
     private ?string $description;
-    private string $isbn;
-    private int $publicationYear;
     private ?DateTime $dateCreated = null;
     private ?DateTime $dateLastModified = null;
-    private ?DateTime $dateDeleted = null;
     
     /**
      * TODO: Property documentation
      *
      * @var UserDTO[]
      */
-    private array $authors = [];
+    private array $users = [];
     
     public function __construct() {}
     
     /**
      * TODO: Function documentation
      *
-     * @param string      $title
-     * @param string      $isbn
-     * @param int         $publicationYear
+     * @param string      $name
      * @param string|null $description
      * @return GroupDTO
      * @throws ValidationException
-     *
-     * @author Marc-Eric Boury
-     * @since  2024-04-04
      */
-    public static function fromValues(string $title, string $isbn, int $publicationYear, ?string $description = null) : GroupDTO {
+    public static function fromValues(string $name,?string $description = null) : GroupDTO {
         $instance = new GroupDTO();
-        $instance->setTitle($title);
-        $instance->setIsbn($isbn);
-        $instance->setPublicationYear($publicationYear);
+        $instance->setName($name);
         $instance->setDescription($description);
         return $instance;
     }
@@ -81,32 +56,21 @@ class GroupDTO {
      * @param array $dbArray
      * @return GroupDTO
      * @throws ValidationException
-     *
-     * @author Marc-Eric Boury
-     * @since  2024-04-04
      */
     public static function fromDbArray(array $dbArray) : GroupDTO {
         self::validateDbArray($dbArray);
         $instance = new GroupDTO();
         $instance->setId((int) $dbArray["id"]);
-        $instance->setTitle($dbArray["title"]);
+        $instance->setName($dbArray["name"]);
         $instance->setDescription($dbArray["description"]);
-        $instance->setIsbn($dbArray["isbn"]);
-        $instance->setPublicationYear((int) $dbArray["publication_year"]);
-        $instance->setDateCreated(DateTime::createFromFormat(DB_DATETIME_FORMAT, $dbArray["date_created"]));
+        $instance->setDateCreated(DateTime::createFromFormat(DB_DATETIME_FORMAT, $dbArray["created_at"]));
         $dateLast_modified = null;
-        if (!empty($dbArray["date_last_modified"])) {
-            $dateLast_modified = DateTime::createFromFormat(DB_DATETIME_FORMAT, $dbArray["date_last_modified"]);
+        if (!empty($dbArray["modified_at"])) {
+            $dateLast_modified = DateTime::createFromFormat(DB_DATETIME_FORMAT, $dbArray["modified_at"]);
         }
         $instance->setDateLastModified($dateLast_modified);
-        $date_deleted = null;
-        if (!empty($dbArray["date_deleted"])) {
-            $date_deleted = DateTime::createFromFormat(DB_DATETIME_FORMAT, $dbArray["date_deleted"]);
-        }
-        $instance->setDateDeleted($date_deleted);
         return $instance;
-    }
-    
+    }    
     
     public function getDatabaseTableName() : string {
         return self::TABLE_NAME;
@@ -120,9 +84,10 @@ class GroupDTO {
     public function getId() : int {
         return $this->id;
     }
-    
+
     /**
      * @param int $id
+     * @throws ValidationException
      */
     public function setId(int $id) : void {
         if ($id < 1) {
@@ -134,19 +99,20 @@ class GroupDTO {
     /**
      * @return string
      */
-    public function getTitle() : string {
-        return $this->title;
+    public function getName() : string {
+        return $this->name;
     }
-    
+
     /**
-     * @param string $title
+     * @param string $name
+     * @throws ValidationException
      */
-    public function setTitle(string $title) : void {
-        if (mb_strlen($title) > self::TITLE_MAX_LENGTH) {
-            throw new ValidationException("[title] value must be a string no longer than " . self::TITLE_MAX_LENGTH .
-                                          " characters; found length: [" . mb_strlen($title) . "].");
+    public function setName(string $name) : void {
+        if (mb_strlen($name) > self::NAME_MAX_LENGTH) {
+            throw new ValidationException("[name] value must be a string no longer than " . self::NAME_MAX_LENGTH .
+                                          " characters; found length: [" . mb_strlen($name) . "].");
         }
-        $this->title = $title;
+        $this->name = $name;
     }
     
     /**
@@ -155,57 +121,20 @@ class GroupDTO {
     public function getDescription() : ?string {
         return $this->description;
     }
-    
+
     /**
      * @param string|null $description
+     * @throws ValidationException
      */
     public function setDescription(?string $description) : void {
-        if (is_string($description) && (mb_strlen($description) > self::TITLE_MAX_LENGTH)) {
+        if (is_string($description) && (mb_strlen($description) > self::NAME_MAX_LENGTH)) {
             throw new ValidationException("[description] value must be a string no longer than " .
                                           self::DESCRIPTION_MAX_LENGTH . " characters; found length: [" .
                                           mb_strlen($description) . "].");
         }
         $this->description = $description;
     }
-    
-    /**
-     * @return string
-     */
-    public function getIsbn() : string {
-        return $this->isbn;
-    }
-    
-    /**
-     * @param string $isbn
-     */
-    public function setIsbn(string $isbn) : void {
-        if (mb_strlen($isbn) > self::ISBN_MAX_LENGTH) {
-            throw new ValidationException("[isbn] value must be a string no longer than " . self::ISBN_MAX_LENGTH .
-                                          " characters; found length: [" . mb_strlen($isbn) . "].");
-        }
-        $this->isbn = $isbn;
-    }
-    
-    /**
-     * @return int
-     */
-    public function getPublicationYear() : int {
-        return $this->publicationYear;
-    }
-    
-    /**
-     * @param int $publicationYear
-     */
-    public function setPublicationYear(int $publicationYear) : void {
-        $current_year = (int) (new DateTime())->format("Y");
-        if (($publicationYear < self::PUBLICATION_YEAR_LOWER_BOUND) || ($publicationYear > $current_year)) {
-            throw new ValidationException("[publicationYear] value must be an integer between [" .
-                                          self::PUBLICATION_YEAR_LOWER_BOUND . "] and [" . $current_year .
-                                          "] inclusively.");
-        }
-        $this->publicationYear = $publicationYear;
-    }
-    
+
     /**
      * @return DateTime
      */
@@ -235,85 +164,66 @@ class GroupDTO {
     }
     
     /**
-     * @return DateTime|null
-     */
-    public function getDateDeleted() : ?DateTime {
-        return $this->dateDeleted;
-    }
-    
-    /**
-     * @param DateTime|null $dateDeleted
-     */
-    public function setDateDeleted(?DateTime $dateDeleted) : void {
-        $this->dateDeleted = $dateDeleted;
-    }
-    
-    /**
      * TODO: function documentation
      *
      * @param bool $forceReload
      * @return array
      * @throws RuntimeException
      */
-    public function getAuthors(bool $forceReload = false) : array {
+    public function getUsers(bool $forceReload = false) : array {
         try {
-            if (empty($this->books) || $forceReload) {
-                $this->loadAuthors();
+            if (empty($this->groups) || $forceReload) {
+                $this->loadUsers();
             }
         } catch (Exception $excep) {
-            throw new RuntimeException("Failed to load author entity records for book id# [$this->id].", $excep->getCode(), $excep);
+            throw new RuntimeException("Failed to load user entity records for group id# [$this->id].", $excep->getCode(), $excep);
         }
-        return $this->authors;
+        return $this->users;
     }
     
     // </editor-fold>
-    
-    
-    public function loadAuthors() : void {
-        $dao = new BookDAO();
-        $this->authors = $dao->getAuthorsByBook($this);
+
+
+    /**
+     * @throws RuntimeException
+     */
+    public function loadUsers() : void {
+        $dao = new GroupDAO();
+        $this->users = $dao->getUsersByGroup($this);
     }
     
     public function toArray() : array {
         $array = [
             "id" => $this->getId(),
-            "title" => $this->getTitle(),
+            "name" => $this->getName(),
             "description" => $this->getDescription(),
-            "isbn" => $this->getIsbn(),
-            "publicationYear" => $this->getPublicationYear(),
             "dateCreated" => $this->getDateCreated()?->format(HTML_DATETIME_FORMAT),
             "dateLastModified" => $this->getDateLastModified()?->format(HTML_DATETIME_FORMAT),
-            "dateDeleted" => $this->getDateDeleted()?->format(HTML_DATETIME_FORMAT),
-            "authors" => []
+            "users" => []
         ];
-        // Note: i'm not using getAuthors() here in order not to trigger the loading of the authors.
+        // Note: i'm not using getUsers() here in order not to trigger the loading of the users.
         // Include them in the array only if loaded previously.
-        // otherwise infinite loop book loads authors loads books loads authors loads books...
-        foreach ($this->authors as $author) {
-            $array["authors"][$author->getId()] = $author->toArray();
+        // otherwise infinite loop group loads users loads groups loads users loads groups...
+        foreach ($this->users as $user) {
+            $array["users"][$user->getId()] = $user->toArray();
         }
         return $array;
     }
     
     
     // <editor-fold defaultstate="collapsed" desc="VALIDATION METHODS">
-    
+
+    /**
+     * @throws ValidationException
+     */
     public function validateForDbCreation() : void {
         // ID must not be set
         if (!empty($this->id)) {
             throw new ValidationException("GroupDTO is not valid for DB creation: ID value already set.");
         }
-        // title is required
-        if (empty($this->title)) {
-            throw new ValidationException("GroupDTO is not valid for DB creation: title value not set.");
-        }
-        // isbn is required
-        if (empty($this->isbn)) {
-            throw new ValidationException("GroupDTO is not valid for DB creation: isbn value not set.");
-        }
-        // publicationYear is required
-        if (empty($this->publicationYear)) {
-            throw new ValidationException("GroupDTO is not valid for DB creation: publicationYear value not set.");
+        // name is required
+        if (empty($this->name)) {
+            throw new ValidationException("GroupDTO is not valid for DB creation: name value not set.");
         }
         if (!is_null($this->dateCreated)) {
             throw new ValidationException("GroupDTO is not valid for DB creation: dateCreated value already set.");
@@ -321,30 +231,25 @@ class GroupDTO {
         if (!is_null($this->dateLastModified)) {
             throw new ValidationException("GroupDTO is not valid for DB creation: dateLastModified value already set.");
         }
-        if (!is_null($this->dateDeleted)) {
-            throw new ValidationException("GroupDTO is not valid for DB creation: dateDeleted value already set.");
-        }
     }
-    
+
+    /**
+     * @throws ValidationException
+     */
     public function validateForDbUpdate() : void {
         // ID must be set
         if (empty($this->id)) {
             throw new ValidationException("GroupDTO is not valid for DB update: ID value not set.");
         }
-        // title is required
-        if (empty($this->title)) {
-            throw new ValidationException("GroupDTO is not valid for DB update: title value not set.");
-        }
-        // isbn is required
-        if (empty($this->isbn)) {
-            throw new ValidationException("GroupDTO is not valid for DB update: isbn value not set.");
-        }
-        // publicationYear is required
-        if (empty($this->publicationYear)) {
-            throw new ValidationException("GroupDTO is not valid for DB update: publicationYear value not set.");
+        // name is required
+        if (empty($this->name)) {
+            throw new ValidationException("GroupDTO is not valid for DB update: name value not set.");
         }
     }
-    
+
+    /**
+     * @throws ValidationException
+     */
     public function validateForDbDelete() : void {
         // ID must be set
         if (empty($this->id)) {
@@ -359,9 +264,6 @@ class GroupDTO {
      * @param array $dbArray
      * @return void
      * @throws ValidationException
-     *
-     * @author Marc-Eric Boury
-     * @since  2024-04-02
      */
     private static function validateDbArray(array $dbArray) : void {
         if (empty($dbArray["id"])) {
@@ -369,48 +271,26 @@ class GroupDTO {
                                           "] does not contain an [id] key. Check your column names.",
                                           500);
         }
-        if (empty($dbArray["title"])) {
+        if (empty($dbArray["name"])) {
             throw new ValidationException("Database array for [" . self::class .
-                                          "] does not contain an [title] key. Check your column names.",
+                                          "] does not contain an [name] key. Check your column names.",
                                           500);
         }
-        if (empty($dbArray["isbn"])) {
+        if (empty($dbArray["created_at"])) {
             throw new ValidationException("Database array for [" . self::class .
-                                          "] does not contain an [isbn] key. Check your column names.",
+                                          "] does not contain an [created_at] key. Check your column names.",
                                           500);
         }
-        if (empty($dbArray["publication_year"])) {
+        if (DateTime::createFromFormat(DB_DATETIME_FORMAT, $dbArray["created_at"]) === false) {
             throw new ValidationException("Database array for [" . self::class .
-                                          "] does not contain an [publication_year] key. Check your column names.",
+                                          "] [created_at] entry value could not be parsed to a valid DateTime. Check your column types.",
                                           500);
         }
-        if (!is_numeric($dbArray["publication_year"])) {
-            throw new ValidationException("Database array for [" . self::class .
-                                          "] [publication_year] entry value is not numeric. Check your column types.",
-                                          500);
-        }
-        if (empty($dbArray["date_created"])) {
-            throw new ValidationException("Database array for [" . self::class .
-                                          "] does not contain an [date_created] key. Check your column names.",
-                                          500);
-        }
-        if (DateTime::createFromFormat(DB_DATETIME_FORMAT, $dbArray["date_created"]) === false) {
-            throw new ValidationException("Database array for [" . self::class .
-                                          "] [date_created] entry value could not be parsed to a valid DateTime. Check your column types.",
-                                          500);
-        }
-        if (!empty($dbArray["date_last_modified"])
-            && (DateTime::createFromFormat(DB_DATETIME_FORMAT, $dbArray["date_last_modified"]) === false)
+        if (!empty($dbArray["modified_at"])
+            && (DateTime::createFromFormat(DB_DATETIME_FORMAT, $dbArray["modified_at"]) === false)
         ) {
             throw new ValidationException("Database array for [" . self::class .
-                                          "] [date_last_modified] entry value could not be parsed to a valid DateTime. Check your column types.",
-                                          500);
-        }
-        if (!empty($dbArray["date_deleted"])
-            && (DateTime::createFromFormat(DB_DATETIME_FORMAT, $dbArray["date_deleted"]) === false)
-        ) {
-            throw new ValidationException("Database array for [" . self::class .
-                                          "] [date_deleted] entry value could not be parsed to a valid DateTime. Check your column types.",
+                                          "] [modified_at] entry value could not be parsed to a valid DateTime. Check your column types.",
                                           500);
         }
     }

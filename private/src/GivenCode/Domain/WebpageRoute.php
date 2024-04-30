@@ -9,9 +9,9 @@ declare(strict_types=1);
  * (c) Copyright 2024 Marc-Eric Boury 
  */
 
-namespace Teacher\GivenCode\Domain;
+namespace GivenCode\Domain;
 
-use Teacher\GivenCode\Exceptions\ValidationException;
+use GivenCode\Exceptions\ValidationException;
 
 /**
  * TODO: Class documentation

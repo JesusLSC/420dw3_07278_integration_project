@@ -6,12 +6,12 @@ declare(strict_types=1);
 * (c) 2024 Marc-Eric Boury All rights reserved
 */
 
-namespace Teacher\GivenCode\Domain;
+namespace GivenCode\Domain;
 
 use ArrayIterator;
 use Debug;
 use IteratorAggregate;
-use Teacher\GivenCode\Exceptions\ValidationException;
+use GivenCode\Exceptions\ValidationException;
 use Traversable;
 
 /**

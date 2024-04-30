@@ -9,7 +9,7 @@ declare(strict_types=1);
  * (c) Copyright 2024 Marc-Eric Boury 
  */
 
-namespace Teacher\GivenCode\Abstracts;
+namespace GivenCode\Abstracts;
 
 /**
  * TODO: Interface documentation
