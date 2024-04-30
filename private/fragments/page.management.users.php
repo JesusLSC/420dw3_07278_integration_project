@@ -1,13 +1,7 @@
 <?php
 declare(strict_types=1);
 
-/*
- * 420DW3_07278_Project page.management.users.php
- * 
- * @user Marc-Eric Boury (MEbou)
- * @since 2024-04-06
- * (c) Copyright 2024 Marc-Eric Boury 
- */
+
 
 use DTOs\UserDTO;
 use Services\UserService;

@@ -8,12 +8,7 @@ use ErrorException;
 use Exception;
 use GivenCode\Services\InternalRouter;
 
-/**
- * TODO: Class documentation
- *
- * @author Marc-Eric Boury
- * @since  2024-03-14
- */
+
 class Application {
     private InternalRouter $router;
     
@@ -21,14 +16,7 @@ class Application {
         $this->router = new InternalRouter();
     }
     
-    /**
-     * TODO: Function documentation
-     *
-     * @return void
-     *
-     * @author Marc-Eric Boury
-     * @since  2024-03-16
-     */
+
     public function run() : void {
         // start the output buffering
         ob_start();

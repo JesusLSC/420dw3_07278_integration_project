@@ -9,12 +9,11 @@ declare(strict_types=1);
  * (c) Copyright 2024 Marc-Eric Boury 
  */
 
-namespace Teacher\Examples\DTOs;
+namespace DTOs;
 
 use DateTime;
-use Teacher\Examples\Enumerations\DaysOfWeekEnum;
-use Teacher\GivenCode\Abstracts\AbstractDTO;
-use Teacher\GivenCode\Exceptions\ValidationException;
+use GivenCode\Abstracts\AbstractDTO;
+use GivenCode\Exceptions\ValidationException;
 
 /**
  * Example DTO-type class
@@ -32,7 +31,7 @@ class ExampleDTO extends AbstractDTO {
     private const DESCRIPTION_MAX_LENGTH = 256;
     
     
-    private DaysOfWeekEnum $dayOfTheWeek;
+
     private string $description;
     private ?DateTime $creationDate = null;
     private ?DateTime $lastModificationDate = null;
@@ -58,7 +57,6 @@ class ExampleDTO extends AbstractDTO {
      * attribute values. Used to create instances before inserting them in the database.
      *
      * @static
-     * @param DaysOfWeekEnum $dayOfTheWeek The initial value for the {@see ExampleDTO::$dayOfTheWeek} property.
      * @param string         $description  The initial value for the {@see ExampleDTO::$description} property.
      * @return ExampleDTO The created {@see ExampleDTO} instance.
      *
@@ -66,18 +64,7 @@ class ExampleDTO extends AbstractDTO {
      * @author Marc-Eric Boury
      * @since  2024-03-16
      */
-    public static function fromValues(DaysOfWeekEnum $dayOfTheWeek, string $description) : ExampleDTO {
-        // Use the protected constructor to create an empty ExampleDTO instance
-        $object = new ExampleDTO();
-        
-        // Set the property values from the parameters.
-        // Using the setter methods allows me to validate the values on the spot.
-        $object->setDayOfTheWeek($dayOfTheWeek);
-        $object->setDescription($description);
-        
-        // return the created instance
-        return $object;
-    }
+
     
     /**
      * Static constructor-like function to create {@see ExampleDTO} instances with an id and temporal management
@@ -99,8 +86,6 @@ class ExampleDTO extends AbstractDTO {
         // Set the property values from the array parameter
         // do not forget to cast numeric values!
         $object->setId((int) $dbAssocArray["id"]);
-        // conversion from DB string values back to enumeration value
-        $object->setDayOfTheWeek(DaysOfWeekEnum::from($dbAssocArray["dayOfTheWeek"]));
         $object->setDescription($dbAssocArray["description"]);
         // conversion from DB-formatted datetime strings back into DateTime objects.
         $object->setCreationDate(
@@ -130,24 +115,7 @@ class ExampleDTO extends AbstractDTO {
     }
     
     // <editor-fold defaultstate="collapsed" desc="GETTERS AND SETTERS">
-    
-    /**
-     * Getter for <code>DayOfTheWeek</code>
-     *
-     * @return DaysOfWeekEnum
-     */
-    public function getDayOfTheWeek() : DaysOfWeekEnum {
-        return $this->dayOfTheWeek;
-    }
-    
-    /**
-     * Setter for <code>DayOfTheWeek</code>
-     *
-     * @param DaysOfWeekEnum $dayOfTheWeek
-     */
-    public function setDayOfTheWeek(DaysOfWeekEnum $dayOfTheWeek) : void {
-        $this->dayOfTheWeek = $dayOfTheWeek;
-    }
+
     
     /**
      * Getter for <code>Description</code>
@@ -357,7 +325,6 @@ class ExampleDTO extends AbstractDTO {
     public function toJson() : string {
         $array = [
             "id" => $this->getId(),
-            "dayOfTheWeek" => $this->getDayOfTheWeek()->value,
             "description" => $this->description,
             "creationDate" => $this->getCreationDate()->format(HTML_DATETIME_FORMAT),
             "lastModificationDate" => $this->getLastModificationDate()?->format(HTML_DATETIME_FORMAT),

@@ -1,0 +1,203 @@
+2024-04-30 20:26:23.327249: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 20:27:12.182904: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 20:27:13.359719: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 20:27:30.184770: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 20:27:46.854383: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 20:28:24.107623: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 20:28:28.862568: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 20:31:27.593261: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 20:31:32.209098: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 20:31:34.083666: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 20:47:53.760939: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 20:53:06.311005: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 20:57:08.442618: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 20:57:09.410922: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 20:58:22.596091: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:00:49.255620: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:00:49.262976: RuntimeException: Failure to obtain a connection to the database.
+	Caused by: Exception: Failed to create a connection to the database.
+	Caused by: Exception: Failed to read database connection configuration file.
+	Caused by: Exception: Database connection configuration file at [C:\xampp\htdocs\420dw3_07278_integration_project\private\config\dbconfig.json] was not found.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Services\ExampleDAO.php(63): GivenCode\Services\DBConnectionService::getConnection()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Services\ExampleService.php(44): Services\ExampleDAO->getAll()
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\public\pages\Teacher\Examples\example_page.php(18): Services\ExampleService->getAllExamples()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\WebpageRoute.php(36): include('C:\\xampp\\htdocs...')
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(75): GivenCode\Domain\WebpageRoute->route()
+		#5 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#6 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#7 {main}
+2024-04-30 21:13:08.131310: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:13:08.135639: RuntimeException: Failure to obtain a connection to the database.
+	Caused by: Exception: Failed to create a connection to the database.
+	Caused by: Exception: Failed to read database connection configuration file.
+	Caused by: Exception: Database connection configuration file at [C:\xampp\htdocs\420dw3_07278_integration_project\private\config\dbconfig.json] was not found.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\DAOs\UserDAO.php(35): GivenCode\Services\DBConnectionService::getConnection()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Services\UserService.php(46): DAOs\UserDAO->getAll()
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\public\pages\user_page.php(10): Services\UserService->getAllUsers()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\WebpageRoute.php(25): include('C:\\xampp\\htdocs...')
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(70): GivenCode\Domain\WebpageRoute->route()
+		#5 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#6 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#7 {main}
+2024-04-30 21:13:48.398734: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:13:48.404086: RuntimeException: Failure to obtain a connection to the database.
+	Caused by: Exception: PDO failed to establish a connection to the database: SQLSTATE[HY000] [1049] Unknown database '420dw3_07278_integration_project'
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\DAOs\UserDAO.php(35): GivenCode\Services\DBConnectionService::getConnection()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Services\UserService.php(46): DAOs\UserDAO->getAll()
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\public\pages\user_page.php(10): Services\UserService->getAllUsers()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\WebpageRoute.php(25): include('C:\\xampp\\htdocs...')
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(70): GivenCode\Domain\WebpageRoute->route()
+		#5 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#6 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#7 {main}
+2024-04-30 21:14:59.076892: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:14:59.082162: ValidationException: Failed to parse [created_at] field as DateTime. Check column types.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\DTOs\UserDTO.php(81): DTOs\UserDTO::validateDbArray(Array)
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\DAOs\UserDAO.php(42): DTOs\UserDTO::fromDbArray(Array)
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Services\UserService.php(46): DAOs\UserDAO->getAll()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\public\pages\user_page.php(10): Services\UserService->getAllUsers()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\WebpageRoute.php(25): include('C:\\xampp\\htdocs...')
+		#5 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(70): GivenCode\Domain\WebpageRoute->route()
+		#6 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#7 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#8 {main}
+2024-04-30 21:15:00.548934: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:15:00.553986: ValidationException: Failed to parse [created_at] field as DateTime. Check column types.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\DTOs\UserDTO.php(81): DTOs\UserDTO::validateDbArray(Array)
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\DAOs\UserDAO.php(42): DTOs\UserDTO::fromDbArray(Array)
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Services\UserService.php(46): DAOs\UserDAO->getAll()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\public\pages\user_page.php(10): Services\UserService->getAllUsers()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\WebpageRoute.php(25): include('C:\\xampp\\htdocs...')
+		#5 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(70): GivenCode\Domain\WebpageRoute->route()
+		#6 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#7 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#8 {main}
+2024-04-30 21:15:01.051844: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:15:01.057197: ValidationException: Failed to parse [created_at] field as DateTime. Check column types.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\DTOs\UserDTO.php(81): DTOs\UserDTO::validateDbArray(Array)
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\DAOs\UserDAO.php(42): DTOs\UserDTO::fromDbArray(Array)
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Services\UserService.php(46): DAOs\UserDAO->getAll()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\public\pages\user_page.php(10): Services\UserService->getAllUsers()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\WebpageRoute.php(25): include('C:\\xampp\\htdocs...')
+		#5 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(70): GivenCode\Domain\WebpageRoute->route()
+		#6 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#7 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#8 {main}
+2024-04-30 21:17:49: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:17:49: ErrorException: include(): Failed opening 'C:\xampp\htdocs\420dw3_07278_integration_project\private\fragments\Teacher\Exemples\standard.page.header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#1 {main}
+2024-04-30 21:19:21: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:19:21: ErrorException: include(): Failed opening 'C:\xampp\htdocs\420dw3_07278_integration_project\private\fragments\Teacher\Exemples\standard.page.header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#1 {main}
+2024-04-30 21:19:21: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:19:21: ErrorException: include(): Failed opening 'C:\xampp\htdocs\420dw3_07278_integration_project\private\fragments\Teacher\Exemples\standard.page.header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#1 {main}
+2024-04-30 21:22:14: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:22:14: true
+2024-04-30 21:22:29: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:22:29: true
+2024-04-30 21:22:30: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:22:30: true
+2024-04-30 21:22:33: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:22:33: true
+2024-04-30 21:22:36: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:22:36: true
+2024-04-30 21:22:55: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:22:55: true
+2024-04-30 21:22:58: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:22:58: true
+2024-04-30 21:27:14: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:27:14: true
+2024-04-30 21:27:16: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:27:16: true
+2024-04-30 21:27:20: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:27:20: true
+2024-04-30 21:27:21: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:27:21: true
+2024-04-30 21:27:23: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:27:23: true
+2024-04-30 21:27:24: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:27:24: true
+2024-04-30 21:27:25: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:27:25: true
+2024-04-30 21:27:25: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:27:25: true
+2024-04-30 21:27:25: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:27:25: true
+2024-04-30 21:27:29: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:27:29: true
+2024-04-30 21:27:30: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:27:30: true
+2024-04-30 21:27:31: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:27:31: true
+2024-04-30 21:28:18: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:28:18: true
+2024-04-30 21:28:20: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:28:20: true
+2024-04-30 21:28:21: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:28:21: true
+2024-04-30 21:28:22: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:28:22: true
+2024-04-30 21:28:22: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:28:22: true
+2024-04-30 21:28:22: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:28:22: true
+2024-04-30 21:29:01: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:29:01: true
+2024-04-30 21:29:32: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:29:32: true
+2024-04-30 21:29:33: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:29:33: true
+2024-04-30 21:29:33: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:29:33: true
+2024-04-30 21:29:44: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:29:44: true
+2024-04-30 21:29:48: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:29:48: true
+2024-04-30 21:29:49: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:29:49: true
+2024-04-30 21:29:50: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:29:50: true
+2024-04-30 21:30:11: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:30:11: true
+2024-04-30 21:32:48: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:32:48: true
+2024-04-30 21:32:48: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:32:48: true
+2024-04-30 21:32:49: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:32:49: true
+2024-04-30 21:33:20: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:33:20: true
+2024-04-30 21:33:21: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:33:22: true
+2024-04-30 21:33:22: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:33:22: true
+2024-04-30 21:35:21: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:35:21: true
+2024-04-30 21:35:33: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:35:33: true
+2024-04-30 21:35:40: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:35:40: true
+2024-04-30 21:35:46: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:35:46: true
+2024-04-30 21:35:50: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:35:50: true
+2024-04-30 21:36:57: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:36:57: true
+2024-04-30 21:36:58: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:36:58: true
+2024-04-30 21:37:00: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:37:00: true
+2024-04-30 21:39:01: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:39:01: true
+2024-04-30 21:47:25: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:47:25: true
+2024-04-30 21:47:53: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:47:53: true
+2024-04-30 21:47:56: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:47:56: true
+2024-04-30 21:47:56: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-04-30 21:47:56: true

@@ -1,21 +1,13 @@
 <?php
 declare(strict_types=1);
 
-/*
- * 420DW3_07278_Project constants.php
- * 
- * @author Marc-Eric Boury (MEbou)
- * @since 2024-03-14
- * (c) Copyright 2024 Marc-Eric Boury 
- */
-
 /**
  * The directory separator symbol in web/URL paths.
  * @const
  */
 const WEB_DIRECTORY_SEPARATOR = "/";
 const NAMESPACE_PATH_SEPARATOR = "/";
-const DB_DATETIME_FORMAT = "Y-m-d H:i:s.u";
+const DB_DATETIME_FORMAT = "Y-m-d H:i:s";
 const HTML_DATETIME_FORMAT = "Y-m-d\TH:i:s.v";
 
 
@@ -51,6 +43,7 @@ const PRJ_PRIVATE_DIR = PRJ_ROOT_DIR . "private" . DIRECTORY_SEPARATOR;
  * @const
  */
 const PRJ_SRC_DIR = PRJ_PRIVATE_DIR . "src" . DIRECTORY_SEPARATOR;
+
 
 /**
  * Absolute path to the 'fragments' directory of the project.
@@ -132,7 +125,8 @@ const WEB_PAGES_DIR = WEB_PUBLIC_DIR . "pages" . WEB_DIRECTORY_SEPARATOR;
  * Web path to the public 'images' directory.
  * @const
  */
-const WEB_IMAGES_DIR = WEB_PUBLIC_DIR . "images" . WEB_DIRECTORY_SEPARATOR;
+
+//const WEB_IMAGES_DIR = WEB_PUBLIC_DIR . "images" . WEB_DIRECTORY_SEPARATOR;
 
 // </editor-fold>
 

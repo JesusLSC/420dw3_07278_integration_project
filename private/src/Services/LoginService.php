@@ -25,7 +25,11 @@ class LoginService implements IService {
     public function __construct() {
         $this->userService = new UserService();
     }
-    
+
+    /**
+     * @throws RuntimeException
+     * @throws ValidationException
+     */
     public static function requirePhilipKDick() : bool {
         $return_value = false;
         if (!empty($_SESSION["LOGGED_IN_USER"]) && ($_SESSION["LOGGED_IN_USER"] instanceof UserDTO)) {

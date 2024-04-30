@@ -12,10 +12,10 @@ use Services\LoginService;
     </div>
     <div class="row flex-wrap flex-md-nowrap nav-bar justify-content-md-center">
         <div class="nav-bar-entry d-flex col-12 col-md-2 justify-content-center" data-url="<?= WEB_ROOT_DIR ?>">
-            <span class="text-uppercase">Examples</span>
+            <span class="text-uppercase">Home</span>
         </div>
-        <div class="nav-bar-entry d-flex col-12 col-md-2 justify-content-center" data-url="<?= WEB_ROOT_DIR . "pages/usergroups" ?>">
-            <span class="text-uppercase">Usergroups</span>
+        <div class="nav-bar-entry d-flex col-12 col-md-2 justify-content-center" data-url="<?= WEB_ROOT_DIR . "pages/groups" ?>">
+            <span class="text-uppercase">Groups</span>
         </div>
         <div class="nav-bar-entry d-flex col-12 col-md-2 justify-content-center" data-url="<?= WEB_ROOT_DIR . "pages/users" ?>">
             <span class="text-uppercase">Users</span>
