@@ -9,10 +9,10 @@ declare(strict_types=1);
  * (c) Copyright 2024 Marc-Eric Boury 
  */
 
-namespace Teacher\GivenCode\Services;
+namespace GivenCode\Services;
 
-use Teacher\GivenCode\Abstracts\IService;
-use Teacher\GivenCode\Exceptions\ValidationException;
+use GivenCode\Abstracts\IService;
+use GivenCode\Exceptions\ValidationException;
 
 /**
  * Service class for the hashing and validation of user passwords.

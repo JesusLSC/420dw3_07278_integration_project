@@ -1,27 +1,15 @@
 <?php
 declare(strict_types=1);
 
-/*
- * 420DW3_07278_Project LoginController.php
- * 
- * @author Marc-Eric Boury (MEbou)
- * @since 2024-04-06
- * (c) Copyright 2024 Marc-Eric Boury 
- */
 
-namespace Teacher\Examples\Controllers;
+namespace Controllers;
 
 use Exception;
-use Teacher\Examples\Services\LoginService;
-use Teacher\GivenCode\Abstracts\AbstractController;
-use Teacher\GivenCode\Exceptions\RequestException;
+use Services\LoginService;
+use GivenCode\Abstracts\AbstractController;
+use GivenCode\Exceptions\RequestException;
 
-/**
- * TODO: Class documentation
- *
- * @author Marc-Eric Boury
- * @since  2024-04-06
- */
+
 class LoginController extends AbstractController {
     
     private LoginService $loginService;
@@ -35,23 +23,26 @@ class LoginController extends AbstractController {
         // Voluntary exception throw: no GET operation supported for login system
         throw new RequestException("NOT IMPLEMENTED.", 501);
     }
-    
+
+    /**
+     * @throws Exception
+     */
     public function post() : void {
         /*
          * NOTE: I use the POST method to trigger the login
          */
         
         try {
-            if (empty($_REQUEST["authorId"])) {
-                throw new RequestException("Missing required parameter [authorId] in request.", 400, [], 400);
+            if (empty($_REQUEST["userId"])) {
+                throw new RequestException("Missing required parameter [userId] in request.", 400, [], 400);
             }
-            if (!is_numeric($_REQUEST["authorId"])) {
-                throw new RequestException("Invalid parameter [authorId] in request: non-numeric value [" .
-                                           $_REQUEST["authorId"] . "] received.",
+            if (!is_numeric($_REQUEST["userId"])) {
+                throw new RequestException("Invalid parameter [userId] in request: non-numeric value [" .
+                                           $_REQUEST["userId"] . "] received.",
                                            400, [], 400);
             }
             
-            $int_id = (int) $_REQUEST["authorId"];
+            $int_id = (int) $_REQUEST["userId"];
             $this->loginService->doLogin($int_id);
             
             // if the user came to the login page by being redirected from another page that required to be logged in
@@ -67,10 +58,13 @@ class LoginController extends AbstractController {
             exit();
             
         } catch (Exception $excep) {
-            throw new Exception("Failure to log author in.", $excep->getCode(), $excep);
+            throw new Exception("Failure to log user in.", $excep->getCode(), $excep);
         }
     }
-    
+
+    /**
+     * @throws RequestException
+     */
     public function put() : void {
         // Voluntary exception throw: no PUT operation supported for login system
         throw new RequestException("NOT IMPLEMENTED.", 501);

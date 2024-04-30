@@ -9,13 +9,13 @@ declare(strict_types=1);
  * (c) Copyright 2024 Marc-Eric Boury 
  */
 
-namespace Teacher\Examples\Controllers;
+namespace Controllers;
 
 use JsonException;
-use Teacher\Examples\Enumerations\DaysOfWeekEnum;
-use Teacher\Examples\Services\ExampleService;
-use Teacher\GivenCode\Abstracts\AbstractController;
-use Teacher\GivenCode\Exceptions\RequestException;
+use Enumerations\DaysOfWeekEnum;
+use Services\ExampleService;
+use GivenCode\Abstracts\AbstractController;
+use GivenCode\Exceptions\RequestException;
 
 /**
  * TODO: Class documentation

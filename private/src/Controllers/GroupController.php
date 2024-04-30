@@ -1,86 +1,70 @@
 <?php
 declare(strict_types=1);
 
-/*
- * 420DW3_07278_Project BookController.php
- * 
- * @author Marc-Eric Boury (MEbou)
- * @since 2024-04-03
- * (c) Copyright 2024 Marc-Eric Boury 
- */
+namespace Controllers;
 
-namespace Teacher\Examples\Controllers;
+use GivenCode\Exceptions\RuntimeException;
+use GivenCode\Exceptions\ValidationException;
+use Services\GroupService;
+use Services\LoginService;
+use GivenCode\Abstracts\AbstractController;
+use GivenCode\Exceptions\RequestException;
+use GivenCode\Services\DBConnectionService;
 
-use Teacher\Examples\Services\GroupService;
-use Teacher\Examples\Services\LoginService;
-use Teacher\GivenCode\Abstracts\AbstractController;
-use Teacher\GivenCode\Exceptions\RequestException;
-use Teacher\GivenCode\Services\DBConnectionService;
-
-/**
- * TODO: Class documentation
- *
- * @author Marc-Eric Boury
- * @since  2024-04-03
- */
-class BookController extends AbstractController {
+class GroupController extends AbstractController {
     
-    private GroupService $bookService;
+    private GroupService $groupService;
     
     public function __construct() {
         parent::__construct();
-        $this->bookService = new GroupService();
+        $this->groupService = new GroupService();
     }
-    
+
+    /**
+     * @throws RuntimeException
+     * @throws RequestException
+     */
     public function get() : void {
         // Login required to use this API functionality
-        if (!LoginService::isAuthorLoggedIn()) {
+        if (!LoginService::isUserLoggedIn()) {
             // not logged-in: respond with 401 NOT AUTHORIZED
             throw new RequestException("NOT AUTHORIZED", 401, [], 401);
         }
         
-        if (empty($_REQUEST["bookId"])) {
-            throw new RequestException("Bad request: required parameter [book] not found in the request.", 400);
+        if (empty($_REQUEST["groupId"])) {
+            throw new RequestException("Bad request: required parameter [group] not found in the request.", 400);
         }
-        if (!is_numeric($_REQUEST["bookId"])) {
-            throw new RequestException("Bad request: parameter [bookId] value [" . $_REQUEST["bookId"] .
+        if (!is_numeric($_REQUEST["groupId"])) {
+            throw new RequestException("Bad request: parameter [groupId] value [" . $_REQUEST["groupId"] .
                                        "] is not numeric.", 400);
         }
-        $int_id = (int) $_REQUEST["bookId"];
-        $instance = $this->bookService->getById($int_id);
-        $instance->loadAuthors();
+        $int_id = (int) $_REQUEST["groupId"];
+        $instance = $this->groupService->getById($int_id);
+        $instance->loadUsers();
         header("Content-Type: application/json;charset=UTF-8");
         echo json_encode($instance->toArray());
     }
-    
+
+    /**
+     * @throws RuntimeException
+     * @throws ValidationException
+     * @throws RequestException
+     */
     public function post() : void {
         // Login required to use this API functionality
-        if (!LoginService::isAuthorLoggedIn()) {
+        if (!LoginService::isUserLoggedIn()) {
             // not logged-in: respond with 401 NOT AUTHORIZED
             throw new RequestException("NOT AUTHORIZED", 401, [], 401);
         }
         
         
-        // I create the new book first then deal with the book-author associations.
-        // I have to do this in that order in the create operation because the book does not already exists
+        // I create the new group first then deal with the group-user associations.
+        // I have to do this in that order in the create operation because the group does not already exists
         // in the database so the foreign key checks would fail if i tried creating associations first.
         
-        if (empty($_REQUEST["title"])) {
-            throw new RequestException("Bad request: required parameter [title] not found in the request.", 400);
+        if (empty($_REQUEST["name"])) {
+            throw new RequestException("Bad request: required parameter [name] not found in the request.", 400);
         }
-        if (empty($_REQUEST["isbn"])) {
-            throw new RequestException("Bad request: required parameter [isbn] not found in the request.", 400);
-        }
-        if (empty($_REQUEST["publicationYear"])) {
-            throw new RequestException("Bad request: required parameter [publicationYear] not found in the request.",
-                                       400);
-        }
-        if (!is_numeric($_REQUEST["publicationYear"])) {
-            throw new RequestException("Bad request: ivalid parameter [publicationYear] value: non-numeric value found [" .
-                                       $_REQUEST["publicationYear"] . "].", 400);
-        }
-        
-        $int_pub_year = (int) $_REQUEST["publicationYear"];
         
         // create a transaction as i will be making many operations in the datatbase
         $connection = DBConnectionService::getConnection();
@@ -88,26 +72,26 @@ class BookController extends AbstractController {
         
         try {
             
-            // create the book first
-            $instance = $this->bookService->create($_REQUEST["title"], $_REQUEST["isbn"], $int_pub_year, $_REQUEST["description"]);
+            // create the group first
+            $instance = $this->groupService->create($_REQUEST["name"], $_REQUEST["isbn"], $int_pub_year, $_REQUEST["description"]);
             
-            // then create the book-author associations
-            if (!empty($_REQUEST["authors"]) || is_array($_REQUEST["authors"])) {
+            // then create the group-user associations
+            if (!empty($_REQUEST["users"]) || is_array($_REQUEST["users"])) {
                 
                 // create the selected associations
-                foreach ($_REQUEST["authors"] as $author_id => $is_checked) {
+                foreach ($_REQUEST["users"] as $user_id => $is_checked) {
                     // only if checkbox value was checked.
                     // NOTE: unchecked checkbox pass the value 'false' as a string ao they still exist in the request
                     // and make the following == "true" check necessary.
                     if (strtolower($is_checked) == "true") {
-                        $int_author_id = (int) $author_id;
-                        $this->bookService->associateBookWithAuthor($instance->getId(), $int_author_id);
+                        $int_user_id = (int) $user_id;
+                        $this->groupService->associateGroupWithUser($instance->getId(), $int_user_id);
                     }
                 }
             }
             
             // load the created associations
-            $instance->loadAuthors();
+            $instance->loadUsers();
             // commit all DB operations
             $connection->commit();
             
@@ -119,11 +103,16 @@ class BookController extends AbstractController {
             throw $excep;
         }
     }
-    
+
+    /**
+     * @throws ValidationException
+     * @throws RequestException
+     * @throws RuntimeException
+     */
     public function put() : void {
         
         // Login required to use this API functionality
-        if (!LoginService::isAuthorLoggedIn()) {
+        if (!LoginService::isUserLoggedIn()) {
             // not logged-in: respond with 401 NOT AUTHORIZED
             throw new RequestException("NOT AUTHORIZED", 401, [], 401);
         }
@@ -139,22 +128,11 @@ class BookController extends AbstractController {
             throw new RequestException("Bad request: ivalid parameter [id] value: non-numeric value found [" .
                                        $_REQUEST["id"] . "].", 400);
         }
-        if (empty($_REQUEST["title"])) {
-            throw new RequestException("Bad request: required parameter [title] not found in the request.", 400);
-        }
-        if (empty($_REQUEST["isbn"])) {
-            throw new RequestException("Bad request: required parameter [isbn] not found in the request.", 400);
-        }
-        if (empty($_REQUEST["publicationYear"])) {
-            throw new RequestException("Bad request: required parameter [publicationYear] not found in the request.",
-                                       400);
-        }
-        if (!is_numeric($_REQUEST["publicationYear"])) {
-            throw new RequestException("Bad request: ivalid parameter [publicationYear] value: non-numeric value found [" .
-                                       $_REQUEST["publicationYear"] . "].", 400);
+        if (empty($_REQUEST["name"])) {
+            throw new RequestException("Bad request: required parameter [name] not found in the request.", 400);
         }
         
-        $int_book_id = (int) $_REQUEST["id"];
+        $int_group_id = (int) $_REQUEST["id"];
         $int_pub_year = (int) $_REQUEST["publicationYear"];
         
         $connection = DBConnectionService::getConnection();
@@ -162,31 +140,31 @@ class BookController extends AbstractController {
         
         try {
             
-            // I handle dealing with the book-author associations first then do the book entity update.
-            // I can do this in the update because the book already exists so the foreign key checks will not fail.
+            // I handle dealing with the group-user associations first then do the group entity update.
+            // I can do this in the update because the group already exists so the foreign key checks will not fail.
             
-            // My approach is simply to delete all existing associations between the updating book and any authors
+            // My approach is simply to delete all existing associations between the updating group and any users
             // and then to re-create only those set from the checkbox inputs values from the request
             
-            if (!empty($_REQUEST["authors"]) || is_array($_REQUEST["authors"])) {
-                // delete all previous author associations for the book
-                $this->bookService->deleteAllBookAuthorAssociationsForBookId($int_book_id);
+            if (!empty($_REQUEST["users"]) || is_array($_REQUEST["users"])) {
+                // delete all previous user associations for the group
+                $this->groupService->deleteAllGroupUserAssociationsForGroupId($int_group_id);
                 
                 // re-create the selected associations
-                foreach ($_REQUEST["authors"] as $author_id => $is_checked) {
+                foreach ($_REQUEST["users"] as $user_id => $is_checked) {
                     // only if checkbox value was checked.
                     // NOTE: unchecked checkbox pass the value 'false' as a string ao they still exist in the request
                     // and make the following == "true" check necessary.
                     if (strtolower($is_checked) == "true") {
-                        $int_author_id = (int) $author_id;
-                        $this->bookService->associateBookWithAuthor($int_book_id, $int_author_id);
+                        $int_user_id = (int) $user_id;
+                        $this->groupService->associateGroupWithUser($int_group_id, $int_user_id);
                     }
                 }
             }
             
             // then update the main object
-            $instance = $this->bookService->update($int_book_id, $_REQUEST["title"], $_REQUEST["isbn"], $int_pub_year, $_REQUEST["description"]);
-            $instance->loadAuthors();
+            $instance = $this->groupService->update($int_group_id, $_REQUEST["name"], $_REQUEST["isbn"], $int_pub_year, $_REQUEST["description"]);
+            $instance->loadUsers();
             $connection->commit();
             
             header("Content-Type: application/json;charset=UTF-8");
@@ -199,11 +177,15 @@ class BookController extends AbstractController {
         
         
     }
-    
+
+    /**
+     * @throws RuntimeException
+     * @throws RequestException
+     */
     public function delete() : void {
         
         // Login required to use this API functionality
-        if (!LoginService::isAuthorLoggedIn()) {
+        if (!LoginService::isUserLoggedIn()) {
             // not logged-in: respond with 401 NOT AUTHORIZED
             throw new RequestException("NOT AUTHORIZED", 401, [], 401);
         }
@@ -220,21 +202,21 @@ class BookController extends AbstractController {
                                        $_REQUEST["id"] . "].", 400);
         }
         
-        $int_book_id = (int) $_REQUEST["id"];
+        $int_group_id = (int) $_REQUEST["id"];
         
         $connection = DBConnectionService::getConnection();
         $connection->beginTransaction();
         
         try {
-            // I delete the book-author associations first then delete the book itself.
+            // I delete the group-user associations first then delete the group itself.
             // I have to do this in that order in the delete operation because the foreign key checks might block me
-            // from deleting a book that still has existing associations (ON DELETE RESTRICT foreign key option).
+            // from deleting a group that still has existing associations (ON DELETE RESTRICT foreign key option).
             
-            // delete all author associations for the book
-            $this->bookService->deleteAllBookAuthorAssociationsForBookId($int_book_id);
+            // delete all user associations for the group
+            $this->groupService->deleteAllGroupUserAssociationsForGroupId($int_group_id);
             
-            // delete the book itself
-            $this->bookService->delete($int_book_id);
+            // delete the group itself
+            $this->groupService->delete($int_group_id);
             
             // commit transaction operations
             $connection->commit();

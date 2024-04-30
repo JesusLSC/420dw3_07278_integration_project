@@ -4,19 +4,19 @@ declare(strict_types=1);
 /*
  * 420DW3_07278_Project PageNavigator.php
  * 
- * @author Marc-Eric Boury (MEbou)
+ * @user Marc-Eric Boury (MEbou)
  * @since 2024-03-26
  * (c) Copyright 2024 Marc-Eric Boury 
  */
 
-namespace Teacher\Examples\Controllers;
+namespace Controllers;
 
-use Teacher\GivenCode\Abstracts\IService;
+use GivenCode\Abstracts\IService;
 
 /**
  * TODO: Class documentation
  *
- * @author Marc-Eric Boury
+ * @user Marc-Eric Boury
  * @since  2024-03-26
  */
 class PageNavigator implements IService {
@@ -24,16 +24,16 @@ class PageNavigator implements IService {
     
     public static function loginPage() : void {
         header("Content-Type: text/html;charset=UTF-8");
-        include PRJ_FRAGMENTS_DIR . "Teacher/Exemples/page.login.php";
+        include PRJ_FRAGMENTS_DIR . "page.login.php";
     }
     
-    public static function booksManagementPage() : void {
+    public static function groupsManagementPage() : void {
         header("Content-Type: text/html;charset=UTF-8");
-        include PRJ_FRAGMENTS_DIR . "Teacher/Exemples/page.management.books.php";
+        include PRJ_FRAGMENTS_DIR . "page.management.groups.php";
     }
     
-    public static function authorsManagementPage() : void {
+    public static function usersManagementPage() : void {
         header("Content-Type: text/html;charset=UTF-8");
-        include PRJ_FRAGMENTS_DIR . "Teacher/Exemples/page.management.authors.php";
+        include PRJ_FRAGMENTS_DIR . "page.management.users.php";
     }
 }
