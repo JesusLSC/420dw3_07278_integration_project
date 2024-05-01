@@ -32,16 +32,16 @@ class LoginService implements IService {
      */
     public static function requirePhilipKDick() : bool {
         $return_value = false;
-        if (!empty($_SESSION["LOGGED_IN_USER"]) && ($_SESSION["LOGGED_IN_USER"] instanceof UserDTO)) {
+        if (!empty($_SESSION["LOGGED_IN_AUTHOR"]) && ($_SESSION["LOGGED_IN_AUTHOR"] instanceof UserDTO)) {
             $requiredUser = (new UserService())->getUserById(1);
-            $user_object = $_SESSION["LOGGED_IN_USER"];
-            if ($user_object->getId() === $requiredUser->getId()) {
+            $author_object = $_SESSION["LOGGED_IN_AUTHOR"];
+            if ($author_object->getId() === $requiredUser->getId()) {
                 $return_value = true;
             }
         }
         return $return_value;
     }
-    
+
     public static function isUserLoggedIn() : bool {
         $return_val = false;
         if (!empty($_SESSION["LOGGED_IN_USER"]) && ($_SESSION["LOGGED_IN_USER"] instanceof UserDTO)) {

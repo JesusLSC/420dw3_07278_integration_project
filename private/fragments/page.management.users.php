@@ -37,7 +37,7 @@ $all_users = $user_service->getAllUsers();
     </script>
     <script type="text/javascript" src="<?= WEB_JS_DIR . "jquery-3.7.1.min.js" ?>" defer></script>
     <script type="text/javascript" src="<?= WEB_JS_DIR . "standard.js" ?>" defer></script>
-    <script type="text/javascript" src="<?= WEB_JS_DIR . "page.users.js" ?>" defer></script>
+    <script type="text/javascript" src="<?= WEB_JS_DIR . "page.user.js" ?>" defer></script>
 </head>
 <body>
 <header id="header">
@@ -53,7 +53,7 @@ $all_users = $user_service->getAllUsers();
         <div class="row justify-content-center">
             <div class="col-12 col-md-4 row align-items-end align-items-md-center justify-content-center justify-content-md-end">
                 <label class="col-12 text-start text-md-end align-items-md-center"
-                       for="example-selector">Select a user:</label>
+                       for="user-selector">Select a user:</label>
             </div>
             <div class="col-12 col-md-4 row justify-content-center">
                 <select id="user-selector" class="">
@@ -61,13 +61,8 @@ $all_users = $user_service->getAllUsers();
                     <option value='999999'>FAIL TEST (id# 999999)</option>
                     <?php
                     foreach ($all_users as $instance) {
-                        $red_text = false;
-                        if (!is_null($instance->getDateDeleted())) {
-                            $red_text = true;
-                        }
-                        echo ("<option class='" . ($red_text
-                                ? "text-red"
-                                : "") . "' value='" . $instance->getId() . "'>" . $instance->getUsername()  . "</option>");
+
+                        echo ("<option class='" . "' value='" . $instance->getId() . "'>" . $instance->getUsername() . "</option>");
                     }
                     ?>
                 </select>
@@ -80,7 +75,7 @@ $all_users = $user_service->getAllUsers();
             </div>
         </div>
         <div class="row">
-        
+
         </div>
         <div class="error-display hidden">
             <h1 id="error-class" class="col-12 error-text"></h1>
@@ -92,15 +87,12 @@ $all_users = $user_service->getAllUsers();
         <div class="container">
             <form id="user-form" class="row">
                 <div class="col-12">
-                    <label class="form-label" for="example-id">Id: </label>
+                    <label class="form-label" for="user-id">Id: </label>
                     <input id="user-id" class="form-control form-control-sm" type="number" name="id" readonly disabled>
                 </div>
                 <div class="col-12">
                     <label class="form-label" for="user-username">Username:</label>
                     <input id="user-username" class="form-control" type="text" name="username"
-
-                    // TODO: CHANGE CONSTANTS
-
                            maxlength="<?= UserDTO::USERNAME_MAX_LENGTH ?>" required>
                 </div>
                 <div class="col-12">
@@ -127,7 +119,6 @@ $all_users = $user_service->getAllUsers();
                 <button id="delete-button" type="button" class="btn btn-danger col-12 col-md-2 my-1 my-md-0 text-uppercase" disabled>Delete</button>
             </div>
         </div>
-    
     </div>
 </main>
 <footer id="footer">

@@ -1,19 +1,10 @@
 <?php
 declare(strict_types=1);
 
-/*
- * 420DW3_07278_Project InternalRouter.php
- * 
- * @user Marc-Eric Boury (MEbou)
- * @since 2024-03-14
- * (c) Copyright 2024 Marc-Eric Boury 
- */
-
 namespace GivenCode\Services;
 
 use Controllers\UserController;
 use Controllers\GroupController;
-use Controllers\ExampleController;
 use Controllers\LoginController;
 use Controllers\PageNavigator;
 use GivenCode\Abstracts\IService;
@@ -38,11 +29,12 @@ class InternalRouter implements IService {
     public function __construct(string $uri_base_directory = "") {
         $this->uriBaseDirectory = $uri_base_directory;
         $this->routes = new RouteCollection();
+        $this->routes->addRoute(new APIRoute("/api/userDTO", UserController::class));
         $this->routes->addRoute(new APIRoute("/api/login", LoginController::class));
         $this->routes->addRoute(new APIRoute("/api/groups", GroupController::class));
         $this->routes->addRoute(new APIRoute("/api/users", UserController::class));
-        $this->routes->addRoute(new WebpageRoute("/index.php", "user_page.php"));
-        $this->routes->addRoute(new WebpageRoute("/", "user_page.php"));
+        $this->routes->addRoute(new WebpageRoute("/index.php", "users.php"));
+        $this->routes->addRoute(new WebpageRoute("/", "users.php"));
         $this->routes->addRoute(new CallableRoute("/pages/login", [PageNavigator::class, "loginPage"]));
         $this->routes->addRoute(new CallableRoute("/pages/groups", [PageNavigator::class, "groupsManagementPage"]));
         $this->routes->addRoute(new CallableRoute("/pages/users", [PageNavigator::class, "usersManagementPage"]));

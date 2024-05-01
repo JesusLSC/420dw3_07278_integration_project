@@ -11,14 +11,14 @@ use Services\LoginService;
         <h1 class="col-12 text-center">{CodeBloc} Inc.</h1>
     </div>
     <div class="row flex-wrap flex-md-nowrap nav-bar justify-content-md-center">
-        <div class="nav-bar-entry d-flex col-12 col-md-2 justify-content-center" data-url="<?= WEB_ROOT_DIR ?>">
-            <span class="text-uppercase">Home</span>
+        <div class="nav-bar-entry d-flex col-12 col-md-2 justify-content-center" data-url="<?= WEB_ROOT_DIR . "public/pages/users.php"?>">
+            <span class="text-uppercase">Users</span>
         </div>
-        <div class="nav-bar-entry d-flex col-12 col-md-2 justify-content-center" data-url="<?= WEB_ROOT_DIR . "pages/groups" ?>">
+        <div class="nav-bar-entry d-flex col-12 col-md-2 justify-content-center" data-url="<?= WEB_ROOT_DIR . "public/pages/groups.php" ?>">
             <span class="text-uppercase">Groups</span>
         </div>
-        <div class="nav-bar-entry d-flex col-12 col-md-2 justify-content-center" data-url="<?= WEB_ROOT_DIR . "pages/users" ?>">
-            <span class="text-uppercase">Users</span>
+        <div class="nav-bar-entry d-flex col-12 col-md-2 justify-content-center" data-url="<?= WEB_ROOT_DIR . "public/pages/permissions.php" ?>">
+            <span class="text-uppercase">Permissions</span>
         </div>
         <?php
         
@@ -31,7 +31,7 @@ use Services\LoginService;
         </div>
 HTDOC;
         } else {
-            $login_page_url = WEB_ROOT_DIR . "pages/login";
+            $login_page_url = WEB_ROOT_DIR . "public/pages/login";
             echo <<<HTDOC
         <div class="nav-bar-entry d-flex col-12 col-md-2 ms-md-auto justify-content-center" data-url="$login_page_url" >
             <span class="text-uppercase">Login</span>

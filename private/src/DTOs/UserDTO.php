@@ -1,13 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/*
- * 420DW3_07278_Project UserDTO.php
- * 
- * @user Marc-Eric Boury (MEbou)
- * @since 2024-03-21
- * (c) Copyright 2024 Marc-Eric Boury 
- */
 
 namespace DTOs;
 
@@ -47,21 +40,18 @@ class UserDTO {
      * @var GroupDTO[]
      */
     private array $groups = [];
-    
-    
+
+
     public function __construct() {}
-    
+
     /**
      * TODO: Function documentation
      *
      * @param string $username
-     * @param string $password_hash
      * @return UserDTO
-     *
-     * @user Marc-Eric Boury
-     * @since  2024-04-01
+     * @throws ValidationException
      */
-    public static function fromValues(string $username, string $password_hash) : UserDTO {
+    public static function fromValues(string $username) : UserDTO {
         $instance = new UserDTO();
         $instance->setUsername($username);
         return $instance;
@@ -90,7 +80,7 @@ class UserDTO {
         }
         return $instance;
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="VALIDATION METHODS">
 
     /**
@@ -212,12 +202,12 @@ class UserDTO {
         }
         return true;
     }
-    
+
     // </editor-fold>
-    
-    
+
+
     // <editor-fold defaultstate="collapsed" desc="GETTERS AND SETTERS">
-    
+
     /**
      * @return int
      */
@@ -235,7 +225,7 @@ class UserDTO {
         }
         $this->user_id = $user_id;
     }
-    
+
     /**
      * @return string
      */
@@ -253,7 +243,7 @@ class UserDTO {
                                           self::USERNAME_MAX_LENGTH . ".");
         }
         $this->username = $username;
-    }    
+    }
     /**
      * @return string
      */
@@ -276,46 +266,46 @@ class UserDTO {
     /**
      * @return string
      */
-    
+
     public function getEmail() : string {
         return $this->email;
     }
-    
+
     /**
      * @param string $email
      */
     public function setEmail(string $email) : void {
         $this->email = $email;
     }
-    
+
     /**
      * @return DateTime
      */
     public function getDateCreated() : DateTime {
         return $this->created_at;
     }
-    
+
     /**
      * @param DateTime $created_at
      */
     public function setDateCreated(DateTime $created_at) : void {
         $this->created_at = $created_at;
     }
-    
+
     /**
      * @return DateTime|null
      */
     public function getDateLastModified() : ?DateTime {
         return $this->modified_at;
     }
-    
+
     /**
      * @param DateTime|null $modified_at
      */
     public function setDateLastModified(?DateTime $modified_at) : void {
         $this->modified_at = $modified_at;
     }
-    
+
     /**
      * @return DateTime|null
      */
@@ -337,7 +327,7 @@ class UserDTO {
         }
         return $this->groups;
     }
-    
+
     // </editor-fold>
 
 
@@ -349,7 +339,7 @@ class UserDTO {
         $dao = new UserDAO();
         $this->groups = $dao->getGroupsByUser($this);
     }
-    
+
     public function toArray() : array {
         $array = [
             "user_id" => $this->getId(),
