@@ -23,7 +23,7 @@ function updateClearButtonState() {
 
 function getFormDataAsUrlEncoded() {
     let formData = new FormData();
-    formData.set("user_id", $("#user-id").val());
+    formData.set("user_id", $("#user_id").val());
     formData.set("username", $("#user-username").val());
     formData.set("password_hash", $("#user-password_hash").val());
     formData.set("email", $("#user-email").val());
@@ -34,13 +34,10 @@ function getFormDataAsUrlEncoded() {
 
 function fillFormFromResponseObject(entityObject) {
     if ('user_id' in entityObject) {
-        $("#user-id").val(entityObject.id);
+        $("#user_id").val(entityObject.id);
     }
     if ('username' in entityObject) {
         $("#user-username").val(entityObject.username);
-    }
-    if ('password_hash' in entityObject) {
-        $("#user-password_hash").val(entityObject.password_hash);
     }
     if ('email' in entityObject) {
         $("#user-email").val(entityObject.email);
@@ -152,7 +149,7 @@ function updateUser() {
          console.log("Received data: ", data);
          
          // Replace the text in the selector with the updated values
-         let formIdValue = document.getElementById("user-id").value;
+         let formIdValue = document.getElementById("user_id").value;
          if ('username' in data) {
              let selector = /** @type {HTMLSelectElement} */ document.getElementById("user-selector");
              // Note: voluntary non-identity equality check ( == instead of === ): disable warning
@@ -181,7 +178,7 @@ function deleteUser() {
     $.ajax(options)
      .done((data, status, jqXHR) => {
          console.log("Received data: ", data);
-         let formIdValue = document.getElementById("user-id").value;
+         let formIdValue = document.getElementById("user_id").value;
          if (formIdValue) {
              let selector = /** @type {HTMLSelectElement} */ document.getElementById("user-selector");
              // Note: voluntary non-identity equality check ( == instead of === ): disable warning

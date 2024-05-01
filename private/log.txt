@@ -392,3 +392,166 @@
 2024-05-01 19:52:35: true
 2024-05-01 19:52:56: true
 2024-05-01 19:54:46: true
+2024-05-01 20:13:12: true
+2024-05-01 20:13:21: true
+2024-05-01 20:18:30: true
+2024-05-01 20:20:38: true
+2024-05-01 20:24:17: true
+2024-05-01 20:24:18: true
+2024-05-01 20:24:19: true
+2024-05-01 20:24:20: true
+2024-05-01 20:24:22: true
+2024-05-01 20:24:55: true
+2024-05-01 20:26:27: true
+2024-05-01 20:26:30: Route found: matched [/420dw3_07278_integration_project/api/UserDto] with route [/420dw3_07278_integration_project/api/userDTO]
+2024-05-01 20:26:30: Controller: calling method Controllers\UserController::get().
+2024-05-01 20:26:30: true
+2024-05-01 20:26:30: RequestException: NOT AUTHORIZED
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->get()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-01 20:26:50: Route found: matched [/420dw3_07278_integration_project/api/UserDto] with route [/420dw3_07278_integration_project/api/userDTO]
+2024-05-01 20:26:50: Controller: calling method Controllers\UserController::get().
+2024-05-01 20:26:50: true
+2024-05-01 20:26:50: RequestException: NOT AUTHORIZED
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->get()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-01 20:26:54: Route found: matched [/420dw3_07278_integration_project/api/UserDto] with route [/420dw3_07278_integration_project/api/userDTO]
+2024-05-01 20:26:54: Controller: calling method Controllers\UserController::get().
+2024-05-01 20:26:54: true
+2024-05-01 20:26:54: RequestException: NOT AUTHORIZED
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->get()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-01 20:26:55: Route found: matched [/420dw3_07278_integration_project/api/UserDto] with route [/420dw3_07278_integration_project/api/userDTO]
+2024-05-01 20:26:55: Controller: calling method Controllers\UserController::get().
+2024-05-01 20:26:55: true
+2024-05-01 20:26:55: RequestException: NOT AUTHORIZED
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->get()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-01 20:27:21: Route found: matched [/420dw3_07278_integration_project/api/UserDto] with route [/420dw3_07278_integration_project/api/userDTO]
+2024-05-01 20:27:21: Controller: calling method Controllers\UserController::get().
+2024-05-01 20:27:21: true
+2024-05-01 20:27:21: RequestException: NOT AUTHORIZED
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->get()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-01 20:27:39: Route found: matched [/420dw3_07278_integration_project/api/UserDto] with route [/420dw3_07278_integration_project/api/userDTO]
+2024-05-01 20:27:39: Controller: calling method Controllers\UserController::get().
+2024-05-01 20:27:39: true
+2024-05-01 20:27:39: RequestException: NOT AUTHORIZED
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->get()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-01 20:27:45: Route found: matched [/420dw3_07278_integration_project/api/UserDto] with route [/420dw3_07278_integration_project/api/userDTO]
+2024-05-01 20:27:45: Controller: calling method Controllers\UserController::get().
+2024-05-01 20:27:45: true
+2024-05-01 20:27:45: RequestException: NOT AUTHORIZED
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->get()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-01 20:27:51: Route found: matched [/420dw3_07278_integration_project/api/UserDto] with route [/420dw3_07278_integration_project/api/userDTO]
+2024-05-01 20:27:51: Controller: calling method Controllers\UserController::get().
+2024-05-01 20:27:51: true
+2024-05-01 20:27:51: RequestException: NOT AUTHORIZED
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->get()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-01 20:31:18: true
+2024-05-01 20:31:20: Route found: matched [/420dw3_07278_integration_project/api/UserDto] with route [/420dw3_07278_integration_project/api/userDTO]
+2024-05-01 20:31:20: Controller: calling method Controllers\UserController::get().
+2024-05-01 20:31:20: true
+2024-05-01 20:31:20: RequestException: NOT AUTHORIZED
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->get()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-01 20:32:21: true
+2024-05-01 20:32:26: Route found: matched [/420dw3_07278_integration_project/api/UserDto] with route [/420dw3_07278_integration_project/api/userDTO]
+2024-05-01 20:32:26: Controller: calling method Controllers\UserController::get().
+2024-05-01 20:32:26: true
+2024-05-01 20:32:26: RequestException: NOT AUTHORIZED
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->get()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-01 20:32:32: Route found: matched [/420dw3_07278_integration_project/api/UserDto] with route [/420dw3_07278_integration_project/api/userDTO]
+2024-05-01 20:32:32: Controller: calling method Controllers\UserController::get().
+2024-05-01 20:32:32: true
+2024-05-01 20:32:32: RequestException: NOT AUTHORIZED
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->get()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-01 20:32:39: Route found: matched [/420dw3_07278_integration_project/api/UserDto] with route [/420dw3_07278_integration_project/api/userDTO]
+2024-05-01 20:32:39: Controller: calling method Controllers\UserController::get().
+2024-05-01 20:32:39: true
+2024-05-01 20:32:39: RequestException: NOT AUTHORIZED
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->get()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-01 20:32:45: Route found: matched [/420dw3_07278_integration_project/api/UserDto] with route [/420dw3_07278_integration_project/api/userDTO]
+2024-05-01 20:32:45: Controller: calling method Controllers\UserController::get().
+2024-05-01 20:32:45: true
+2024-05-01 20:32:45: RequestException: NOT AUTHORIZED
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->get()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-01 20:32:51: Route found: matched [/420dw3_07278_integration_project/api/UserDto] with route [/420dw3_07278_integration_project/api/userDTO]
+2024-05-01 20:32:51: Controller: calling method Controllers\UserController::get().
+2024-05-01 20:32:51: true
+2024-05-01 20:32:51: RequestException: NOT AUTHORIZED
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->get()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-01 20:32:54: Route found: matched [/420dw3_07278_integration_project/api/UserDto] with route [/420dw3_07278_integration_project/api/userDTO]
+2024-05-01 20:32:54: Controller: calling method Controllers\UserController::get().
+2024-05-01 20:32:54: true
+2024-05-01 20:32:54: RequestException: NOT AUTHORIZED
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->get()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
