@@ -51,19 +51,19 @@ class GroupService implements IService {
     /**
      * @throws ValidationException
      */
-    public function create(string $name, ?string $description = null) : GroupDTO {
-        $instance = GroupDTO::fromValues($name, $description);
+    public function create(string $name, ?string $group_description = null) : GroupDTO {
+        $instance = GroupDTO::fromValues($name, $group_description);
         return $this->dao->insert($instance);
     }
 
     /**
      * @throws ValidationException
      */
-    public function update(int $id, string $name, ?string $description = null) : GroupDTO {
+    public function update(int $id, string $name, ?string $group_description = null) : GroupDTO {
         // No transaction this time, contrary to the Example stack
         $instance = $this->dao->getById($id);
         $instance->setName($name);
-        $instance->setDescription($description);
+        $instance->setDescription($group_description);
         return $this->dao->update($instance);
     }
     

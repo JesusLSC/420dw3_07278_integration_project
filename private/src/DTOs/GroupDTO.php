@@ -13,16 +13,16 @@ use GivenCode\Exceptions\ValidationException;
 class GroupDTO {
     
     /**
-     * The database table name for this entity type.
+     * The database table group_name for this entity type.
      * @const
      */
-    public const TABLE_NAME = "groups";
+    public const TABLE_NAME = "usergroups";
     public const NAME_MAX_LENGTH = 255;
     public const DESCRIPTION_MAX_LENGTH = 1024;
     
-    private int $id;
-    private string $name;
-    private ?string $description;
+    private int $group_id;
+    private string $group_name;
+    private ?string $group_description = null;
     private ?DateTime $dateCreated = null;
     private ?DateTime $dateLastModified = null;
     
@@ -39,14 +39,14 @@ class GroupDTO {
      * TODO: Function documentation
      *
      * @param string      $name
-     * @param string|null $description
+     * @param string|null $group_description
      * @return GroupDTO
      * @throws ValidationException
      */
-    public static function fromValues(string $name,?string $description = null) : GroupDTO {
+    public static function fromValues(string $name,?string $group_description = null) : GroupDTO {
         $instance = new GroupDTO();
         $instance->setName($name);
-        $instance->setDescription($description);
+        $instance->setDescription($group_description);
         return $instance;
     }
     
@@ -60,9 +60,9 @@ class GroupDTO {
     public static function fromDbArray(array $dbArray) : GroupDTO {
         self::validateDbArray($dbArray);
         $instance = new GroupDTO();
-        $instance->setId((int) $dbArray["id"]);
-        $instance->setName($dbArray["name"]);
-        $instance->setDescription($dbArray["description"]);
+        $instance->setId((int) $dbArray["group_id"]);
+        $instance->setName($dbArray["group_name"]);
+        $instance->setDescription($dbArray["group_description"]);
         $instance->setDateCreated(DateTime::createFromFormat(DB_DATETIME_FORMAT, $dbArray["created_at"]));
         $dateLast_modified = null;
         if (!empty($dbArray["modified_at"])) {
@@ -82,7 +82,7 @@ class GroupDTO {
      * @return int
      */
     public function getId() : int {
-        return $this->id;
+        return $this->group_id;
     }
 
     /**
@@ -91,16 +91,16 @@ class GroupDTO {
      */
     public function setId(int $id) : void {
         if ($id < 1) {
-            throw new ValidationException("[id] value must be a positive integer greater than 0.");
+            throw new ValidationException("[group_id] value must be a positive integer greater than 0.");
         }
-        $this->id = $id;
+        $this->group_id = $id;
     }
     
     /**
      * @return string
      */
     public function getName() : string {
-        return $this->name;
+        return $this->group_name;
     }
 
     /**
@@ -109,30 +109,24 @@ class GroupDTO {
      */
     public function setName(string $name) : void {
         if (mb_strlen($name) > self::NAME_MAX_LENGTH) {
-            throw new ValidationException("[name] value must be a string no longer than " . self::NAME_MAX_LENGTH .
+            throw new ValidationException("[group_name] value must be a string no longer than " . self::NAME_MAX_LENGTH .
                                           " characters; found length: [" . mb_strlen($name) . "].");
         }
-        $this->name = $name;
+        $this->group_name = $name;
     }
-    
+
     /**
      * @return string|null
      */
-    public function getDescription() : ?string {
-        return $this->description;
+    public function getDescription(): ?string {
+        return $this->group_description;
     }
 
     /**
      * @param string|null $description
-     * @throws ValidationException
      */
-    public function setDescription(?string $description) : void {
-        if (is_string($description) && (mb_strlen($description) > self::NAME_MAX_LENGTH)) {
-            throw new ValidationException("[description] value must be a string no longer than " .
-                                          self::DESCRIPTION_MAX_LENGTH . " characters; found length: [" .
-                                          mb_strlen($description) . "].");
-        }
-        $this->description = $description;
+    public function setDescription(?string $description): void {
+        $this->group_description = $description;
     }
 
     /**
@@ -176,7 +170,7 @@ class GroupDTO {
                 $this->loadUsers();
             }
         } catch (Exception $excep) {
-            throw new RuntimeException("Failed to load user entity records for group id# [$this->id].", $excep->getCode(), $excep);
+            throw new RuntimeException("Failed to load user entity records for group group_id# [$this->group_id].", $excep->getCode(), $excep);
         }
         return $this->users;
     }
@@ -194,9 +188,9 @@ class GroupDTO {
     
     public function toArray() : array {
         $array = [
-            "id" => $this->getId(),
-            "name" => $this->getName(),
-            "description" => $this->getDescription(),
+            "group_id" => $this->getId(),
+            "group_name" => $this->getName(),
+            "group_description" => $this->getDescription(),
             "dateCreated" => $this->getDateCreated()?->format(HTML_DATETIME_FORMAT),
             "dateLastModified" => $this->getDateLastModified()?->format(HTML_DATETIME_FORMAT),
             "users" => []
@@ -218,12 +212,12 @@ class GroupDTO {
      */
     public function validateForDbCreation() : void {
         // ID must not be set
-        if (!empty($this->id)) {
+        if (!empty($this->group_id)) {
             throw new ValidationException("GroupDTO is not valid for DB creation: ID value already set.");
         }
-        // name is required
-        if (empty($this->name)) {
-            throw new ValidationException("GroupDTO is not valid for DB creation: name value not set.");
+        // group_name is required
+        if (empty($this->group_name)) {
+            throw new ValidationException("GroupDTO is not valid for DB creation: group_name value not set.");
         }
         if (!is_null($this->dateCreated)) {
             throw new ValidationException("GroupDTO is not valid for DB creation: dateCreated value already set.");
@@ -238,12 +232,12 @@ class GroupDTO {
      */
     public function validateForDbUpdate() : void {
         // ID must be set
-        if (empty($this->id)) {
+        if (empty($this->group_id)) {
             throw new ValidationException("GroupDTO is not valid for DB update: ID value not set.");
         }
-        // name is required
-        if (empty($this->name)) {
-            throw new ValidationException("GroupDTO is not valid for DB update: name value not set.");
+        // group_name is required
+        if (empty($this->group_name)) {
+            throw new ValidationException("GroupDTO is not valid for DB update: group_name value not set.");
         }
     }
 
@@ -252,7 +246,7 @@ class GroupDTO {
      */
     public function validateForDbDelete() : void {
         // ID must be set
-        if (empty($this->id)) {
+        if (empty($this->group_id)) {
             throw new ValidationException("GroupDTO is not valid for DB update: ID value not set.");
         }
     }
@@ -266,14 +260,14 @@ class GroupDTO {
      * @throws ValidationException
      */
     private static function validateDbArray(array $dbArray) : void {
-        if (empty($dbArray["id"])) {
+        if (empty($dbArray["group_id"])) {
             throw new ValidationException("Database array for [" . self::class .
-                                          "] does not contain an [id] key. Check your column names.",
+                                          "] does not contain an [group_id] key. Check your column names.",
                                           500);
         }
-        if (empty($dbArray["name"])) {
+        if (empty($dbArray["group_name"])) {
             throw new ValidationException("Database array for [" . self::class .
-                                          "] does not contain an [name] key. Check your column names.",
+                                          "] does not contain an [group_name] key. Check your column names.",
                                           500);
         }
         if (empty($dbArray["created_at"])) {

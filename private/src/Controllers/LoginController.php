@@ -60,8 +60,13 @@ class LoginController extends AbstractController {
             echo json_encode($response);
             exit();
             
-        } catch (Exception $excep) {
-            throw new Exception("Failure to log user in.", $excep->getCode(), $excep);
+        }
+        catch (Exception $excep) {
+            $code = $excep->getCode();
+            if (!is_int($code)) {
+                $code = 500;
+            }
+            throw new Exception("Failure to log user in.", $code, $excep);
         }
     }
 

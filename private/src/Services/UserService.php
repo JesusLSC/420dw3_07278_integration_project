@@ -1,14 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/*
- * 420DW3_07278_Project UserService.php
- * 
- * @user Marc-Eric Boury (MEbou)
- * @since 2024-04-03
- * (c) Copyright 2024 Marc-Eric Boury 
- */
-
 namespace Services;
 
 use Exception;
@@ -56,17 +48,17 @@ class UserService implements IService {
         return $user;
     }
     
-    public function createUser(string $firstName, string $lastName) : UserDTO {
+    public function createUser(string $username) : UserDTO {
         try {
-            $user = UserDTO::fromValues($firstName, $lastName);
+            $user = UserDTO::fromValues($username);
             return $this->dao->insert($user);
             
         } catch (Exception $excep) {
-            throw new RuntimeException("Failure to create user [$firstName, $lastName].", $excep->getCode(), $excep);
+            throw new RuntimeException("Failure to create user [$username].", $excep->getCode(), $excep);
         }
     }
     
-    public function updateUser(int $id, string $firstName, string $lastName) : UserDTO {
+    public function updateUser(int $id, string $username) : UserDTO {
         try {
             $connection = DBConnectionService::getConnection();
             $connection->beginTransaction();
@@ -76,7 +68,7 @@ class UserService implements IService {
                 if (is_null($user)) {
                     throw new Exception("User id# [$id] not found in the database.");
                 }
-                $user->setUsername($firstName);
+                $user->setUsername($username);
                 $result = $this->dao->update($user);
                 $connection->commit();
                 return $result;

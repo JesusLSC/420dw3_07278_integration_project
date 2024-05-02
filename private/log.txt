@@ -1,10 +1,25 @@
-2024-05-02 18:07:34: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
-2024-05-02 18:07:34: Controller: calling method Controllers\LoginController::post().
-2024-05-02 18:15:45: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
-2024-05-02 18:15:45: true
-2024-05-02 18:15:45: true
-2024-05-02 18:15:46: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
-2024-05-02 18:15:46: true
-2024-05-02 18:15:46: true
-2024-05-02 18:15:47: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
-2024-05-02 18:15:47: Controller: calling method Controllers\LoginController::post().
+2024-05-02 21:53:41: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-05-02 21:53:41: true
+2024-05-02 21:53:41: ErrorException: Creation of dynamic property DTOs\GroupDTO::$description is deprecated
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#1 {main}
+2024-05-02 21:53:41: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-05-02 21:53:41: true
+2024-05-02 21:53:41: ErrorException: Creation of dynamic property DTOs\GroupDTO::$description is deprecated
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#1 {main}
+2024-05-02 21:53:41: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-05-02 21:53:41: true
+2024-05-02 21:53:41: ErrorException: Creation of dynamic property DTOs\GroupDTO::$description is deprecated
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#1 {main}
+2024-05-02 21:53:42: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-05-02 21:53:42: true
+2024-05-02 21:53:42: ErrorException: Creation of dynamic property DTOs\GroupDTO::$description is deprecated
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#1 {main}
+2024-05-02 21:53:42: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-05-02 21:53:42: true
+2024-05-02 21:53:42: ErrorException: Creation of dynamic property DTOs\GroupDTO::$description is deprecated
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#1 {main}

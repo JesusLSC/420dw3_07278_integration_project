@@ -33,7 +33,7 @@ class InternalRouter implements IService {
         $this->routes->addRoute(new APIRoute("/api/login", LoginController::class));
         $this->routes->addRoute(new APIRoute("/api/groups", GroupController::class));
         $this->routes->addRoute(new APIRoute("/api/users", UserController::class));
-        $this->routes->addRoute(new WebpageRoute("/index.php", "users.php"));
+        $this->routes->addRoute(new WebpageRoute("/index", "users.php"));
         $this->routes->addRoute(new WebpageRoute("/", "users.php"));
         $this->routes->addRoute(new CallableRoute("/pages/login", [PageNavigator::class, "loginPage"]));
         $this->routes->addRoute(new CallableRoute("/pages/groups", [PageNavigator::class, "groupsManagementPage"]));

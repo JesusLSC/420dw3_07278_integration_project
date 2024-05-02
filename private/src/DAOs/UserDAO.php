@@ -46,7 +46,7 @@ class UserDAO {
     }
     
     public function getById(int $id) : ?UserDTO {
-        $query = "SELECT * FROM " . UserDTO::TABLE_NAME . " WHERE id = :user_id ;";
+        $query = "SELECT * FROM " . UserDTO::TABLE_NAME . " WHERE user_id = :id ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
         $statement->bindValue(":id", $id, PDO::PARAM_INT);
@@ -149,20 +149,20 @@ class UserDAO {
      * @user Marc-Eric Boury
      * @since  2024-04-01
      */
-    public function getGroupsByUserId(int $id) : array {
+    public function getGroupsByUserId(int $user_id) : array {
         $query = "SELECT b.* FROM " . UserDTO::TABLE_NAME . " a JOIN " . UserGroupDAO::TABLE_NAME .
-            " ab ON a.id = ab.user_id JOIN " . GroupDTO::TABLE_NAME . " b ON ab.group_id = b.id WHERE a.id = :userId ;";
+            " ab ON a.user_id = ab.user_id JOIN " . GroupDTO::TABLE_NAME . " b ON ab.group_id = b.group_id WHERE a.user_id = :userId ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
-        $statement->bindValue(":userId", $id, PDO::PARAM_INT);
+        $statement->bindValue(":userId", $user_id, PDO::PARAM_INT);
         $statement->execute();
-        
+
         $result_set = $statement->fetchAll(PDO::FETCH_ASSOC);
         $groups_array = [];
         foreach ($result_set as $group_record_array) {
             $groups_array[] = GroupDTO::fromDbArray($group_record_array);
         }
         return $groups_array;
-        
     }
+
 }

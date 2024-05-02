@@ -93,8 +93,8 @@ $all_users = $user_service->getAllUsers();
                            maxlength="<?= GroupDTO::NAME_MAX_LENGTH ?>" required>
                 </div>
                 <div class="col-12">
-                    <label class="form-label" for="group-description">Description:</label>
-                    <input id="group-description" class="form-control" type="text" name="description"
+                    <label class="form-label" for="group-group_description">Description:</label>
+                    <input id="group-group_description" class="form-control" type="text" name="group_description"
                            maxlength="<?= GroupDTO::DESCRIPTION_MAX_LENGTH ?>" >
                 </div>
                 <div class="col-12 flex-column">

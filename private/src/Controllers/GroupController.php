@@ -62,8 +62,8 @@ class GroupController extends AbstractController {
         // I have to do this in that order in the create operation because the group does not already exists
         // in the database so the foreign key checks would fail if i tried creating associations first.
         
-        if (empty($_REQUEST["name"])) {
-            throw new RequestException("Bad request: required parameter [name] not found in the request.", 400);
+        if (empty($_REQUEST["group_name"])) {
+            throw new RequestException("Bad request: required parameter [group_name] not found in the request.", 400);
         }
         
         // create a transaction as i will be making many operations in the datatbase
@@ -73,7 +73,7 @@ class GroupController extends AbstractController {
         try {
             
             // create the group first
-            $instance = $this->groupService->create($_REQUEST["name"], $_REQUEST["isbn"], $int_pub_year, $_REQUEST["description"]);
+            $instance = $this->groupService->create($_REQUEST["group_name"], $_REQUEST["group_description"]);
             
             // then create the group-user associations
             if (!empty($_REQUEST["users"]) || is_array($_REQUEST["users"])) {
@@ -128,8 +128,8 @@ class GroupController extends AbstractController {
             throw new RequestException("Bad request: ivalid parameter [id] value: non-numeric value found [" .
                                        $_REQUEST["id"] . "].", 400);
         }
-        if (empty($_REQUEST["name"])) {
-            throw new RequestException("Bad request: required parameter [name] not found in the request.", 400);
+        if (empty($_REQUEST["group_name"])) {
+            throw new RequestException("Bad request: required parameter [group_name] not found in the request.", 400);
         }
         
         $int_group_id = (int) $_REQUEST["id"];
@@ -163,7 +163,7 @@ class GroupController extends AbstractController {
             }
             
             // then update the main object
-            $instance = $this->groupService->update($int_group_id, $_REQUEST["name"], $_REQUEST["isbn"], $int_pub_year, $_REQUEST["description"]);
+            $instance = $this->groupService->update($int_group_id, $_REQUEST["group_name"], $_REQUEST["isbn"], $int_pub_year, $_REQUEST["description"]);
             $instance->loadUsers();
             $connection->commit();
             

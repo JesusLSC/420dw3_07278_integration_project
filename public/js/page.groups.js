@@ -26,7 +26,7 @@ function getFormDataAsUrlEncoded() {
     let formData = new FormData();
     formData.set("group_id", $("#group-group_id").val());
     formData.set("group_name", $("#group-group_name").val());
-    formData.set("description", $("#group-description").val());
+    formData.set("group_description", $("#group-group_description").val());
     formData.set("dateCreated", $("#user-date-created").val());
     formData.set("dateLastModified", $("#user-date-last-modified").val());
     $(".group-users").each((index, inputElem) => {
@@ -44,8 +44,8 @@ function fillFormFromResponseObject(entityObject) {
     if ('group_name' in entityObject) {
         $("#group-group_name").val(entityObject.group_name);
     }
-    if ('description' in entityObject) {
-        $("#group-description").val(entityObject.description);
+    if ('group_description' in entityObject) {
+        $("#group-group_description").val(entityObject.group_description);
     }
     if ('dateCreated' in entityObject) {
         $("#user-date-created").val(entityObject.created_at);

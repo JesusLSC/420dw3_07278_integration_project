@@ -58,12 +58,6 @@ const PRJ_FRAGMENTS_DIR = PRJ_PRIVATE_DIR . "fragments" . DIRECTORY_SEPARATOR;
 const PRJ_CONFIG_DIR = PRJ_PRIVATE_DIR . "config" . DIRECTORY_SEPARATOR;
 
 /**
- * Absolute path to the public 'images' directory of the project.
- * @const
- */
-const PRJ_IMAGES_DIR = PRJ_PUBLIC_DIR . "images" . DIRECTORY_SEPARATOR;
-
-/**
  * Absolute path to the public 'css' directory of the project.
  * @const
  */

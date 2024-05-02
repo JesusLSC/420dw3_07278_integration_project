@@ -16,7 +16,7 @@ use PDO;
 use GivenCode\Services\DBConnectionService;
 
 class UserGroupDAO {
-    public const TABLE_NAME = "user_groups";
+    public const TABLE_NAME = "user_usergroup";
     private const CREATE_QUERY = "INSERT INTO " . self::TABLE_NAME .
     " (`user_id`, `group_id`) VALUES (:userId, :groupId);";
     
