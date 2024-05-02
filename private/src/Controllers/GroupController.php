@@ -121,18 +121,18 @@ class GroupController extends AbstractController {
         parse_str($raw_request_string, $_REQUEST);
         
         
-        if (empty($_REQUEST["id"])) {
-            throw new RequestException("Bad request: required parameter [id] not found in the request.", 400);
+        if (empty($_REQUEST["group_id"])) {
+            throw new RequestException("Bad request: required parameter [group_id] not found in the request.", 400);
         }
-        if (!is_numeric($_REQUEST["id"])) {
-            throw new RequestException("Bad request: ivalid parameter [id] value: non-numeric value found [" .
-                                       $_REQUEST["id"] . "].", 400);
+        if (!is_numeric($_REQUEST["group_id"])) {
+            throw new RequestException("Bad request: ivalid parameter [group_id] value: non-numeric value found [" .
+                                       $_REQUEST["group_id"] . "].", 400);
         }
         if (empty($_REQUEST["group_name"])) {
             throw new RequestException("Bad request: required parameter [group_name] not found in the request.", 400);
         }
         
-        $int_group_id = (int) $_REQUEST["id"];
+        $int_group_id = (int) $_REQUEST["group_id"];
         $int_pub_year = (int) $_REQUEST["publicationYear"];
         
         $connection = DBConnectionService::getConnection();
@@ -194,15 +194,15 @@ class GroupController extends AbstractController {
         parse_str($raw_request_string, $_REQUEST);
         
         
-        if (empty($_REQUEST["id"])) {
-            throw new RequestException("Bad request: required parameter [id] not found in the request.", 400);
+        if (empty($_REQUEST["group_id"])) {
+            throw new RequestException("Bad request: required parameter [group_id] not found in the request.", 400);
         }
-        if (!is_numeric($_REQUEST["id"])) {
-            throw new RequestException("Bad request: ivalid parameter [id] value: non-numeric value found [" .
-                                       $_REQUEST["id"] . "].", 400);
+        if (!is_numeric($_REQUEST["group_id"])) {
+            throw new RequestException("Bad request: ivalid parameter [group_id] value: non-numeric value found [" .
+                                       $_REQUEST["group_id"] . "].", 400);
         }
         
-        $int_group_id = (int) $_REQUEST["id"];
+        $int_group_id = (int) $_REQUEST["group_id"];
         
         $connection = DBConnectionService::getConnection();
         $connection->beginTransaction();

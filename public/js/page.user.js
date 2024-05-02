@@ -34,7 +34,7 @@ function getFormDataAsUrlEncoded() {
 
 function fillFormFromResponseObject(entityObject) {
     if ('user_id' in entityObject) {
-        $("#user_id").val(entityObject.id);
+        $("#user_id").val(entityObject.user_id);
     }
     if ('username' in entityObject) {
         $("#user-username").val(entityObject.username);

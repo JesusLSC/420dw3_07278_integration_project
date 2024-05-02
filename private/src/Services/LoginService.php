@@ -50,7 +50,7 @@ class LoginService implements IService {
         Debug::log(("Is logged in user check result: [" . $return_val)
                        ? "true"
                        : ("false" . "]" .
-                ($return_val ? (" id# [" . $_SESSION["LOGGED_IN_USER"]->getId() . "].") : ".")));
+                ($return_val ? (" user_id# [" . $_SESSION["LOGGED_IN_USER"]->getId() . "].") : ".")));
         return $return_val;
     }
     

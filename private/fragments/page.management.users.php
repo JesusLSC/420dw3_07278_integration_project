@@ -58,7 +58,7 @@ $all_users = $user_service->getAllUsers();
             <div class="col-12 col-md-4 row justify-content-center">
                 <select id="user-selector" class="">
                     <option value="" selected disabled>Select one...</option>
-                    <option value='999999'>FAIL TEST (id# 999999)</option>
+
                     <?php
                     foreach ($all_users as $instance) {
 

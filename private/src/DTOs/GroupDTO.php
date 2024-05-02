@@ -123,10 +123,10 @@ class GroupDTO {
     }
 
     /**
-     * @param string|null $description
+     * @param string|null $group_description
      */
-    public function setDescription(?string $description): void {
-        $this->group_description = $description;
+    public function setDescription(?string $group_description): void {
+        $this->group_description = $group_description;
     }
 
     /**

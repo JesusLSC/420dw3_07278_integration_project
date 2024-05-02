@@ -85,12 +85,12 @@ class UserController extends AbstractController {
         $request_contents = file_get_contents("php://input");
         parse_str($request_contents, $_REQUEST);
         
-        if (empty($_REQUEST["id"])) {
-            throw new RequestException("Bad request: required parameter [id] not found in the request.", 400);
+        if (empty($_REQUEST["user_id"])) {
+            throw new RequestException("Bad request: required parameter [user_id] not found in the request.", 400);
         }
-        if (!is_numeric($_REQUEST["id"])) {
-            throw new RequestException("Bad request: ivalid parameter [id] value: non-numeric value found [" .
-                                       $_REQUEST["id"] . "].", 400);
+        if (!is_numeric($_REQUEST["user_id"])) {
+            throw new RequestException("Bad request: invalid parameter [user_id] value: non-numeric value found [" .
+                                       $_REQUEST["user_id"] . "].", 400);
         }
         if (empty($_REQUEST["username"])) {
             throw new RequestException("Bad request: required parameter [username] not found in the request.", 400);
@@ -99,7 +99,7 @@ class UserController extends AbstractController {
         // NOTE: no need for validation of the string lengths here, as that is done by the setter methods of the
         // ExampleDTO class used when creating an ExampleDTO instance in the creation method of ExampleService.
         
-        $int_id = (int) $_REQUEST["id"];
+        $int_id = (int) $_REQUEST["user_id"];
         
         $instance = $this->userService->updateUser($int_id, $_REQUEST["username"], $_REQUEST["lastName"]);
         $instance->loadGroups();
@@ -122,14 +122,14 @@ class UserController extends AbstractController {
         $request_contents = file_get_contents("php://input");
         parse_str($request_contents, $_REQUEST);
         
-        if (empty($_REQUEST["id"])) {
-            throw new RequestException("Bad request: required parameter [id] not found in the request.", 400);
+        if (empty($_REQUEST["user_id"])) {
+            throw new RequestException("Bad request: required parameter [user_id] not found in the request.", 400);
         }
-        if (!is_numeric($_REQUEST["id"])) {
-            throw new RequestException("Bad request: parameter [id] value [" . $_REQUEST["id"] .
+        if (!is_numeric($_REQUEST["user_id"])) {
+            throw new RequestException("Bad request: parameter [user_id] value [" . $_REQUEST["user_id"] .
                                        "] is not numeric.", 400);
         }
-        $int_id = (int) $_REQUEST["id"];
+        $int_id = (int) $_REQUEST["user_id"];
         $this->userService->deleteUserById($int_id);
         header("Content-Type: application/json;charset=UTF-8");
         http_response_code(204);
