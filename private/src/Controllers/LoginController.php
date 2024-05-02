@@ -36,16 +36,16 @@ class LoginController extends AbstractController {
          */
         
         try {
-            if (empty($_REQUEST["user_id"])) {
-                throw new RequestException("Missing required parameter [user_id] in request.", 400, [], 400);
+            if (empty($_REQUEST["userId"])) {
+                throw new RequestException("Missing required parameter [userId] in request.", 400, [], 400);
             }
-            if (!is_numeric($_REQUEST["user_id"])) {
-                throw new RequestException("Invalid parameter [user_id] in request: non-numeric value [" .
-                                           $_REQUEST["user_id"] . "] received.",
+            if (!is_numeric($_REQUEST["userId"])) {
+                throw new RequestException("Invalid parameter [userId] in request: non-numeric value [" .
+                                           $_REQUEST["userId"] . "] received.",
                                            400, [], 400);
             }
-            
-            $int_id = (int) $_REQUEST["user_id"];
+
+            $int_id = (int) $_REQUEST["userId"];
             $this->loginService->doLogin($int_id);
             
             // if the user came to the login page by being redirected from another page that required to be logged in
