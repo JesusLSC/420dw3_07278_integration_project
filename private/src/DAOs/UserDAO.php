@@ -45,11 +45,11 @@ class UserDAO {
         
     }
     
-    public function getById(int $id) : ?UserDTO {
-        $query = "SELECT * FROM " . UserDTO::TABLE_NAME . " WHERE user_id = :id ;";
+    public function getById(int $user_id) : ?UserDTO {
+        $query = "SELECT * FROM " . UserDTO::TABLE_NAME . " WHERE user_id = :user_id ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
-        $statement->bindValue(":id", $id, PDO::PARAM_INT);
+        $statement->bindValue(":user_id", $user_id, PDO::PARAM_INT);
         $statement->execute();
         $user_array = $statement->fetch(PDO::FETCH_ASSOC);
         return UserDTO::fromDbArray($user_array);
@@ -90,11 +90,11 @@ class UserDAO {
         $user->validateForDbUpdate();
         $query =
             "UPDATE " . UserDTO::TABLE_NAME .
-            " SET `username` = :username WHERE `id` = :id ;";
+            " SET `username` = :username WHERE `user_id` = :user_id ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
         $statement->bindValue(":username", $user->getUsername(), PDO::PARAM_STR);
-        $statement->bindValue(":id", $user->getId(), PDO::PARAM_INT);
+        $statement->bindValue(":user_id", $user->getId(), PDO::PARAM_INT);
         $statement->execute();
         return $this->getById($user->getId());
     }
@@ -112,10 +112,10 @@ class UserDAO {
     public function delete(UserDTO $user) : void {
         $user->validateForDbDelete();
         $query =
-            "DELETE FROM " . UserDTO::TABLE_NAME . " WHERE `id` = :id ;";
+            "DELETE FROM " . UserDTO::TABLE_NAME . " WHERE `user_id` = :user_id ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
-        $statement->bindValue(":id", $user->getId(), PDO::PARAM_INT);
+        $statement->bindValue(":user_id", $user->getId(), PDO::PARAM_INT);
         $statement->execute();
     }
     
@@ -132,7 +132,7 @@ class UserDAO {
      */
     public function getGroupsByUser(UserDTO $user) : array {
         if (empty($user->getId())) {
-            throw new ValidationException("Cannot get the group records for an user with no set [id] property value.");
+            throw new ValidationException("Cannot get the group records for an user with no set [user_id] property value.");
         }
         return $this->getGroupsByUserId($user->getId());
         

@@ -88,7 +88,7 @@ $all_users = $user_service->getAllUsers();
             <form id="user-form" class="row">
                 <div class="col-12">
                     <label class="form-label" for="user_id">Id: </label>
-                    <input id="user_id" class="form-control form-control-sm" type="number" name="id" readonly disabled>
+                    <input id="user_id" class="form-control form-control-sm" type="number" name="user_id" readonly disabled>
                 </div>
                 <div class="col-12">
                     <label class="form-label" for="user-username">Username:</label>

@@ -23,7 +23,7 @@ function updateClearButtonState() {
 
 function getFormDataAsUrlEncoded() {
     let formData = new FormData();
-    formData.set("user_id", $("#user_id").val());
+    formData.set("user_id", $("#user-user_id").val());
     formData.set("username", $("#user-username").val());
     formData.set("password_hash", $("#user-password_hash").val());
     formData.set("email", $("#user-email").val());
@@ -34,7 +34,7 @@ function getFormDataAsUrlEncoded() {
 
 function fillFormFromResponseObject(entityObject) {
     if ('user_id' in entityObject) {
-        $("#user_id").val(entityObject.user_id);
+        $("#user-user_id").val(entityObject.user_id);
     }
     if ('username' in entityObject) {
         $("#user-username").val(entityObject.username);

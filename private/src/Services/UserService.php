@@ -11,12 +11,6 @@ use GivenCode\Exceptions\RuntimeException;
 use GivenCode\Exceptions\ValidationException;
 use GivenCode\Services\DBConnectionService;
 
-/**
- * TODO: Class documentation
- *
- * @user Marc-Eric Boury
- * @since  2024-04-03
- */
 class UserService implements IService {
     
     private UserDAO $dao;
