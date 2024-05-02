@@ -778,3 +778,52 @@
 		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
 		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
 		#5 {main}
+2024-05-02 17:53:31: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 17:53:31: Controller: calling method Controllers\LoginController::post().
+2024-05-02 17:53:31: Exception: Failure to log user in.
+	Caused by: RequestException: Missing required parameter [user_id] in request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->post()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-02 17:53:37: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 17:53:37: true
+2024-05-02 17:53:37: true
+2024-05-02 17:53:39: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 17:53:39: Controller: calling method Controllers\LoginController::post().
+2024-05-02 17:53:39: Exception: Failure to log user in.
+	Caused by: RequestException: Missing required parameter [user_id] in request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->post()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-02 17:53:57: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 17:53:57: true
+2024-05-02 17:53:57: true
+2024-05-02 17:55:35: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 17:55:35: true
+2024-05-02 17:55:35: true
+2024-05-02 17:55:42: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 17:55:42: true
+2024-05-02 17:55:42: true
+2024-05-02 17:55:43: No route matching [/420dw3_07278_integration_project//pages/login] found.
+2024-05-02 17:55:43: RequestException: Route [/420dw3_07278_integration_project//pages/login] not found.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#2 {main}
+2024-05-02 17:55:49: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 17:55:49: true
+2024-05-02 17:55:49: true
+2024-05-02 17:55:50: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 17:55:50: true
+2024-05-02 17:55:50: true
+2024-05-02 17:55:51: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 17:55:51: true
+2024-05-02 17:55:51: true
+2024-05-02 17:55:51: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 17:55:51: true
+2024-05-02 17:55:51: true
