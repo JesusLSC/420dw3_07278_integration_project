@@ -8,7 +8,7 @@ declare(strict_types=1);
         <div class="row links-container">
             <div class="flex-column links-block">
                 <a class="d-flex col-12" href="<?= WEB_ROOT_DIR ?>">Example page</a>
-                <a class="d-flex col-12" href="<?= WEB_ROOT_DIR . "pages/usergroups" ?>">Group management page</a>
+                <a class="d-flex col-12" href="<?= WEB_ROOT_DIR . "pages/groups" ?>">Group management page</a>
                 <a class="d-flex col-12" href="<?= WEB_ROOT_DIR . "pages/users" ?>">User management page</a>
             </div>
         </div>

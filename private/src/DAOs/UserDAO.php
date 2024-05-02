@@ -165,4 +165,15 @@ class UserDAO {
         return $groups_array;
     }
 
+    public function getByUser(string $username): ?UserDTO
+    {
+        $query = "SELECT * FROM " . UserDTO::TABLE_NAME . " WHERE username = :username ;";
+        $connection = DBConnectionService::getConnection();
+        $statement = $connection->prepare($query);
+        $statement->bindValue(":username", $username, PDO::PARAM_INT);
+        $statement->execute();
+        $user_array = $statement->fetch(PDO::FETCH_ASSOC);
+        return UserDTO::fromDbArray($user_array);
+    }
+
 }

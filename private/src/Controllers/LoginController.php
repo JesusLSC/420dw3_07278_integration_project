@@ -8,15 +8,18 @@ use Exception;
 use Services\LoginService;
 use GivenCode\Abstracts\AbstractController;
 use GivenCode\Exceptions\RequestException;
+use Services\UserService;
 
 
 class LoginController extends AbstractController {
-    
+
     private LoginService $loginService;
+    private UserService $userService;
     
     public function __construct() {
         parent::__construct();
         $this->loginService = new LoginService();
+        $this->userService = new UserService();
     }
 
     /**
@@ -31,25 +34,28 @@ class LoginController extends AbstractController {
      * @throws Exception
      */
     public function post() : void {
-        /*
-         * NOTE: I use the POST method to trigger the login
-         */
-        
         try {
-            if (empty($_REQUEST["userId"])) {
-                throw new RequestException("Missing required parameter [userId] in request.", 400, [], 400);
-            }
-            if (!is_numeric($_REQUEST["userId"])) {
-                throw new RequestException("Invalid parameter [userId] in request: non-numeric value [" .
-                                           $_REQUEST["userId"] . "] received.",
-                                           400, [], 400);
+            $username = $_POST["username"] ?? null;
+            $password = $_POST["password"] ?? null;
+
+            if (empty($username) || empty($password)) {
+                throw new RequestException("Username and password are required.", 400);
             }
 
-            $int_id = (int) $_REQUEST["userId"];
-            $this->loginService->doLogin($int_id);
-            
-            // if the user came to the login page by being redirected from another page that required to be logged in
-            // redirect to that originally requested page after login.
+            $user = $this->userService->getUserByUsername($username);
+
+            if (!$user) {
+                throw new Exception("User not found.", 404);
+            }
+            $hashedPassword = $user->getPassword();
+
+            if ($password !== $hashedPassword) {
+                // Passwords don't match
+                throw new Exception("Incorrect password.", 401);
+            }
+
+            $this->loginService->doLogin($user->getUsername());
+
             $response = [
                 "navigateTo" => WEB_ROOT_DIR
             ];
@@ -59,9 +65,7 @@ class LoginController extends AbstractController {
             header("Content-Type: application/json;charset=UTF-8");
             echo json_encode($response);
             exit();
-            
-        }
-        catch (Exception $excep) {
+        } catch (Exception $excep) {
             $code = $excep->getCode();
             if (!is_int($code)) {
                 $code = 500;

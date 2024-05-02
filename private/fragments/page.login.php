@@ -40,9 +40,6 @@ if (LoginService::isUserLoggedIn()) {
             <h3 class="fullwidth text-center">LOGIN</h3>
         </div>
         <form id="loginForm" class="row">
-            <div class="row justify-content-center">
-                <h3 class="fullwidth text-center">Select a user to login with</h3>
-            </div>
             <?php
             $from = "";
             if (!empty($_REQUEST["from"])) {
@@ -50,26 +47,20 @@ if (LoginService::isUserLoggedIn()) {
             }
             ?>
             <input type="hidden" name="from" value="<?= $from ?>">
-            <?php
-            $user_service = new UserService();
-            $all_users = $user_service->getAllUsers();
 
-            foreach ($all_users as $user) {
-                $user_id = $user->getId();
-                $username = $user->getUsername();
-                $element_id = $user_id . "_id";
-                echo <<< HTDOC
-            <div class="form-check">
-                <input type="radio" id="$element_id" class="form-check-input" name="userId" value="$user_id" required>
-                <label for="$element_id" class="form-check-label" >$username</label>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" name="username" required>
             </div>
-HTDOC;
-            }
-            ?>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
             <div class="row d-flex justify-content-center">
                 <button id="loginButton" type="button" class="btn btn-primary col-12 col-md-4">Login</button>
             </div>
         </form>
+
     </div>
 </main>
 <footer id="footer">

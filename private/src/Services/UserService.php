@@ -41,7 +41,16 @@ class UserService implements IService {
         $user?->loadGroups();
         return $user;
     }
-    
+
+    /**
+     * @throws RuntimeException
+     * @throws ValidationException
+     */
+    public function getUserByUsername(string $username) : ?UserDTO {
+        $user = $this->dao->getByUser($username);
+        $user?->loadGroups();
+        return $user;
+    }
     public function createUser(string $username) : UserDTO {
         try {
             $user = UserDTO::fromValues($username);

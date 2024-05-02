@@ -261,6 +261,7 @@ class UserDTO {
             throw new ValidationException("Invalid value for UserDTO [password_hash]: string length is > " .
                 self::PASSWORD_MAX_LENGTH . ".");
         }
+
         $this->password_hash = $password_hash;
     }
     /**

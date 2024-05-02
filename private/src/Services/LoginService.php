@@ -33,9 +33,9 @@ class LoginService implements IService {
     public static function requirePhilipKDick() : bool {
         $return_value = false;
         if (!empty($_SESSION["LOGGED_IN_USER"]) && ($_SESSION["LOGGED_IN_USER"] instanceof UserDTO)) {
-            $requiredUser = (new UserService())->getUserById(1);
-            $author_object = $_SESSION["LOGGED_IN_USER"];
-            if ($author_object->getId() === $requiredUser->getId()) {
+            $requiredUser = (new UserService())->getUserByUsername("admin");
+            $user_object = $_SESSION["LOGGED_IN_USER"];
+            if ($user_object->getUsername() === $requiredUser->getUsername()) {
                 $return_value = true;
             }
         }
@@ -77,10 +77,10 @@ class LoginService implements IService {
      * @throws RuntimeException
      * @throws ValidationException
      */
-    public function doLogin(int $userId) : void {
-        $user = $this->userService->getUserById($userId);
+    public function doLogin(string $username) : void {
+        $user = $this->userService->getUserByUsername($username);
         if (is_null($user)) {
-            throw new Exception("User id# [$userId] not found.", 404);
+            throw new Exception("User id# [$username] not found.", 404);
         }
         $_SESSION["LOGGED_IN_USER"] = $user;
     }

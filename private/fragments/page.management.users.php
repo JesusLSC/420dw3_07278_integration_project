@@ -27,7 +27,7 @@ $all_users = $user_service->getAllUsers();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Example Page</title>
+    <title>User Page</title>
     <link rel="stylesheet" href="<?= WEB_CSS_DIR . "bootstrap.min.css" ?>">
     <link rel="stylesheet" href="<?= WEB_CSS_DIR . "standard.css" ?>">
     <script type="text/javascript">
