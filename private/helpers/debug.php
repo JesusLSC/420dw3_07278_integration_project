@@ -190,7 +190,7 @@ class Debug {
          * Disabling qualified name to import warning because debug file might be loaded before autoloader.
          * @noinspection PhpFullyQualifiedNameUsageInspection
          */
-        if ($thrown instanceof \Teacher\GivenCode\Exceptions\RequestException) {
+        if ($thrown instanceof \GivenCode\Exceptions\RequestException) {
             $status_code = ($thrown->getHttpResponseCode() == 0) ? 500 : $thrown->getHttpResponseCode();
             foreach ($thrown->getHttpHeaders() as $header_name => $header_value) {
                 header("$header_name: $header_value");

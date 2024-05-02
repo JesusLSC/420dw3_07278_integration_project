@@ -9,16 +9,16 @@ declare(strict_types=1);
  * (c) Copyright 2024 Marc-Eric Boury 
  */
 
-namespace Teacher\Examples\DAOs;
+namespace DAOs;
 
 use DateTime;
 use Exception;
 use PDO;
-use Teacher\Examples\DTOs\ExampleDTO;
-use Teacher\GivenCode\Abstracts\IDAO;
-use Teacher\GivenCode\Exceptions\RuntimeException;
-use Teacher\GivenCode\Exceptions\ValidationException;
-use Teacher\GivenCode\Services\DBConnectionService;
+use DTOs\ExampleDTO;
+use GivenCode\Abstracts\IDAO;
+use GivenCode\Exceptions\RuntimeException;
+use GivenCode\Exceptions\ValidationException;
+use GivenCode\Services\DBConnectionService;
 
 /**
  * Example DAO-type class.

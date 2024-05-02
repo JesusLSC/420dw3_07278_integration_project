@@ -1,24 +1,10 @@
 <?php
 declare(strict_types=1);
 
-/*
- * 420DW3_07278_Project PageNavigator.php
- * 
- * @user Marc-Eric Boury (MEbou)
- * @since 2024-03-26
- * (c) Copyright 2024 Marc-Eric Boury 
- */
-
 namespace Controllers;
 
 use GivenCode\Abstracts\IService;
 
-/**
- * TODO: Class documentation
- *
- * @user Marc-Eric Boury
- * @since  2024-03-26
- */
 class PageNavigator implements IService {
     
     

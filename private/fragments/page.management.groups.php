@@ -105,7 +105,7 @@ $all_users = $user_service->getAllUsers();
                         $label_text = $user->getUsername();
                         echo <<< HTDOC
                     <div class="col-12">
-                        <input id="group-user-$user_id" class="form-check-input group-users" type="checkbox" name="users[$user_id]" data-user-id="$user_id" required>
+                        <input id="group-user-$user_id" class="form-check-input group-users" type="checkbox" name="users[$user_id]" data-user_id="$user_id" required>
                         <label class="form-check-label" for="group-user-$user_id">$label_text</label>
                     </div>
 HTDOC;

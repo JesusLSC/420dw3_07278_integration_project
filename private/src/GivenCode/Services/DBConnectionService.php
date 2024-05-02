@@ -1,10 +1,5 @@
 <?php
 declare(strict_types=1);
-/*
-* DBConnectionService.php
-* 420DW3_07278_Project
-* (c) 2024 Marc-Eric Boury All rights reserved
-*/
 
 namespace GivenCode\Services;
 
