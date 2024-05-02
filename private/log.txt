@@ -827,3 +827,250 @@
 2024-05-02 17:55:51: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
 2024-05-02 17:55:51: true
 2024-05-02 17:55:51: true
+2024-05-02 17:59:42: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-05-02 17:59:42: true
+2024-05-02 17:59:43: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
+2024-05-02 17:59:43: true
+2024-05-02 17:59:43: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 17:59:43: true
+2024-05-02 17:59:43: true
+2024-05-02 17:59:45: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 17:59:45: Controller: calling method Controllers\LoginController::post().
+2024-05-02 17:59:45: Exception: Failure to log user in.
+	Caused by: RequestException: Missing required parameter [user_id] in request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->post()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-02 18:00:04: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 18:00:04: Controller: calling method Controllers\LoginController::post().
+2024-05-02 18:00:04: Exception: Failure to log user in.
+	Caused by: RequestException: Missing required parameter [user_id] in request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->post()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-02 18:00:24: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 18:00:24: Controller: calling method Controllers\LoginController::post().
+2024-05-02 18:00:24: Exception: Failure to log user in.
+	Caused by: RequestException: Missing required parameter [user_id] in request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->post()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-02 18:00:26: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 18:00:26: Controller: calling method Controllers\LoginController::post().
+2024-05-02 18:00:26: Exception: Failure to log user in.
+	Caused by: RequestException: Missing required parameter [user_id] in request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->post()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-02 18:00:26: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 18:00:26: Controller: calling method Controllers\LoginController::post().
+2024-05-02 18:00:26: Exception: Failure to log user in.
+	Caused by: RequestException: Missing required parameter [user_id] in request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->post()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-02 18:00:26: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 18:00:26: Controller: calling method Controllers\LoginController::post().
+2024-05-02 18:00:26: Exception: Failure to log user in.
+	Caused by: RequestException: Missing required parameter [user_id] in request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->post()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-02 18:00:27: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 18:00:27: Controller: calling method Controllers\LoginController::post().
+2024-05-02 18:00:27: Exception: Failure to log user in.
+	Caused by: RequestException: Missing required parameter [user_id] in request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->post()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-02 18:00:27: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 18:00:27: Controller: calling method Controllers\LoginController::post().
+2024-05-02 18:00:27: Exception: Failure to log user in.
+	Caused by: RequestException: Missing required parameter [user_id] in request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->post()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-02 18:00:27: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 18:00:27: Controller: calling method Controllers\LoginController::post().
+2024-05-02 18:00:27: Exception: Failure to log user in.
+	Caused by: RequestException: Missing required parameter [user_id] in request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->post()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-02 18:00:27: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 18:00:27: Controller: calling method Controllers\LoginController::post().
+2024-05-02 18:00:27: Exception: Failure to log user in.
+	Caused by: RequestException: Missing required parameter [user_id] in request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->post()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-02 18:00:32: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 18:00:32: Controller: calling method Controllers\LoginController::post().
+2024-05-02 18:00:32: Exception: Failure to log user in.
+	Caused by: RequestException: Missing required parameter [user_id] in request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->post()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-02 18:00:32: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 18:00:32: Controller: calling method Controllers\LoginController::post().
+2024-05-02 18:00:32: Exception: Failure to log user in.
+	Caused by: RequestException: Missing required parameter [user_id] in request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->post()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-02 18:00:33: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 18:00:33: Controller: calling method Controllers\LoginController::post().
+2024-05-02 18:00:33: Exception: Failure to log user in.
+	Caused by: RequestException: Missing required parameter [user_id] in request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->post()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-02 18:00:33: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 18:00:33: Controller: calling method Controllers\LoginController::post().
+2024-05-02 18:00:33: Exception: Failure to log user in.
+	Caused by: RequestException: Missing required parameter [user_id] in request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->post()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-02 18:00:33: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 18:00:33: Controller: calling method Controllers\LoginController::post().
+2024-05-02 18:00:33: Exception: Failure to log user in.
+	Caused by: RequestException: Missing required parameter [user_id] in request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->post()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-02 18:00:42: Route found: matched [/420dw3_07278_integration_project/pages/groups] with route [/420dw3_07278_integration_project/pages/groups]
+2024-05-02 18:00:42: true
+2024-05-02 18:00:42: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 18:00:42: true
+2024-05-02 18:00:42: true
+2024-05-02 18:00:43: No route matching [/420dw3_07278_integration_project/pages/permissions] found.
+2024-05-02 18:00:43: RequestException: Route [/420dw3_07278_integration_project/pages/permissions] not found.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#2 {main}
+2024-05-02 18:00:46: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 18:00:46: true
+2024-05-02 18:00:46: true
+2024-05-02 18:00:47: Route found: matched [/420dw3_07278_integration_project/pages/groups] with route [/420dw3_07278_integration_project/pages/groups]
+2024-05-02 18:00:47: true
+2024-05-02 18:00:47: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 18:00:47: true
+2024-05-02 18:00:47: true
+2024-05-02 18:00:47: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
+2024-05-02 18:00:47: true
+2024-05-02 18:00:47: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 18:00:47: true
+2024-05-02 18:00:47: true
+2024-05-02 18:00:48: Route found: matched [/420dw3_07278_integration_project/pages/groups] with route [/420dw3_07278_integration_project/pages/groups]
+2024-05-02 18:00:48: true
+2024-05-02 18:00:48: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 18:00:48: true
+2024-05-02 18:00:48: true
+2024-05-02 18:00:48: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
+2024-05-02 18:00:48: true
+2024-05-02 18:00:49: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 18:00:49: true
+2024-05-02 18:00:49: true
+2024-05-02 18:00:50: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
+2024-05-02 18:00:50: true
+2024-05-02 18:00:50: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 18:00:50: true
+2024-05-02 18:00:50: true
+2024-05-02 18:00:50: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
+2024-05-02 18:00:50: true
+2024-05-02 18:00:50: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 18:00:50: true
+2024-05-02 18:00:50: true
+2024-05-02 18:00:51: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
+2024-05-02 18:00:51: true
+2024-05-02 18:00:51: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 18:00:51: true
+2024-05-02 18:00:51: true
+2024-05-02 18:00:51: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
+2024-05-02 18:00:51: true
+2024-05-02 18:00:51: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 18:00:51: true
+2024-05-02 18:00:51: true
+2024-05-02 18:00:52: Route found: matched [/420dw3_07278_integration_project/pages/groups] with route [/420dw3_07278_integration_project/pages/groups]
+2024-05-02 18:00:52: true
+2024-05-02 18:00:52: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 18:00:52: true
+2024-05-02 18:00:52: true
+2024-05-02 18:00:52: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
+2024-05-02 18:00:52: true
+2024-05-02 18:00:52: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 18:00:52: true
+2024-05-02 18:00:52: true
+2024-05-02 18:00:54: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 18:00:54: true
+2024-05-02 18:00:54: true
+2024-05-02 18:00:55: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
+2024-05-02 18:00:55: true
+2024-05-02 18:00:55: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 18:00:55: true
+2024-05-02 18:00:55: true
+2024-05-02 18:00:58: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 18:00:58: Controller: calling method Controllers\LoginController::post().
+2024-05-02 18:00:58: Exception: Failure to log user in.
+	Caused by: RequestException: Missing required parameter [user_id] in request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->post()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-02 18:01:03: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 18:01:03: Controller: calling method Controllers\LoginController::get().
+2024-05-02 18:01:03: RequestException: NOT IMPLEMENTED.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\LoginController->get()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(52): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
