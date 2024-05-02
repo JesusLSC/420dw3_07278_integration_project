@@ -37,7 +37,7 @@ if (LoginService::isUserLoggedIn()) {
 <main id="main">
     <div class="container">
         <div class="row justify-content-center">
-            <h3 class="fullwidth text-center">Tests for ExampleDTOs</h3>
+            <h3 class="fullwidth text-center">LOGIN</h3>
         </div>
         <form id="loginForm" class="row">
             <div class="row justify-content-center">

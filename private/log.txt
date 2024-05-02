@@ -1,5 +1,30 @@
-2024-05-02 22:54:36: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-02 22:54:36: true
-2024-05-02 22:54:38: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-02 22:54:38: Controller: calling method Controllers\UserController::get().
-2024-05-02 22:54:38: true
+2024-05-02 22:56:58: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
+2024-05-02 22:56:58: true
+2024-05-02 22:57:00: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 22:57:00: Controller: calling method Controllers\LoginController::delete().
+2024-05-02 22:57:00: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 22:57:00: true
+2024-05-02 22:57:00: true
+2024-05-02 22:57:02: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
+2024-05-02 22:57:02: true
+2024-05-02 22:57:02: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 22:57:02: true
+2024-05-02 22:57:02: true
+2024-05-02 22:57:03: Route found: matched [/420dw3_07278_integration_project/pages/groups] with route [/420dw3_07278_integration_project/pages/groups]
+2024-05-02 22:57:03: true
+2024-05-02 22:57:03: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 22:57:03: true
+2024-05-02 22:57:03: true
+2024-05-02 22:57:05: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 22:57:05: true
+2024-05-02 22:57:05: true
+2024-05-02 22:57:18: Route found: matched [/420dw3_07278_integration_project/pages/login] with route [/420dw3_07278_integration_project/pages/login]
+2024-05-02 22:57:18: true
+2024-05-02 22:57:18: true
+2024-05-02 22:57:25: Route found: matched [/420dw3_07278_integration_project/api/login] with route [/420dw3_07278_integration_project/api/login]
+2024-05-02 22:57:25: Controller: calling method Controllers\LoginController::post().
+2024-05-02 22:57:25: Route found: matched [/420dw3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-05-02 22:57:25: true
+2024-05-02 22:57:30: Route found: matched [/420dw3_07278_integration_project/api/UserDto] with route [/420dw3_07278_integration_project/api/userDTO]
+2024-05-02 22:57:30: Controller: calling method Controllers\UserController::get().
+2024-05-02 22:57:30: true

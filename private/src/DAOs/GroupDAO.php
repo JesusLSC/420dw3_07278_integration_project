@@ -144,7 +144,7 @@ class GroupDAO {
     public function getUsersByGroupId(int $group_id) : array {
         $query = "SELECT a.* FROM " . UserDTO::TABLE_NAME . " a JOIN " . UserGroupDAO::TABLE_NAME .
             " ab ON a.user_id = ab.user_id JOIN " . GroupDTO::TABLE_NAME .
-            " b ON ab.group_id = b.id WHERE b.group_id = :groupId ;";
+            " b ON ab.group_id = b.group_id WHERE b.group_id = :groupId ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
         $statement->bindValue(":groupId", $group_id, PDO::PARAM_INT);
