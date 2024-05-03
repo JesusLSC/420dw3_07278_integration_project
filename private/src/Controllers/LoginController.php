@@ -47,14 +47,19 @@ class LoginController extends AbstractController {
             if (!$user) {
                 throw new Exception("User not found.", 404);
             }
+
             $hashedPassword = $user->getPassword();
 
+            // Compare plain text password with hashed password
             if ($password !== $hashedPassword) {
                 // Passwords don't match
                 throw new Exception("Incorrect password.", 401);
             }
 
-            $this->loginService->doLogin($user->getUsername());
+            $userId = $user->getId();
+
+            // Call the doLogin method with the user ID
+            $this->loginService->doLogin($userId);
 
             $response = [
                 "navigateTo" => WEB_ROOT_DIR
@@ -73,6 +78,8 @@ class LoginController extends AbstractController {
             throw new Exception("Failure to log user in.", $code, $excep);
         }
     }
+
+
 
     /**
      * @throws RequestException

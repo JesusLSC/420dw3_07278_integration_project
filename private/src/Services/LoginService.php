@@ -1,14 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/*
- * 420DW3_07278_Project LoginService.php
- * 
- * @user Marc-Eric Boury (MEbou)
- * @since 2024-04-06
- * (c) Copyright 2024 Marc-Eric Boury 
- */
-
 namespace Services;
 
 use Debug;
@@ -30,12 +22,12 @@ class LoginService implements IService {
      * @throws RuntimeException
      * @throws ValidationException
      */
-    public static function requirePhilipKDick() : bool {
+    public static function requireAdmin() : bool {
         $return_value = false;
         if (!empty($_SESSION["LOGGED_IN_USER"]) && ($_SESSION["LOGGED_IN_USER"] instanceof UserDTO)) {
-            $requiredUser = (new UserService())->getUserByUsername("admin");
+            $requiredUser = (new UserService())->getUserById(1);
             $user_object = $_SESSION["LOGGED_IN_USER"];
-            if ($user_object->getUsername() === $requiredUser->getUsername()) {
+            if ($user_object->getId() === $requiredUser->getId()) {
                 $return_value = true;
             }
         }
@@ -50,7 +42,7 @@ class LoginService implements IService {
         Debug::log(("Is logged in user check result: [" . $return_val)
                        ? "true"
                        : ("false" . "]" .
-                ($return_val ? (" user_id# [" . $_SESSION["LOGGED_IN_USER"]->getId() . "].") : ".")));
+                ($return_val ? (" id# [" . $_SESSION["LOGGED_IN_USER"]->getId() . "].") : ".")));
         return $return_val;
     }
     
@@ -75,12 +67,12 @@ class LoginService implements IService {
 
     /**
      * @throws RuntimeException
-     * @throws ValidationException
+     * @throws ValidationException|Exception
      */
-    public function doLogin(string $username) : void {
-        $user = $this->userService->getUserByUsername($username);
+    public function doLogin(int $userId) : void {
+        $user = $this->userService->getUserById($userId);
         if (is_null($user)) {
-            throw new Exception("User id# [$username] not found.", 404);
+            throw new Exception("User id# [$userId] not found.", 404);
         }
         $_SESSION["LOGGED_IN_USER"] = $user;
     }

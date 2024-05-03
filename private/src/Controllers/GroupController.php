@@ -62,8 +62,8 @@ class GroupController extends AbstractController {
         // I have to do this in that order in the create operation because the group does not already exists
         // in the database so the foreign key checks would fail if i tried creating associations first.
         
-        if (empty($_REQUEST["group_name"])) {
-            throw new RequestException("Bad request: required parameter [group_name] not found in the request.", 400);
+        if (empty($_REQUEST["name"])) {
+            throw new RequestException("Bad request: required parameter [name] not found in the request.", 400);
         }
         
         // create a transaction as i will be making many operations in the datatbase
@@ -73,19 +73,19 @@ class GroupController extends AbstractController {
         try {
             
             // create the group first
-            $instance = $this->groupService->create($_REQUEST["group_name"], $_REQUEST["group_description"]);
+            $instance = $this->groupService->create($_REQUEST["name"], $_REQUEST["description"]);
             
             // then create the group-user associations
             if (!empty($_REQUEST["users"]) || is_array($_REQUEST["users"])) {
                 
                 // create the selected associations
-                foreach ($_REQUEST["users"] as $user_id => $is_checked) {
+                foreach ($_REQUEST["users"] as $userId => $is_checked) {
                     // only if checkbox value was checked.
                     // NOTE: unchecked checkbox pass the value 'false' as a string ao they still exist in the request
                     // and make the following == "true" check necessary.
                     if (strtolower($is_checked) == "true") {
-                        $int_user_id = (int) $user_id;
-                        $this->groupService->associateGroupWithUser($instance->getId(), $int_user_id);
+                        $int_userId = (int) $userId;
+                        $this->groupService->associateGroupWithUser($instance->getId(), $int_userId);
                     }
                 }
             }
@@ -121,19 +121,18 @@ class GroupController extends AbstractController {
         parse_str($raw_request_string, $_REQUEST);
         
         
-        if (empty($_REQUEST["group_id"])) {
-            throw new RequestException("Bad request: required parameter [group_id] not found in the request.", 400);
+        if (empty($_REQUEST["id"])) {
+            throw new RequestException("Bad request: required parameter [id] not found in the request.", 400);
         }
-        if (!is_numeric($_REQUEST["group_id"])) {
-            throw new RequestException("Bad request: ivalid parameter [group_id] value: non-numeric value found [" .
-                                       $_REQUEST["group_id"] . "].", 400);
+        if (!is_numeric($_REQUEST["id"])) {
+            throw new RequestException("Bad request: invalid parameter [id] value: non-numeric value found [" .
+                                       $_REQUEST["id"] . "].", 400);
         }
-        if (empty($_REQUEST["group_name"])) {
-            throw new RequestException("Bad request: required parameter [group_name] not found in the request.", 400);
+        if (empty($_REQUEST["name"])) {
+            throw new RequestException("Bad request: required parameter [name] not found in the request.", 400);
         }
         
-        $int_group_id = (int) $_REQUEST["group_id"];
-        $int_pub_year = (int) $_REQUEST["publicationYear"];
+        $int_group_id = (int) $_REQUEST["id"];
         
         $connection = DBConnectionService::getConnection();
         $connection->beginTransaction();
@@ -151,19 +150,19 @@ class GroupController extends AbstractController {
                 $this->groupService->deleteAllGroupUserAssociationsForGroupId($int_group_id);
                 
                 // re-create the selected associations
-                foreach ($_REQUEST["users"] as $user_id => $is_checked) {
+                foreach ($_REQUEST["users"] as $userId => $is_checked) {
                     // only if checkbox value was checked.
                     // NOTE: unchecked checkbox pass the value 'false' as a string ao they still exist in the request
                     // and make the following == "true" check necessary.
                     if (strtolower($is_checked) == "true") {
-                        $int_user_id = (int) $user_id;
-                        $this->groupService->associateGroupWithUser($int_group_id, $int_user_id);
+                        $int_userId = (int) $userId;
+                        $this->groupService->associateGroupWithUser($int_group_id, $int_userId);
                     }
                 }
             }
             
             // then update the main object
-            $instance = $this->groupService->update($int_group_id, $_REQUEST["group_name"], $_REQUEST["isbn"], $int_pub_year, $_REQUEST["description"]);
+            $instance = $this->groupService->update($int_group_id, $_REQUEST["name"], $_REQUEST["description"]);
             $instance->loadUsers();
             $connection->commit();
             
@@ -194,15 +193,15 @@ class GroupController extends AbstractController {
         parse_str($raw_request_string, $_REQUEST);
         
         
-        if (empty($_REQUEST["group_id"])) {
-            throw new RequestException("Bad request: required parameter [group_id] not found in the request.", 400);
+        if (empty($_REQUEST["id"])) {
+            throw new RequestException("Bad request: required parameter [id] not found in the request.", 400);
         }
-        if (!is_numeric($_REQUEST["group_id"])) {
-            throw new RequestException("Bad request: ivalid parameter [group_id] value: non-numeric value found [" .
-                                       $_REQUEST["group_id"] . "].", 400);
+        if (!is_numeric($_REQUEST["id"])) {
+            throw new RequestException("Bad request: invalid parameter [id] value: non-numeric value found [" .
+                                       $_REQUEST["id"] . "].", 400);
         }
         
-        $int_group_id = (int) $_REQUEST["group_id"];
+        $int_group_id = (int) $_REQUEST["id"];
         
         $connection = DBConnectionService::getConnection();
         $connection->beginTransaction();

@@ -25,8 +25,6 @@ class UserService implements IService {
      * @return UserDTO[]
      * @throws RuntimeException
      *
-     * @user Marc-Eric Boury
-     * @since  2024-04-06
      */
     public function getAllUsers() : array {
         return $this->dao->getAll();
@@ -46,11 +44,37 @@ class UserService implements IService {
      * @throws RuntimeException
      * @throws ValidationException
      */
-    public function getUserByUsername(string $username) : ?UserDTO {
-        $user = $this->dao->getByUser($username);
+    public function getUserByUsername(string $username)
+    {
+        $user = $this->dao->getByUsername($username);
         $user?->loadGroups();
         return $user;
     }
+
+    /**
+     * @throws RuntimeException
+     * @throws ValidationException
+     */
+    public function authenticateUser(string $username, string $password): ?UserDTO {
+        $user = $this->getUserByUsername($username);
+
+        if (!$user) {
+            // User not found
+            return null;
+        }
+
+        if ($password != $user->getPassword()) {
+            // Incorrect password
+            return null;
+        }
+
+        // User authenticated
+        return $user;
+    }
+
+    /**
+     * @throws RuntimeException
+     */
     public function createUser(string $username) : UserDTO {
         try {
             $user = UserDTO::fromValues($username);
@@ -60,7 +84,10 @@ class UserService implements IService {
             throw new RuntimeException("Failure to create user [$username].", $excep->getCode(), $excep);
         }
     }
-    
+
+    /**
+     * @throws RuntimeException
+     */
     public function updateUser(int $id, string $username) : UserDTO {
         try {
             $connection = DBConnectionService::getConnection();
@@ -85,7 +112,10 @@ class UserService implements IService {
             throw new RuntimeException("Failure to update user id# [$id].", $excep->getCode(), $excep);
         }
     }
-    
+
+    /**
+     * @throws RuntimeException
+     */
     public function deleteUserById(int $id) : void {
         try {
             
@@ -125,5 +155,7 @@ class UserService implements IService {
     public function getUserGroupsByUserId(int $id) : array {
         return $this->dao->getGroupsByUserId($id);
     }
-    
+
+
+
 }

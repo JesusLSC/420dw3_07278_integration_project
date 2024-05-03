@@ -85,8 +85,12 @@ class UserController extends AbstractController {
         $requestData = json_decode($request_contents, true);
 
         // Check if userId is present in the request data
-        if (empty($requestData["user_id"])) {
-            throw new RequestException("Bad request: required parameter [userId] not found in the request.", 400);
+        if (empty($requestData["id"])) {
+            throw new RequestException("Bad request: required parameter [id] not found in the request.", 400);
+        }
+        if (!is_numeric($_REQUEST["id"])) {
+            throw new RequestException("Bad request: invalid parameter [id] value: non-numeric value found [" .
+                $_REQUEST["id"] . "].", 400);
         }
 
         // Check if username is present in the request data
@@ -95,15 +99,9 @@ class UserController extends AbstractController {
         }
 
         // Validate userId as needed
-        $user_id = $requestData["userId"];
-        if (!is_numeric($user_id)) {
-            throw new RequestException("Bad request: invalid parameter [userId] value: non-numeric value found [" .
-                $user_id . "].", 400);
-        }
+        $int_id = $requestData["id"];
 
-        // Process the request
-        $int_id = (int)$user_id;
-        $instance = $this->userService->updateUser($int_id, $requestData["username"]);
+        $instance = $this->userService->updateUser($int_id, $_REQUEST["username"]);
         $instance->loadGroups();
         header("Content-Type: application/json;charset=UTF-8");
         echo json_encode($instance->toArray());
@@ -124,14 +122,14 @@ class UserController extends AbstractController {
         $request_contents = file_get_contents("php://input");
         parse_str($request_contents, $_REQUEST);
         
-        if (empty($_REQUEST["userId"])) {
-            throw new RequestException("Bad request: required parameter [userId] not found in the request.", 400);
+        if (empty($_REQUEST["id"])) {
+            throw new RequestException("Bad request: required parameter [id] not found in the request.", 400);
         }
-        if (!is_numeric($_REQUEST["userId"])) {
-            throw new RequestException("Bad request: parameter [userId] value [" . $_REQUEST["userId"] .
+        if (!is_numeric($_REQUEST["id"])) {
+            throw new RequestException("Bad request: parameter [id] value [" . $_REQUEST["id"] .
                                        "] is not numeric.", 400);
         }
-        $int_id = (int) $_REQUEST["userId"];
+        $int_id = (int) $_REQUEST["id"];
         $this->userService->deleteUserById($int_id);
         header("Content-Type: application/json;charset=UTF-8");
         http_response_code(204);

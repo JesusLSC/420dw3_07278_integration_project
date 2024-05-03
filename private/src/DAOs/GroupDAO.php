@@ -1,14 +1,6 @@
 <?php /** @noinspection ALL */
 declare(strict_types=1);
 
-/*
- * 420DW3_07278_Project GroupDAO.php
- * 
- * @user Marc-Eric Boury (MEbou)
- * @since 2024-04-01
- * (c) Copyright 2024 Marc-Eric Boury 
- */
-
 namespace DAOs;
 
 use PDO;
@@ -18,17 +10,9 @@ use GivenCode\Exceptions\RuntimeException;
 use GivenCode\Exceptions\ValidationException;
 use GivenCode\Services\DBConnectionService;
 
-/**
- * TODO: Class documentation
- *
- * @user Marc-Eric Boury
- * @since  2024-04-01
- */
 class GroupDAO {
     
     public function __construct() {}
-    
-    
     
     
     /**
@@ -37,9 +21,6 @@ class GroupDAO {
      * @return GroupDTO[]
      * @throws RuntimeException
      * @throws ValidationException
-     *
-     * @user Marc-Eric Boury
-     * @since  2024-04-06
      */
     public function getAll() : array {
         $query = "SELECT * FROM `" . GroupDTO::TABLE_NAME . "`;";
@@ -54,11 +35,11 @@ class GroupDAO {
         return $groups;
     }
     
-    public function getById(int $group_id) : ?GroupDTO {
-        $query = "SELECT * FROM `" . GroupDTO::TABLE_NAME . "` WHERE `group_id` = :group_id ;";
+    public function getById(int $id) : ?GroupDTO {
+        $query = "SELECT * FROM `" . GroupDTO::TABLE_NAME . "` WHERE `id` = :id ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
-        $statement->bindValue(":group_id", $group_id, PDO::PARAM_INT);
+        $statement->bindValue(":id", $id, PDO::PARAM_INT);
         $statement->execute();
         $record_array = $statement->fetch(PDO::FETCH_ASSOC);
         return GroupDTO::fromDbArray($record_array);
@@ -68,14 +49,14 @@ class GroupDAO {
         $group->validateForDbCreation();
         $query =
             "INSERT INTO `" . GroupDTO::TABLE_NAME .
-            "` (`group_name`, `group_description`) VALUES (:group_name, :group_description);";
+            "` (`group_name`, `group_description`) VALUES (:name, :description);";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
-        $statement->bindValue(":group_name", $group->getName(), PDO::PARAM_STR);
+        $statement->bindValue(":name", $group->getName(), PDO::PARAM_STR);
         if (!is_null($group->getDescription())) {
-            $statement->bindValue(":group_description", $group->getDescription(), PDO::PARAM_STR);
+            $statement->bindValue(":description", $group->getDescription(), PDO::PARAM_STR);
         } else {
-            $statement->bindValue(":group_description", $group->getDescription(), PDO::PARAM_NULL);
+            $statement->bindValue(":description", $group->getDescription(), PDO::PARAM_NULL);
         }
         $statement->execute();
         $new_id = (int) $connection->lastInsertId();
@@ -86,17 +67,15 @@ class GroupDAO {
         $group->validateForDbUpdate();
         $query =
             "UPDATE `" . GroupDTO::TABLE_NAME .
-            "` SET `group_name` = :group_name, `group_description` = :group_description, `isbn` = :isbn, `publication_year` = :year WHERE `id` = :id ;";
+            "` SET `name` = :name, `description` = :description WHERE `id` = :id ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
-        $statement->bindValue(":group_name", $group->getTitle(), PDO::PARAM_STR);
+        $statement->bindValue(":name", $group->getName(), PDO::PARAM_STR);
         if (!is_null($group->getDescription())) {
-            $statement->bindValue(":group_description", $group->getDescription(), PDO::PARAM_STR);
+            $statement->bindValue(":description", $group->getDescription(), PDO::PARAM_STR);
         } else {
-            $statement->bindValue(":group_description", $group->getDescription(), PDO::PARAM_NULL);
+            $statement->bindValue(":description", $group->getDescription(), PDO::PARAM_NULL);
         }
-        $statement->bindValue(":isbn", $group->getIsbn(), PDO::PARAM_STR);
-        $statement->bindValue(":year", $group->getPublicationYear(), PDO::PARAM_INT);
         $statement->bindValue(":id", $group->getId(), PDO::PARAM_INT);
         $statement->execute();
         return $this->getById($group->getId());
@@ -124,8 +103,6 @@ class GroupDAO {
      * @return UserDTO[]
      *
      * @throws RuntimeException
-     * @user Marc-Eric Boury
-     * @since  2024-04-01
      */
     public function getUsersByGroup(GroupDTO $group) : array {
         return $this->getUsersByGroupId($group->getId());
@@ -141,13 +118,13 @@ class GroupDAO {
      * @user Marc-Eric Boury
      * @since  2024-04-01
      */
-    public function getUsersByGroupId(int $group_id) : array {
+    public function getUsersByGroupId(int $id) : array {
         $query = "SELECT a.* FROM " . UserDTO::TABLE_NAME . " a JOIN " . UserGroupDAO::TABLE_NAME .
-            " ab ON a.user_id = ab.user_id JOIN " . GroupDTO::TABLE_NAME .
-            " b ON ab.group_id = b.group_id WHERE b.group_id = :groupId ;";
+            " ab ON a.id = ab.user_id JOIN " . GroupDTO::TABLE_NAME .
+            " b ON ab.group_id = b.id WHERE b.id = :groupId ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
-        $statement->bindValue(":groupId", $group_id, PDO::PARAM_INT);
+        $statement->bindValue(":groupId", $id, PDO::PARAM_INT);
         $statement->execute();
 
         $result_set = $statement->fetchAll(PDO::FETCH_ASSOC);

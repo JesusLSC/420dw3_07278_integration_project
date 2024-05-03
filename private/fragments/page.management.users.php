@@ -6,12 +6,14 @@ declare(strict_types=1);
 use DTOs\UserDTO;
 use Services\UserService;
 use Services\LoginService;
+
 /*
 if (!LoginService::isUserLoggedIn()) {
     LoginService::redirectToLogin();
 }
 */
-if (!LoginService::requirePhilipKDick()) {
+
+if (!LoginService::requireAdmin()) {
     if (!LoginService::isUserLoggedIn()) {
         LoginService::redirectToLogin();
     } else {
@@ -37,7 +39,7 @@ $all_users = $user_service->getAllUsers();
     </script>
     <script type="text/javascript" src="<?= WEB_JS_DIR . "jquery-3.7.1.min.js" ?>" defer></script>
     <script type="text/javascript" src="<?= WEB_JS_DIR . "standard.js" ?>" defer></script>
-    <script type="text/javascript" src="<?= WEB_JS_DIR . "page.user.js" ?>" defer></script>
+    <script type="text/javascript" src="<?= WEB_JS_DIR . "page.users.js" ?>" defer></script>
 </head>
 <body>
 <header id="header">
@@ -87,8 +89,8 @@ $all_users = $user_service->getAllUsers();
         <div class="container">
             <form id="user-form" class="row">
                 <div class="col-12">
-                    <label class="form-label" for="user_id">Id: </label>
-                    <input id="user_id" class="form-control form-control-sm" type="number" name="user_id" readonly disabled>
+                    <label class="form-label" for="user-id">Id: </label>
+                    <input id="user-id" class="form-control form-control-sm" type="number" name="id" readonly disabled>
                 </div>
                 <div class="col-12">
                     <label class="form-label" for="user-username">Username:</label>
@@ -96,19 +98,24 @@ $all_users = $user_service->getAllUsers();
                            maxlength="<?= UserDTO::USERNAME_MAX_LENGTH ?>" required>
                 </div>
                 <div class="col-12">
+                    <label class="form-label" for="user-password">Password:</label>
+                    <input id="user-password" class="form-control" type="password" name="password"
+                           maxlength="<?= UserDTO::PASSWORD_MAX_LENGTH ?>" required>
+                </div>
+                <div class="col-12">
                     <label class="form-label" for="user-email">Email:</label>
                     <input id="user-email" class="form-control" type="text" name="email"
                            maxlength="<?= UserDTO::EMAIL_MAX_LENGTH ?>" required>
                 </div>
                 <div class="col-12">
-                    <label class="form-label" for="user-created_at">Date created: </label>
-                    <input id="user-created_at" class="form-control form-control-sm" type="datetime-local" name="created_at"
+                    <label class="form-label" for="author-date-created">Date created: </label>
+                    <input id="author-date-created" class="form-control form-control-sm" type="datetime-local" name="dateCreated"
                            readonly disabled>
                 </div>
                 <div class="col-12">
-                    <label class="form-label" for="user-modified_at">Date last modified: </label>
-                    <input id="user-modified_at" class="form-control form-control-sm" type="datetime-local"
-                           name="modified_at"
+                    <label class="form-label" for="author-date-last-modified">Date last modified: </label>
+                    <input id="author-date-last-modified" class="form-control form-control-sm" type="datetime-local"
+                           name="dateLastModified"
                            readonly disabled>
                 </div>
             </form>

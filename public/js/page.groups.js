@@ -24,9 +24,9 @@ function updateClearButtonState() {
 
 function getFormDataAsUrlEncoded() {
     let formData = new FormData();
-    formData.set("group_id", $("#group-group_id").val());
-    formData.set("group_name", $("#group-group_name").val());
-    formData.set("group_description", $("#group-group_description").val());
+    formData.set("id", $("#group-id").val());
+    formData.set("name", $("#group-name").val());
+    formData.set("description", $("#group-description").val());
     formData.set("dateCreated", $("#user-date-created").val());
     formData.set("dateLastModified", $("#user-date-last-modified").val());
     $(".group-users").each((index, inputElem) => {
@@ -38,20 +38,20 @@ function getFormDataAsUrlEncoded() {
 }
 
 function fillFormFromResponseObject(entityObject) {
-    if ('group_id' in entityObject) {
-        $("#group-group_id").val(entityObject.group_id);
+    if ('id' in entityObject) {
+        $("#group-id").val(entityObject.id);
     }
-    if ('group_name' in entityObject) {
-        $("#group-group_name").val(entityObject.group_name);
+    if ('name' in entityObject) {
+        $("#group-name").val(entityObject.name);
     }
-    if ('group_description' in entityObject) {
-        $("#group-group_description").val(entityObject.group_description);
+    if ('description' in entityObject) {
+        $("#group-description").val(entityObject.description);
     }
     if ('dateCreated' in entityObject) {
-        $("#user-date-created").val(entityObject.created_at);
+        $("#user-date-created").val(entityObject.dateCreated);
     }
     if ('dateLastModified' in entityObject) {
-        $("#user-date-last-modified").val(entityObject.modified_at);
+        $("#user-date-last-modified").val(entityObject.dateLastModified);
     }
     
     // uncheck all users
@@ -139,13 +139,13 @@ function createGroup() {
      .done((data, status, jqXHR) => {
          console.log("Received data: ", data);
          
-         if ('group_name' in data) {
+         if ('name' in data) {
              let selector = document.getElementById("group-selector");
              let newOptionElement = document.createElement("option");
-             newOptionElement.value = data.group_id;
-             newOptionElement.innerHTML = `${data.group_name}`;
+             newOptionElement.value = data.id;
+             newOptionElement.innerHTML = `${data.name}`;
              selector.appendChild(newOptionElement);
-             selector.value = data.group_id;
+             selector.value = data.id;
          }
          fillFormFromResponseObject(data);
      })
@@ -169,13 +169,13 @@ function updateGroup() {
          console.log("Received data: ", data);
          
          // Replace the text in the selector with the updated values
-         let formIdValue = document.getElementById("group-group_id").value;
-         if ('group_name' in data) {
+         let formIdValue = document.getElementById("group-id").value;
+         if ('name' in data) {
              let selector = /** @type {HTMLSelectElement} */ document.getElementById("group-selector");
              // Note: voluntary non-identity equality check ( == instead of === ): disable warning
              // noinspection EqualityComparisonWithCoercionJS
              [...selector.options].filter(elem => elem.value == formIdValue).forEach(elem => {
-                 elem.innerHTML = `${data.group_name}`;
+                 elem.innerHTML = `${data.name}`;
              });
          }
          fillFormFromResponseObject(data);
@@ -198,7 +198,7 @@ function deleteGroup() {
     $.ajax(options)
      .done((data, status, jqXHR) => {
          console.log("Received data: ", data);
-         let formIdValue = document.getElementById("group-group_id").value;
+         let formIdValue = document.getElementById("group-id").value;
          if (formIdValue) {
              let selector = /** @type {HTMLSelectElement} */ document.getElementById("group-selector");
              // Note: voluntary non-identity equality check ( == instead of === ): disable warning

@@ -55,47 +55,47 @@ INSERT INTO `permissions` (`permission_id`, `permission_identifier`, `permission
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usergroups`
+-- Table structure for table `groups`
 --
 
-DROP TABLE IF EXISTS `usergroups`;
-CREATE TABLE IF NOT EXISTS `usergroups` (
-  `group_id` int(11) NOT NULL AUTO_INCREMENT,
-  `group_name` varchar(255) NOT NULL,
-  `group_description` text DEFAULT NULL,
+DROP TABLE IF EXISTS `groups`;
+CREATE TABLE IF NOT EXISTS `groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `modified_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`group_id`),
-  UNIQUE KEY `group_name` (`group_name`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `usergroups`
+-- Dumping data for table `groups`
 --
 
-INSERT INTO `usergroups` (`group_id`, `group_name`, `group_description`, `created_at`, `modified_at`) VALUES
+INSERT INTO `groups` (`id`, `name`, `description`, `created_at`, `modified_at`) VALUES
 (1, 'Admins', 'Administrative users group', '2024-04-29 13:17:28', '2024-04-29 13:17:28'),
 (2, 'Editors', 'Editorial users group', '2024-04-29 13:17:28', '2024-04-29 13:17:28');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usergroup_permission`
+-- Table structure for table `group_permission`
 --
 
-DROP TABLE IF EXISTS `usergroup_permission`;
-CREATE TABLE IF NOT EXISTS `usergroup_permission` (
-  `group_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `group_permission`;
+CREATE TABLE IF NOT EXISTS `group_permission` (
+  `id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL,
-  PRIMARY KEY (`group_id`,`permission_id`),
+  PRIMARY KEY (`id`,`permission_id`),
   KEY `permission_id` (`permission_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `usergroup_permission`
+-- Dumping data for table `group_permission`
 --
 
-INSERT INTO `usergroup_permission` (`group_id`, `permission_id`) VALUES
+INSERT INTO `group_permission` (`id`, `permission_id`) VALUES
 (1, 1),
 (1, 2),
 (1, 3),
@@ -111,13 +111,13 @@ INSERT INTO `usergroup_permission` (`group_id`, `permission_id`) VALUES
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
-  `password_hash` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `modified_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`user_id`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `password_hash`, `email`, `created_at`, `modified_at`) VALUES
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `created_at`, `modified_at`) VALUES
 (1, 'admin', 'admin123', 'admin@example.com', '2024-04-29 13:17:28', '2024-04-29 13:17:28'),
 (2, 'editor1', 'editor123', 'editor1@example.com', '2024-04-29 13:17:28', '2024-04-29 13:17:28'),
 (3, 'editor2', 'editor123', 'editor2@example.com', '2024-04-29 13:17:28', '2024-04-29 13:17:28');
@@ -134,22 +134,22 @@ INSERT INTO `users` (`user_id`, `username`, `password_hash`, `email`, `created_a
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_usergroup`
+-- Table structure for table `user_group`
 --
 
-DROP TABLE IF EXISTS `user_usergroup`;
-CREATE TABLE IF NOT EXISTS `user_usergroup` (
+DROP TABLE IF EXISTS `user_group`;
+CREATE TABLE IF NOT EXISTS `user_group` (
   `user_id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL,
   PRIMARY KEY (`user_id`,`group_id`),
-  KEY `group_id` (`group_id`)
+  KEY `user_id` (`group_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user_usergroup`
+-- Dumping data for table `user_group`
 --
 
-INSERT INTO `user_usergroup` (`user_id`, `group_id`) VALUES
+INSERT INTO `user_group` (`user_id`, `group_id`) VALUES
 (1, 1),
 (2, 2),
 (3, 2);
@@ -159,20 +159,23 @@ INSERT INTO `user_usergroup` (`user_id`, `group_id`) VALUES
 --
 
 --
--- Constraints for table `usergroup_permission`
+-- Constraints for table `group_permission`
 --
-ALTER TABLE `usergroup_permission`
-  ADD CONSTRAINT `usergroup_permission_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `usergroups` (`group_id`),
-  ADD CONSTRAINT `usergroup_permission_ibfk_2` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`permission_id`);
+ALTER TABLE `group_permission`
+  ADD CONSTRAINT `group_permission_ibfk_1` FOREIGN KEY (`id`) REFERENCES `groups` (`id`),
+  ADD CONSTRAINT `group_permission_ibfk_2` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`permission_id`);
 
 --
--- Constraints for table `user_usergroup`
+-- Constraints for table `user_group`
 --
-ALTER TABLE `user_usergroup`
-  ADD CONSTRAINT `user_usergroup_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `user_usergroup_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `usergroups` (`group_id`);
+ALTER TABLE `user_group`
+  ADD CONSTRAINT `user_group_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `user_group_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`);
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
+
+
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

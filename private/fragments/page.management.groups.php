@@ -22,7 +22,7 @@ $all_users = $user_service->getAllUsers();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <name>Page</name>
+    <title>Groups Page</title>
     <link rel="stylesheet" href="<?= WEB_CSS_DIR . "bootstrap.min.css" ?>">
     <link rel="stylesheet" href="<?= WEB_CSS_DIR . "standard.css" ?>">
     <script type="text/javascript">
@@ -53,13 +53,9 @@ $all_users = $user_service->getAllUsers();
             <div class="col-12 col-md-4 row justify-content-center">
                 <select id="group-selector" class="">
                     <option value="" selected disabled>Select one...</option>
-
                     <?php
                     foreach ($all_groups as $instance) {
-                        $red_text = false;
-                        echo ("<option class='" . ($red_text
-                                ? "text-red"
-                                : "") . "' value='" . $instance->getId() . "'>" . $instance->getName() . "'>" . $instance->getDescription() . "</option>");
+                        echo ("<option class='" . "' value='" . $instance->getId() . "'>" . $instance->getName() . "</option>");
                     }
                     ?>
                 </select>
@@ -93,8 +89,8 @@ $all_users = $user_service->getAllUsers();
                            maxlength="<?= GroupDTO::NAME_MAX_LENGTH ?>" required>
                 </div>
                 <div class="col-12">
-                    <label class="form-label" for="group-group_description">Description:</label>
-                    <input id="group-group_description" class="form-control" type="text" name="group_description"
+                    <label class="form-label" for="group-description">Description:</label>
+                    <input id="group-description" class="form-control" type="text" name="description"
                            maxlength="<?= GroupDTO::DESCRIPTION_MAX_LENGTH ?>" >
                 </div>
                 <div class="col-12 flex-column">
@@ -105,7 +101,7 @@ $all_users = $user_service->getAllUsers();
                         $label_text = $user->getUsername();
                         echo <<< HTDOC
                     <div class="col-12">
-                        <input id="group-user-$user_id" class="form-check-input group-users" type="checkbox" name="users[$user_id]" data-user_id="$user_id" required>
+                        <input id="group-user-$user_id" class="form-check-input group-users" type="checkbox" name="users[$user_id]" data-user-id="$user_id" required>
                         <label class="form-check-label" for="group-user-$user_id">$label_text</label>
                     </div>
 HTDOC;

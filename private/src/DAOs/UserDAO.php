@@ -44,25 +44,42 @@ class UserDAO {
         return $users;
         
     }
-    
-    public function getById(int $user_id) : ?UserDTO {
-        $query = "SELECT * FROM " . UserDTO::TABLE_NAME . " WHERE user_id = :user_id ;";
+
+    /**
+     * @throws RuntimeException
+     * @throws ValidationException
+     */
+    public function getById(int $id) : ?UserDTO {
+        $query = "SELECT * FROM " . UserDTO::TABLE_NAME . " WHERE id = :id ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
-        $statement->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+        $statement->bindValue(":id", $id, PDO::PARAM_INT);
         $statement->execute();
         $user_array = $statement->fetch(PDO::FETCH_ASSOC);
         return UserDTO::fromDbArray($user_array);
     }
-    
+
+    /**
+     * @throws RuntimeException
+     * @throws ValidationException
+     */
+    public function getByUsername(string $username): ?UserDTO
+    {
+        $query = "SELECT * FROM " . UserDTO::TABLE_NAME . " WHERE username = :username ;";
+        $connection = DBConnectionService::getConnection();
+        $statement = $connection->prepare($query);
+        $statement->bindValue(":username", $username, PDO::PARAM_STR);
+        $statement->execute();
+        $user_array = $statement->fetch(PDO::FETCH_ASSOC);
+        return UserDTO::fromDbArray($user_array);
+    }
+
     /**
      * TODO: Function documentation
      *
      * @param UserDTO $user
      * @return UserDTO
-     *
-     * @user Marc-Eric Boury
-     * @since  2024-04-01
+     * @throws ValidationException|RuntimeException
      */
     public function insert(UserDTO $user) : UserDTO {
         $user->validateForDbCreation();
@@ -82,19 +99,17 @@ class UserDAO {
      * @param UserDTO $user
      * @return UserDTO
      *
-     * @user Marc-Eric Boury
      * @throws RuntimeException
-     * @since  2024-04-01
      */
     public function update(UserDTO $user) : UserDTO {
         $user->validateForDbUpdate();
         $query =
             "UPDATE " . UserDTO::TABLE_NAME .
-            " SET `username` = :username WHERE `user_id` = :user_id ;";
+            " SET `username` = :username WHERE `id` = :id ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
         $statement->bindValue(":username", $user->getUsername(), PDO::PARAM_STR);
-        $statement->bindValue(":user_id", $user->getId(), PDO::PARAM_INT);
+        $statement->bindValue(":id", $user->getId(), PDO::PARAM_INT);
         $statement->execute();
         return $this->getById($user->getId());
     }
@@ -105,17 +120,15 @@ class UserDAO {
      * @param UserDTO $user
      * @return void
      *
-     * @user Marc-Eric Boury
      * @throws RuntimeException
-     * @since  2024-04-01
      */
     public function delete(UserDTO $user) : void {
         $user->validateForDbDelete();
         $query =
-            "DELETE FROM " . UserDTO::TABLE_NAME . " WHERE `user_id` = :user_id ;";
+            "DELETE FROM " . UserDTO::TABLE_NAME . " WHERE `id` = :id ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
-        $statement->bindValue(":user_id", $user->getId(), PDO::PARAM_INT);
+        $statement->bindValue(":id", $user->getId(), PDO::PARAM_INT);
         $statement->execute();
     }
     
@@ -126,13 +139,10 @@ class UserDAO {
      * @return GroupDTO[]
      * @throws ValidationException
      * @throws RuntimeException
-     *
-     * @user Marc-Eric Boury
-     * @since  2024-04-01
      */
     public function getGroupsByUser(UserDTO $user) : array {
         if (empty($user->getId())) {
-            throw new ValidationException("Cannot get the group records for an user with no set [user_id] property value.");
+            throw new ValidationException("Cannot get the group records for an user with no set [id] property value.");
         }
         return $this->getGroupsByUserId($user->getId());
         
@@ -149,12 +159,12 @@ class UserDAO {
      * @user Marc-Eric Boury
      * @since  2024-04-01
      */
-    public function getGroupsByUserId(int $user_id) : array {
+    public function getGroupsByUserId(int $id) : array {
         $query = "SELECT b.* FROM " . UserDTO::TABLE_NAME . " a JOIN " . UserGroupDAO::TABLE_NAME .
-            " ab ON a.user_id = ab.user_id JOIN " . GroupDTO::TABLE_NAME . " b ON ab.group_id = b.group_id WHERE a.user_id = :userId ;";
+            " ab ON a.id = ab.user_id JOIN " . GroupDTO::TABLE_NAME . " b ON ab.group_id = b.id WHERE a.id = :userId ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
-        $statement->bindValue(":userId", $user_id, PDO::PARAM_INT);
+        $statement->bindValue(":userId", $id, PDO::PARAM_INT);
         $statement->execute();
 
         $result_set = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -165,15 +175,5 @@ class UserDAO {
         return $groups_array;
     }
 
-    public function getByUser(string $username): ?UserDTO
-    {
-        $query = "SELECT * FROM " . UserDTO::TABLE_NAME . " WHERE username = :username ;";
-        $connection = DBConnectionService::getConnection();
-        $statement = $connection->prepare($query);
-        $statement->bindValue(":username", $username, PDO::PARAM_INT);
-        $statement->execute();
-        $user_array = $statement->fetch(PDO::FETCH_ASSOC);
-        return UserDTO::fromDbArray($user_array);
-    }
 
 }

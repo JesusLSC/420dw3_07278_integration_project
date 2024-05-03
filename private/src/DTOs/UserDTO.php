@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
 namespace DTOs;
 
 use DateTime;
@@ -10,12 +9,6 @@ use DAOs\UserDAO;
 use GivenCode\Exceptions\RuntimeException;
 use GivenCode\Exceptions\ValidationException;
 
-/**
- * TODO: Class documentation
- *
- * @user Marc-Eric Boury
- * @since  2024-03-21
- */
 class UserDTO {
     
     /**
@@ -27,9 +20,9 @@ class UserDTO {
     public const PASSWORD_MAX_LENGTH = 255;
     public const EMAIL_MAX_LENGTH = 255;
     
-    private int $user_id;
+    private int $id;
     private string $username;
-    private string $password_hash;
+    private string $password;
     private string $email;
     private ?DateTime $created_at = null;
     private ?DateTime $modified_at = null;
@@ -62,17 +55,14 @@ class UserDTO {
      *
      * @param array $dbArray
      * @return UserDTO
-     *
-     * @user Marc-Eric Boury
      * @throws ValidationException
-     * @since  2024-04-01
      */
     public static function fromDbArray(array $dbArray) : UserDTO {
         self::validateDbArray($dbArray);
         $instance = new UserDTO();
-        $instance->setId((int) $dbArray["user_id"]);
+        $instance->setId((int) $dbArray["id"]);
         $instance->setUsername($dbArray["username"]);
-        $instance->setPassword($dbArray["password_hash"]);
+        $instance->setPassword($dbArray["password"]);
         $instance->setEmail($dbArray["email"]);
         $instance->setDateCreated(DateTime::createFromFormat(DB_DATETIME_FORMAT, $dbArray["created_at"]));
         if (!empty($dbArray["modified_at"])) {
@@ -87,17 +77,17 @@ class UserDTO {
      * @throws ValidationException
      */
     private static function validateDbArray(array $dbArray) : void {
-        if (empty($dbArray["user_id"])) {
-            throw new ValidationException("Record array does not contain an [user_id] field. Check column names.");
+        if (empty($dbArray["id"])) {
+            throw new ValidationException("Record array does not contain an [id] field. Check column names.");
         }
-        if (!is_numeric($dbArray["user_id"])) {
-            throw new ValidationException("Record array [user_id] field is not numeric. Check column types.");
+        if (!is_numeric($dbArray["id"])) {
+            throw new ValidationException("Record array [id] field is not numeric. Check column types.");
         }
         if (empty($dbArray["username"])) {
             throw new ValidationException("Record array does not contain an [username] field. Check column names.");
         }
-        if (empty($dbArray["password_hash"])) {
-            throw new ValidationException("Record array does not contain an [password_hash] field. Check column names.");
+        if (empty($dbArray["password"])) {
+            throw new ValidationException("Record array does not contain an [password] field. Check column names.");
         }
         if (empty($dbArray["email"])) {
             throw new ValidationException("Record array does not contain an [email] field. Check column names.");
@@ -120,7 +110,7 @@ class UserDTO {
      */
     public function validateForDbCreation(bool $optThrowExceptions = true) : bool {
         // ID must not be set
-        if (!empty($this->user_id)) {
+        if (!empty($this->id)) {
             if ($optThrowExceptions) {
                 throw new ValidationException("UserDTO is not valid for DB creation: ID value already set.");
             }
@@ -133,10 +123,10 @@ class UserDTO {
             }
             return false;
         }
-        // password_hash is required
-        if (empty($this->password_hash)) {
+        // password is required
+        if (empty($this->password)) {
             if ($optThrowExceptions) {
-                throw new ValidationException("UserDTO is not valid for DB creation: password_hash value not set.");
+                throw new ValidationException("UserDTO is not valid for DB creation: password value not set.");
             }
             return false;
         }
@@ -166,7 +156,7 @@ class UserDTO {
      */
     public function validateForDbUpdate(bool $optThrowExceptions = true) : bool {
         // ID is required
-        if (empty($this->user_id)) {
+        if (empty($this->id)) {
             if ($optThrowExceptions) {
                 throw new ValidationException("UserDTO is not valid for DB update: ID value is not set.");
             }
@@ -179,10 +169,10 @@ class UserDTO {
             }
             return false;
         }
-        // password_hash is required
-        if (empty($this->password_hash)) {
+        // password is required
+        if (empty($this->password)) {
             if ($optThrowExceptions) {
-                throw new ValidationException("UserDTO is not valid for DB update: password_hash value not set.");
+                throw new ValidationException("UserDTO is not valid for DB update: password value not set.");
             }
             return false;
         }
@@ -194,7 +184,7 @@ class UserDTO {
      */
     public function validateForDbDelete(bool $optThrowExceptions = true) : bool {
         // ID is required
-        if (empty($this->user_id)) {
+        if (empty($this->id)) {
             if ($optThrowExceptions) {
                 throw new ValidationException("UserDTO is not valid for DB creation: ID value is not set.");
             }
@@ -212,18 +202,18 @@ class UserDTO {
      * @return int
      */
     public function getId() : int {
-        return $this->user_id;
+        return $this->id;
     }
 
     /**
-     * @param int $user_id
+     * @param int $id
      * @throws ValidationException
      */
-    public function setId(int $user_id) : void {
-        if ($user_id <= 0) {
-            throw new ValidationException("Invalid value for UserDTO [user_id]: must be a positive integer > 0.");
+    public function setId(int $id) : void {
+        if ($id <= 0) {
+            throw new ValidationException("Invalid value for UserDTO [id]: must be a positive integer > 0.");
         }
-        $this->user_id = $user_id;
+        $this->id = $id;
     }
 
     /**
@@ -249,20 +239,20 @@ class UserDTO {
      */
 
     public function getPassword() : string {
-        return $this->password_hash;
+        return $this->password;
     }
 
     /**
-     * @param string $password_hash
+     * @param string $password
      * @throws ValidationException
      */
-    public function setPassword(string $password_hash) : void {
-        if (mb_strlen($password_hash) > self::PASSWORD_MAX_LENGTH) {
-            throw new ValidationException("Invalid value for UserDTO [password_hash]: string length is > " .
+    public function setPassword(string $password) : void {
+        if (mb_strlen($password) > self::PASSWORD_MAX_LENGTH) {
+            throw new ValidationException("Invalid value for UserDTO [password]: string length is > " .
                 self::PASSWORD_MAX_LENGTH . ".");
         }
 
-        $this->password_hash = $password_hash;
+        $this->password = $password;
     }
     /**
      * @return string
@@ -324,7 +314,7 @@ class UserDTO {
                 $this->loadGroups();
             }
         } catch (Exception $excep) {
-            throw new RuntimeException("Failed to load group entity records for user user_id# [$this->user_id].", $excep->getCode(), $excep);
+            throw new RuntimeException("Failed to load group entity records for user userId# [$this->id].", $excep->getCode(), $excep);
         }
         return $this->groups;
     }
@@ -343,9 +333,9 @@ class UserDTO {
 
     public function toArray() : array {
         $array = [
-            "user_id" => $this->getId(),
+            "userId" => $this->getId(),
             "username" => $this->getUsername(),
-            "password_hash" => $this->getPassword(),
+            "password" => $this->getPassword(),
             "email" => $this->getEmail(),
             "created_at" => $this->getDateCreated()?->format(HTML_DATETIME_FORMAT),
             "modified_at" => $this->getDateLastModified()?->format(HTML_DATETIME_FORMAT),

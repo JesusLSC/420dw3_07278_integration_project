@@ -1,5 +1,5 @@
 function clearForm() {
-    $('#user-form').get(0).reset();
+    $('#form').get(0).reset();
     $("#create-button").prop("disabled", false);
     $("#clear-button").prop("disabled", true);
     $("#update-button").prop("disabled", true);
@@ -23,30 +23,33 @@ function updateClearButtonState() {
 
 function getFormDataAsUrlEncoded() {
     let formData = new FormData();
-    formData.set("user_id", $("#user-user_id").val());
+    formData.set("id", $("#user-id").val());
     formData.set("username", $("#user-username").val());
-    formData.set("password_hash", $("#user-password_hash").val());
+    formData.set("password", $("#user-password").val());
     formData.set("email", $("#user-email").val());
-    formData.set("created_at", $("#user-created_at").val());
-    formData.set("modified_at", $("#user-modified_at").val());
+    formData.set("dateCreated", $("#user-date-created").val());
+    formData.set("dateLastModified", $("#user-date-last-modified").val());
     return (new URLSearchParams(formData)).toString();
 }
 
 function fillFormFromResponseObject(entityObject) {
-    if ('user_id' in entityObject) {
-        $("#user-user_id").val(entityObject.user_id);
+    if ('id' in entityObject) {
+        $("#user-id").val(entityObject.id);
     }
     if ('username' in entityObject) {
         $("#user-username").val(entityObject.username);
     }
+    if ('password' in entityObject) {
+        $("#user-password").val(entityObject.password);
+    }
     if ('email' in entityObject) {
         $("#user-email").val(entityObject.email);
     }
-    if ('created_at' in entityObject) {
-        $("#user-created_at").val(entityObject.created_at);
+    if ('dateCreated' in entityObject) {
+        $("#user-date-created").val(entityObject.dateCreated);
     }
-    if ('modified_at' in entityObject) {
-        $("#user-modified_at").val(entityObject.modified_at);
+    if ('dateLastModified' in entityObject) {
+        $("#user-date-last-modified").val(entityObject.dateLastModified);
     }
     $("#create-button").prop("disabled", true);
     $("#clear-button").prop("disabled", false);
@@ -149,13 +152,13 @@ function updateUser() {
          console.log("Received data: ", data);
          
          // Replace the text in the selector with the updated values
-         let formIdValue = document.getElementById("user_id").value;
+         let formIdValue = document.getElementById("user-id").value;
          if ('username' in data) {
              let selector = /** @type {HTMLSelectElement} */ document.getElementById("user-selector");
              // Note: voluntary non-identity equality check ( == instead of === ): disable warning
              // noinspection EqualityComparisonWithCoercionJS
              [...selector.options].filter(elem => elem.value == formIdValue).forEach(elem => {
-                 elem.innerHTML = `${data.firstName}`;
+                 elem.innerHTML = `${data.username}`;
              });
          }
          fillFormFromResponseObject(data);
@@ -178,7 +181,7 @@ function deleteUser() {
     $.ajax(options)
      .done((data, status, jqXHR) => {
          console.log("Received data: ", data);
-         let formIdValue = document.getElementById("user_id").value;
+         let formIdValue = document.getElementById("user-id").value;
          if (formIdValue) {
              let selector = /** @type {HTMLSelectElement} */ document.getElementById("user-selector");
              // Note: voluntary non-identity equality check ( == instead of === ): disable warning
@@ -200,4 +203,4 @@ document.getElementById("clear-button").onclick = clearForm;
 document.getElementById("create-button").onclick = createUser;
 document.getElementById("update-button").onclick = updateUser;
 document.getElementById("delete-button").onclick = deleteUser;
-$("#user-form").on("change", ":input", updateClearButtonState);
+$("#form").on("change", ":input", updateClearButtonState);
