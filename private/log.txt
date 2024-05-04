@@ -1,36 +1,37 @@
-2024-05-04 19:37:20: Route found: matched [/420dw3_07278_integration_project/pages/permissions] with route [/420dw3_07278_integration_project/pages/permissions]
-2024-05-04 19:37:20: true
-2024-05-04 19:37:55: Route found: matched [/420dw3_07278_integration_project/pages/permissions] with route [/420dw3_07278_integration_project/pages/permissions]
-2024-05-04 19:37:55: true
-2024-05-04 19:38:54: Route found: matched [/420dw3_07278_integration_project/pages/permissions] with route [/420dw3_07278_integration_project/pages/permissions]
-2024-05-04 19:38:54: true
-2024-05-04 19:38:55: Route found: matched [/420dw3_07278_integration_project/api/permissions] with route [/420dw3_07278_integration_project/api/permissions]
-2024-05-04 19:38:55: Controller: calling method Controllers\PermissionController::get().
-2024-05-04 19:38:55: true
-2024-05-04 19:39:05: Route found: matched [/420dw3_07278_integration_project/pages/permissions] with route [/420dw3_07278_integration_project/pages/permissions]
-2024-05-04 19:39:05: true
-2024-05-04 19:39:06: Route found: matched [/420dw3_07278_integration_project/pages/permissions] with route [/420dw3_07278_integration_project/pages/permissions]
-2024-05-04 19:39:06: true
-2024-05-04 19:39:07: Route found: matched [/420dw3_07278_integration_project/pages/permissions] with route [/420dw3_07278_integration_project/pages/permissions]
-2024-05-04 19:39:07: true
-2024-05-04 19:39:10: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 19:39:10: true
-2024-05-04 19:39:10: Route found: matched [/420dw3_07278_integration_project/pages/permissions] with route [/420dw3_07278_integration_project/pages/permissions]
-2024-05-04 19:39:10: true
-2024-05-04 19:39:11: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 19:39:11: true
-2024-05-04 19:39:12: Route found: matched [/420dw3_07278_integration_project/pages/permissions] with route [/420dw3_07278_integration_project/pages/permissions]
-2024-05-04 19:39:12: true
-2024-05-04 19:39:14: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 19:39:14: true
-2024-05-04 19:39:15: Route found: matched [/420dw3_07278_integration_project/pages/groups] with route [/420dw3_07278_integration_project/pages/groups]
-2024-05-04 19:39:15: true
-2024-05-04 19:39:15: true
-2024-05-04 19:39:15: Route found: matched [/420dw3_07278_integration_project/pages/groups] with route [/420dw3_07278_integration_project/pages/groups]
-2024-05-04 19:39:15: true
-2024-05-04 19:39:15: true
-2024-05-04 19:39:16: Route found: matched [/420dw3_07278_integration_project/pages/permissions] with route [/420dw3_07278_integration_project/pages/permissions]
-2024-05-04 19:39:16: true
-2024-05-04 19:39:19: Route found: matched [/420dw3_07278_integration_project/api/permissions] with route [/420dw3_07278_integration_project/api/permissions]
-2024-05-04 19:39:19: Controller: calling method Controllers\PermissionController::get().
-2024-05-04 19:39:19: true
+2024-05-04 20:08:32: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
+2024-05-04 20:08:32: Controller: calling method Controllers\UserController::put().
+2024-05-04 20:08:32: true
+2024-05-04 20:08:32: RequestException: Bad request: required parameter [userId] not found in the request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->put()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-04 20:10:53: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
+2024-05-04 20:10:53: true
+2024-05-04 20:10:55: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
+2024-05-04 20:10:55: Controller: calling method Controllers\UserController::get().
+2024-05-04 20:10:55: true
+2024-05-04 20:10:55: RequestException: Bad request: required parameter [id] not found in the request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->get()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
+2024-05-04 20:11:03: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
+2024-05-04 20:11:03: true
+2024-05-04 20:11:04: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
+2024-05-04 20:11:04: Controller: calling method Controllers\UserController::get().
+2024-05-04 20:11:04: true
+2024-05-04 20:11:10: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
+2024-05-04 20:11:10: Controller: calling method Controllers\UserController::put().
+2024-05-04 20:11:10: true
+2024-05-04 20:11:10: RequestException: Bad request: required parameter [userId] not found in the request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->put()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#5 {main}
