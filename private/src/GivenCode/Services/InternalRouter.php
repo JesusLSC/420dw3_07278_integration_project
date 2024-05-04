@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace GivenCode\Services;
 
+use Controllers\PermissionController;
 use Controllers\UserController;
 use Controllers\GroupController;
 use Controllers\LoginController;
@@ -33,11 +34,13 @@ class InternalRouter implements IService {
         $this->routes->addRoute(new APIRoute("/api/login", LoginController::class));
         $this->routes->addRoute(new APIRoute("/api/groups", GroupController::class));
         $this->routes->addRoute(new APIRoute("/api/users", UserController::class));
+        $this->routes->addRoute(new APIRoute("/api/permissions", PermissionController::class));
         $this->routes->addRoute(new WebpageRoute("/index", "users.php"));
         $this->routes->addRoute(new WebpageRoute("/", "users.php"));
         $this->routes->addRoute(new CallableRoute("/pages/login", [PageNavigator::class, "loginPage"]));
         $this->routes->addRoute(new CallableRoute("/pages/groups", [PageNavigator::class, "groupsManagementPage"]));
         $this->routes->addRoute(new CallableRoute("/pages/users", [PageNavigator::class, "usersManagementPage"]));
+        $this->routes->addRoute(new CallableRoute("/pages/permissions", [PageNavigator::class, "permissionsManagementPage"]));
     }
 
     public function route() : void {

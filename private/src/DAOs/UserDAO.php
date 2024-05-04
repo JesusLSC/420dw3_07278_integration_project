@@ -1,14 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/*
- * 420DW3_07278_Project UserDAO.php
- * 
- * @user Marc-Eric Boury (MEbou)
- * @since 2024-04-01
- * (c) Copyright 2024 Marc-Eric Boury 
- */
-
 namespace DAOs;
 
 use PDO;
@@ -27,8 +19,6 @@ class UserDAO {
      * @return UserDTO[]
      *
      * @throws RuntimeException
-     * @user Marc-Eric Boury
-     * @since  2024-04-01
      */
     public function getAll() : array {
         $query = "SELECT * FROM " . UserDTO::TABLE_NAME . ";";
@@ -155,9 +145,6 @@ class UserDAO {
      * @return GroupDTO[]
      * @throws ValidationException
      * @throws RuntimeException
-     *
-     * @user Marc-Eric Boury
-     * @since  2024-04-01
      */
     public function getGroupsByUserId(int $id) : array {
         $query = "SELECT b.* FROM " . UserDTO::TABLE_NAME . " a JOIN " . UserGroupDAO::TABLE_NAME .

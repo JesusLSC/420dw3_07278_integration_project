@@ -22,4 +22,8 @@ class PageNavigator implements IService {
         header("Content-Type: text/html;charset=UTF-8");
         include PRJ_FRAGMENTS_DIR . "page.management.users.php";
     }
+    public static function permissionsManagementPage() : void {
+        header("Content-Type: text/html;charset=UTF-8");
+        include PRJ_FRAGMENTS_DIR . "page.management.permissions.php";
+    }
 }
