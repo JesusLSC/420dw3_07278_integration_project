@@ -41,8 +41,6 @@ abstract class AbstractController implements IController {
      * @return void
      * @throws RequestException
      *
-     * @author Marc-Eric Boury
-     * @since  2024-03-28
      */
     public function callHttpMethod(HTTPMethodsEnum $method) : void {
         $class_method = strtolower($method->value);

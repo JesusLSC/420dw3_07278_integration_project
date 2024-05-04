@@ -1,15 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/*
- * 420DW3_07278_Project debug.php
- * 
- * @author Marc-Eric Boury (MEbou)
- * @since 2024-03-14
- * (c) Copyright 2024 Marc-Eric Boury 
- */
-
-
 require_once "constants.php";
 
 class Debug {
@@ -21,9 +12,6 @@ class Debug {
      * @param string $message
      * @param bool   $doDie
      * @return void
-     *
-     * @author Marc-Eric Boury
-     * @since  2024-03-26
      */
     public static function log(string $message, bool $doDie = false) : void {
         if (self::$DEBUG_MODE) {
@@ -52,9 +40,6 @@ class Debug {
      * @param bool  $doDie   OPTIONAL: Wheter to stop execution after echoing the HTML table. Defaults to <code>false</code>
      *
      * @return string|null
-     *
-     * @author Marc-Eric Boury
-     * @since  2023-01-05
      */
     public static function debugToHtmlTable(mixed $input, bool $doEcho = true, bool $doDie = false) : ?string {
         $return_value = null;
@@ -275,9 +260,6 @@ function debug(mixed $input, bool $doEcho = true, bool $doDie = false) : ?string
  *
  * @param Throwable $thrown
  * @return string
- *
- * @author Marc-Eric Boury
- * @since  2024-03-16
  */
 function generate_exception_html(Throwable $thrown) : string {
     $html_string = "
@@ -299,9 +281,6 @@ function generate_exception_html(Throwable $thrown) : string {
  * TODO: Function documentation
  *
  * @return void
- *
- * @author Marc-Eric Boury
- * @since  2024-03-19
  */
 function get_debug_page() : void {
     include PRJ_PAGES_DIR . "debug_page.php";

@@ -88,7 +88,7 @@ class UserService implements IService {
     /**
      * @throws RuntimeException
      */
-    public function updateUser(int $id, string $username) : UserDTO {
+    public function updateUser(int $id, string $username, string $password, string $email) : UserDTO {
         try {
             $connection = DBConnectionService::getConnection();
             $connection->beginTransaction();

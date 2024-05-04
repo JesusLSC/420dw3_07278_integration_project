@@ -14,13 +14,6 @@ use IteratorAggregate;
 use GivenCode\Exceptions\ValidationException;
 use Traversable;
 
-/**
- * TODO: Class documentation
- *
- *
- * @author Marc-Eric Boury
- * @since  2024-03-16
- */
 class RouteCollection implements IteratorAggregate {
     
     /**
@@ -61,8 +54,6 @@ class RouteCollection implements IteratorAggregate {
      * @return void
      * @throws ValidationException If an equivalent route exist in the collection and duplicates are forbidden.
      *
-     * @author Marc-Eric Boury
-     * @since  2024-03-16
      */
     public function addRoute(AbstractRoute $route, bool $optNoDuplicates = true) : void {
         if ($optNoDuplicates) {
@@ -84,8 +75,6 @@ class RouteCollection implements IteratorAggregate {
      * @param AbstractRoute $route The route to remove.
      * @return bool <code>true</code> if a route was removed, <code>false</code> otherwise.
      *
-     * @author Marc-Eric Boury
-     * @since  2024-03-16
      */
     public function removeRoute(AbstractRoute $route) : bool {
         if (in_array($route, $this->routes)) {
@@ -102,8 +91,6 @@ class RouteCollection implements IteratorAggregate {
      * @param string $uri_path
      * @return AbstractRoute|null
      *
-     * @author Marc-Eric Boury
-     * @since  2024-03-16
      */
     public function match(string $uri_path) : ?AbstractRoute {
         foreach ($this->routes as $route) {

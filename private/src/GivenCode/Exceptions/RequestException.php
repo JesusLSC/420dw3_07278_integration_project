@@ -1,24 +1,10 @@
 <?php
 declare(strict_types=1);
 
-/*
- * 420DW3_07278_Project RequestException.php
- * 
- * @author Marc-Eric Boury (MEbou)
- * @since 2024-03-16
- * (c) Copyright 2024 Marc-Eric Boury 
- */
-
 namespace GivenCode\Exceptions;
 
 use Throwable;
 
-/**
- * TODO: Class documentation
- *
- * @author Marc-Eric Boury
- * @since  2024-03-16
- */
 class RequestException extends RuntimeException {
     private int $httpResponseCode;
     private array $httpHeaders;
@@ -41,9 +27,6 @@ class RequestException extends RuntimeException {
      * TODO: Function documentation
      *
      * @return int
-     *
-     * @author Marc-Eric Boury
-     * @since  2024-03-16
      */
     public function getHttpResponseCode() : int {
         return $this->httpResponseCode;
@@ -53,9 +36,6 @@ class RequestException extends RuntimeException {
      * TODO: Function documentation
      *
      * @return array
-     *
-     * @author Marc-Eric Boury
-     * @since  2024-03-16
      */
     public function getHttpHeaders() : array {
         return $this->httpHeaders;
@@ -67,9 +47,6 @@ class RequestException extends RuntimeException {
      * @param string $headerKey
      * @param string $headerValue
      * @return void
-     *
-     * @author Marc-Eric Boury
-     * @since  2024-03-16
      */
     public function addHeader(string $headerKey, string $headerValue) : void {
         $this->httpHeaders[$headerKey] = $headerValue;

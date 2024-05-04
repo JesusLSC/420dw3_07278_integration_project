@@ -95,10 +95,12 @@ class UserDAO {
         $user->validateForDbUpdate();
         $query =
             "UPDATE " . UserDTO::TABLE_NAME .
-            " SET `username` = :username WHERE `id` = :id ;";
+            " SET `username` = :username, `password` = :password, `email` = :email WHERE `id` = :id ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
         $statement->bindValue(":username", $user->getUsername(), PDO::PARAM_STR);
+        $statement->bindValue(":password", $user->getPassword(), PDO::PARAM_STR);
+        $statement->bindValue(":email", $user->getEmail(), PDO::PARAM_STR);
         $statement->bindValue(":id", $user->getId(), PDO::PARAM_INT);
         $statement->execute();
         return $this->getById($user->getId());
@@ -114,11 +116,16 @@ class UserDAO {
      */
     public function delete(UserDTO $user) : void {
         $user->validateForDbDelete();
+        $this->deleteById($user->getId());
+    }
+
+    public function deleteById(int $userId) : void {
         $query =
-            "DELETE FROM " . UserDTO::TABLE_NAME . " WHERE `id` = :id ;";
+            "DELETE FROM `" . GroupDTO::TABLE_NAME .
+            "` WHERE `id` = :id ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
-        $statement->bindValue(":id", $user->getId(), PDO::PARAM_INT);
+        $statement->bindValue(":id", $userId, PDO::PARAM_INT);
         $statement->execute();
     }
     

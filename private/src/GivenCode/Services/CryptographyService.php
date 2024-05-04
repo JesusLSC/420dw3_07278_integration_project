@@ -1,25 +1,11 @@
 <?php
 declare(strict_types=1);
 
-/*
- * 420DW3_07278_Project CryptographyService.php
- * 
- * @author Marc-Eric Boury (MEbou)
- * @since 2024-03-16
- * (c) Copyright 2024 Marc-Eric Boury 
- */
-
 namespace GivenCode\Services;
 
 use GivenCode\Abstracts\IService;
 use GivenCode\Exceptions\ValidationException;
 
-/**
- * Service class for the hashing and validation of user passwords.
- *
- * @author Marc-Eric Boury
- * @since  2024-03-16
- */
 class CryptographyService implements IService {
     private const ALGORITHM = PASSWORD_BCRYPT;
     private const BLOWFISH_MAX_PW_LENGTH = 72;
@@ -35,8 +21,6 @@ class CryptographyService implements IService {
      * @return string The hashed password.
      *
      * @throws ValidationException if the password to hash is too long.
-     * @author Marc-Eric Boury
-     * @since  2024-03-16
      */
     public function hashPassword(string $cleanPassword) : string {
         if (mb_strlen($cleanPassword) > self::BLOWFISH_MAX_PW_LENGTH) {
@@ -57,8 +41,6 @@ class CryptographyService implements IService {
      * @return bool if the unencrypted and hashed passwords match, <code>true</code>,otherwise <code>false</code>.
      *
      * @throws ValidationException if the password to hash is too long.
-     * @author Marc-Eric Boury
-     * @since  2024-03-16
      */
     public function comparePassword(string $cleanPassword, string $hashedPassword) : bool {
         if (mb_strlen($cleanPassword) > self::BLOWFISH_MAX_PW_LENGTH) {

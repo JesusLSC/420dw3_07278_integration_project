@@ -49,7 +49,7 @@ class GroupDAO {
         $group->validateForDbCreation();
         $query =
             "INSERT INTO `" . GroupDTO::TABLE_NAME .
-            "` (`group_name`, `group_description`) VALUES (:name, :description);";
+            "` (`name`, `description`) VALUES (:name, :description);";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
         $statement->bindValue(":name", $group->getName(), PDO::PARAM_STR);
@@ -120,8 +120,7 @@ class GroupDAO {
      */
     public function getUsersByGroupId(int $id) : array {
         $query = "SELECT a.* FROM " . UserDTO::TABLE_NAME . " a JOIN " . UserGroupDAO::TABLE_NAME .
-            " ab ON a.id = ab.user_id JOIN " . GroupDTO::TABLE_NAME .
-            " b ON ab.group_id = b.id WHERE b.id = :groupId ;";
+            " ab ON a.id = ab.user_id JOIN " . GroupDTO::TABLE_NAME . " b ON ab.group_id = b.id WHERE b.id = :groupId ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
         $statement->bindValue(":groupId", $id, PDO::PARAM_INT);

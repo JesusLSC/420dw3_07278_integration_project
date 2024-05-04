@@ -341,9 +341,6 @@ class UserDTO {
             "modified_at" => $this->getDateLastModified()?->format(HTML_DATETIME_FORMAT),
             "groups" => []
         ];
-        // Note: i'm not using getGroups() here in order not to trigger the loading of the groups.
-        // Include them in the array only if loaded previously.
-        // otherwise infinite loop user loads groups loads users loads groups loads users...
         foreach ($this->groups as $group) {
             $array["groups"][$group->getId()] = $group->toArray();
         }

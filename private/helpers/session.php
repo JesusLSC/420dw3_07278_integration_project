@@ -1,14 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/*
- * 420DW3_07278_Project session.php
- * 
- * @author Marc-Eric Boury (MEbou)
- * @since 2024-03-26
- * (c) Copyright 2024 Marc-Eric Boury 
- */
-
 if (empty($_COOKIE["testCookie"])) {
     if (!empty($_REQUEST["isCookieTest"])) {
         // Test cookie not present and this is a reload from this testing => cookies not enabled.

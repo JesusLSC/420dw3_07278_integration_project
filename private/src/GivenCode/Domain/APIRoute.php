@@ -1,14 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/*
- * 420DW3_07278_Project APIRoute.php
- * 
- * @author Marc-Eric Boury (MEbou)
- * @since 2024-03-14
- * (c) Copyright 2024 Marc-Eric Boury 
- */
-
 namespace GivenCode\Domain;
 
 use Exception;
@@ -17,12 +9,7 @@ use GivenCode\Enumerations\HTTPMethodsEnum;
 use GivenCode\Exceptions\RequestException;
 use GivenCode\Exceptions\ValidationException;
 
-/**
- * TODO: Class documentation
- *
- * @author Marc-Eric Boury
- * @since  2024-03-14
- */
+
 class APIRoute extends AbstractRoute {
     private string $controllerClass;
     
@@ -59,9 +46,6 @@ class APIRoute extends AbstractRoute {
      *
      * @return void
      * @throws RequestException
-     *
-     * @author Marc-Eric Boury
-     * @since  2024-03-28
      */
     public function route() : void {
         $method = HTTPMethodsEnum::getValue($_SERVER["REQUEST_METHOD"]);

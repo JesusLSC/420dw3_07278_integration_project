@@ -1,37 +1,39 @@
-2024-05-04 20:08:32: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 20:08:32: Controller: calling method Controllers\UserController::put().
-2024-05-04 20:08:32: true
-2024-05-04 20:08:32: RequestException: Bad request: required parameter [userId] not found in the request.
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->put()
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+2024-05-04 21:04:43: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-05-04 21:04:43: true
+2024-05-04 21:04:48: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
+2024-05-04 21:04:48: true
+2024-05-04 21:04:56: Route found: matched [/420DW3_07278_integration_project/] with route [/420dw3_07278_integration_project/]
+2024-05-04 21:04:56: true
+2024-05-04 21:05:06: Route found: matched [/420dw3_07278_integration_project/api/UserDto] with route [/420dw3_07278_integration_project/api/userDTO]
+2024-05-04 21:05:06: Controller: calling method Controllers\UserController::post().
+2024-05-04 21:05:06: true
+2024-05-04 21:05:06: RuntimeException: Failure to create user [Jesus].
+	Caused by: ValidationException: UserDTO is not valid for DB creation: password value not set.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(68): Services\UserService->createUser('Jesus')
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->post()
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#5 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
+		#6 {main}
+2024-05-04 21:05:19: Route found: matched [/420dw3_07278_integration_project/api/UserDto] with route [/420dw3_07278_integration_project/api/userDTO]
+2024-05-04 21:05:19: Controller: calling method Controllers\UserController::get().
+2024-05-04 21:05:19: true
+2024-05-04 21:05:19: RequestException: Bad request: required parameter [userId] not found in the request.
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->get()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
 		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
 		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
 		#5 {main}
-2024-05-04 20:10:53: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 20:10:53: true
-2024-05-04 20:10:55: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 20:10:55: Controller: calling method Controllers\UserController::get().
-2024-05-04 20:10:55: true
-2024-05-04 20:10:55: RequestException: Bad request: required parameter [id] not found in the request.
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->get()
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
-		#5 {main}
-2024-05-04 20:11:03: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 20:11:03: true
-2024-05-04 20:11:04: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 20:11:04: Controller: calling method Controllers\UserController::get().
-2024-05-04 20:11:04: true
-2024-05-04 20:11:10: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 20:11:10: Controller: calling method Controllers\UserController::put().
-2024-05-04 20:11:10: true
-2024-05-04 20:11:10: RequestException: Bad request: required parameter [userId] not found in the request.
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(55): Controllers\UserController->put()
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(75): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(22): Application\Application->run()
-		#5 {main}
+2024-05-04 21:08:15: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
+2024-05-04 21:08:15: true
+2024-05-04 21:08:17: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
+2024-05-04 21:08:17: Controller: calling method Controllers\UserController::get().
+2024-05-04 21:08:17: true
+2024-05-04 21:08:19: Route found: matched [/420dw3_07278_integration_project/pages/groups] with route [/420dw3_07278_integration_project/pages/groups]
+2024-05-04 21:08:19: true
+2024-05-04 21:08:19: true
+2024-05-04 21:08:21: Route found: matched [/420dw3_07278_integration_project/api/groups] with route [/420dw3_07278_integration_project/api/groups]
+2024-05-04 21:08:21: Controller: calling method Controllers\GroupController::get().
+2024-05-04 21:08:21: true

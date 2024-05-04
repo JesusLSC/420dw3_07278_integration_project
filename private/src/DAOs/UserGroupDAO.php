@@ -18,7 +18,7 @@ use GivenCode\Services\DBConnectionService;
 class UserGroupDAO {
     public const TABLE_NAME = "user_group";
     private const CREATE_QUERY = "INSERT INTO " . self::TABLE_NAME .
-    " (`userId`, `group_id`) VALUES (:userId, :groupId);";
+    " (`user_id`, `group_id`) VALUES (:userId, :groupId);";
     
     public function __construct() {}
 
@@ -74,7 +74,7 @@ class UserGroupDAO {
      * @throws RuntimeException
      */
     public function deleteAllByUserId(int $userId) : void {
-        $query = "DELETE FROM " . self::TABLE_NAME . " WHERE `userId` = :userId ;";
+        $query = "DELETE FROM " . self::TABLE_NAME . " WHERE `user_id` = :userId ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
         $statement->bindValue(":userId", $userId, PDO::PARAM_INT);

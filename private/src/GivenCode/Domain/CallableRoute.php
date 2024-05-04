@@ -1,24 +1,11 @@
 <?php
 declare(strict_types=1);
 
-/*
- * 420DW3_07278_Project CallableRoute.php
- * 
- * @author Marc-Eric Boury (MEbou)
- * @since 2024-03-28
- * (c) Copyright 2024 Marc-Eric Boury 
- */
-
 namespace GivenCode\Domain;
 
 use GivenCode\Exceptions\ValidationException;
 
-/**
- * TODO: Class documentation
- *
- * @author Marc-Eric Boury
- * @since  2024-03-28
- */
+
 class CallableRoute extends AbstractRoute {
     
     private string $callable_string;
@@ -36,9 +23,6 @@ class CallableRoute extends AbstractRoute {
      * {@inheritDoc}
      *
      * @return void
-     *
-     * @author Marc-Eric Boury
-     * @since  2024-03-28
      */
     public function route() : void {
         call_user_func($this->callable_string);

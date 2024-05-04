@@ -138,13 +138,7 @@ class GroupController extends AbstractController {
         $connection->beginTransaction();
         
         try {
-            
-            // I handle dealing with the group-user associations first then do the group entity update.
-            // I can do this in the update because the group already exists so the foreign key checks will not fail.
-            
-            // My approach is simply to delete all existing associations between the updating group and any users
-            // and then to re-create only those set from the checkbox inputs values from the request
-            
+
             if (!empty($_REQUEST["users"]) || is_array($_REQUEST["users"])) {
                 // delete all previous user associations for the group
                 $this->groupService->deleteAllGroupUserAssociationsForGroupId($int_group_id);
@@ -160,8 +154,7 @@ class GroupController extends AbstractController {
                     }
                 }
             }
-            
-            // then update the main object
+
             $instance = $this->groupService->update($int_group_id, $_REQUEST["name"], $_REQUEST["description"]);
             $instance->loadUsers();
             $connection->commit();

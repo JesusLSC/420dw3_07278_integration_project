@@ -92,13 +92,13 @@ $all_user_instances = $user_service->getAllUsers();
                            maxlength="<?= UserDTO::EMAIL_MAX_LENGTH ?>" required>
                 </div>
                 <div class="col-12">
-                    <label class="form-label" for="author-date-created">Date created: </label>
-                    <input id="author-date-created" class="form-control form-control-sm" type="datetime-local" name="dateCreated"
+                    <label class="form-label" for="user-date-created">Date created: </label>
+                    <input id="user-date-created" class="form-control form-control-sm" type="datetime-local" name="dateCreated"
                            readonly disabled>
                 </div>
                 <div class="col-12">
-                    <label class="form-label" for="author-date-last-modified">Date last modified: </label>
-                    <input id="author-date-last-modified" class="form-control form-control-sm" type="datetime-local"
+                    <label class="form-label" for="user-date-last-modified">Date last modified: </label>
+                    <input id="user-date-last-modified" class="form-control form-control-sm" type="datetime-local"
                            name="dateLastModified"
                            readonly disabled>
                 </div>

@@ -5,6 +5,7 @@ namespace Controllers;
 
 use GivenCode\Exceptions\RuntimeException;
 use GivenCode\Exceptions\ValidationException;
+use GivenCode\Services\DBConnectionService;
 use Services\UserService;
 use Services\LoginService;
 use GivenCode\Abstracts\AbstractController;
@@ -81,28 +82,30 @@ class UserController extends AbstractController {
             throw new RequestException("NOT AUTHORIZED", 401, [], 401);
         }
 
-        $request_contents = file_get_contents("php://input");
-        $requestData = json_decode($request_contents, true);
+        $raw_request_string = file_get_contents("php://input");
+        parse_str($raw_request_string, $_REQUEST);
 
-        // Check if userId is present in the request data
-        if (empty($requestData["userId"])) {
-            throw new RequestException("Bad request: required parameter [userId] not found in the request.", 400);
+        if (empty($requestData["id"])) {
+            throw new RequestException("Bad request: required parameter [id] not found in the request.", 400);
         }
-        if (!is_numeric($_REQUEST["userId"])) {
-            throw new RequestException("Bad request: invalid parameter [userId] value: non-numeric value found [" .
-                $_REQUEST["userId"] . "].", 400);
+        if (!is_numeric($_REQUEST["id"])) {
+            throw new RequestException("Bad request: invalid parameter [id] value: non-numeric value found [" .
+                $_REQUEST["id"] . "].", 400);
         }
 
-        // Check if username is present in the request data
-        if (empty($requestData["username"])) {
+        if (empty($_REQUEST["username"])) {
             throw new RequestException("Bad request: required parameter [username] not found in the request.", 400);
         }
 
-        // Validate userId as needed
-        $int_id = $requestData["userId"];
+        $int_user_id = (int) $_REQUEST["id"];
 
-        $instance = $this->userService->updateUser($int_id, $_REQUEST["username"]);
+        $connection = DBConnectionService::getConnection();
+        $connection->beginTransaction();
+
+        $instance = $this->userService->updateUser($int_user_id, $_REQUEST["username"]);
         $instance->loadGroups();
+        $connection->commit();
+
         header("Content-Type: application/json;charset=UTF-8");
         echo json_encode($instance->toArray());
     }

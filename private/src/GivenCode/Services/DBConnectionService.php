@@ -11,12 +11,6 @@ use GivenCode\Abstracts\IService;
 use GivenCode\Exceptions\RuntimeException;
 use GivenCode\Exceptions\ValidationException;
 
-/**
- * TODO: Class documentation
- *
- * @author Marc-Eric Boury
- * @since  2024-03-16
- */
 class DBConnectionService implements IService {
     private const CONFIG_FILENAME = "dbconfig.json";
     private static ?PDO $connection = null;
@@ -30,8 +24,6 @@ class DBConnectionService implements IService {
      * @return PDO The connection to the database.
      *
      * @throws RuntimeException
-     * @author Marc-Eric Boury
-     * @since  2024-03-16
      */
     public static function getConnection() : PDO {
         try {
@@ -53,8 +45,6 @@ class DBConnectionService implements IService {
      * @return PDO The created connection object.
      * @throws Exception If the connection could not be created.
      *
-     * @author Marc-Eric Boury
-     * @since  2024-04-12
      */
     private static function createConnection() : PDO {
         try {
@@ -81,8 +71,6 @@ class DBConnectionService implements IService {
      * @return array The database connection configuration array.
      * @throws Exception If the configuration file could not be read or is invalid.
      *
-     * @author Marc-Eric Boury
-     * @since  2024-04-12
      */
     private static function readConfigFile() : array {
         try {
@@ -116,8 +104,6 @@ class DBConnectionService implements IService {
      * @return void
      * @throws Exception If the configuration array is not valid.
      *
-     * @author Marc-Eric Boury
-     * @since  2024-04-12
      */
     private static function validateConfigArray(array $config_array) : void {
         try {
