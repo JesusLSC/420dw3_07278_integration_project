@@ -26,56 +26,55 @@ class UserService implements IService {
      * @throws RuntimeException
      *
      */
-    public function getAllUsers() : array {
+    public function getAllUsers(): array {
         return $this->dao->getAll();
     }
-
+    
     /**
      * @throws RuntimeException
      * @throws ValidationException
      */
-    public function getUserById(int $id) : ?UserDTO {
+    public function getUserById(int $id): ?UserDTO {
         $user = $this->dao->getById($id);
         $user?->loadGroups();
         return $user;
     }
-
+    
     /**
      * @throws RuntimeException
      * @throws ValidationException
      */
-    public function getUserByUsername(string $username)
-    {
+    public function getUserByUsername(string $username) {
         $user = $this->dao->getByUsername($username);
         $user?->loadGroups();
         return $user;
     }
-
+    
     /**
      * @throws RuntimeException
      * @throws ValidationException
      */
     public function authenticateUser(string $username, string $password): ?UserDTO {
         $user = $this->getUserByUsername($username);
-
+        
         if (!$user) {
             // User not found
             return null;
         }
-
+        
         if ($password != $user->getPassword()) {
             // Incorrect password
             return null;
         }
-
+        
         // User authenticated
         return $user;
     }
-
+    
     /**
      * @throws RuntimeException
      */
-    public function createUser(string $username) : UserDTO {
+    public function createUser(string $username): UserDTO {
         try {
             $user = UserDTO::fromValues($username);
             return $this->dao->insert($user);
@@ -84,82 +83,56 @@ class UserService implements IService {
             throw new RuntimeException("Failure to create user [$username].", $excep->getCode(), $excep);
         }
     }
-
+    
     /**
      * @throws RuntimeException
      */
-    public function updateUser(int $id, string $username, string $password, string $email) : UserDTO {
+    public function updateUser(int $id, string $username, string $password, string $email): UserDTO {
         try {
-            $connection = DBConnectionService::getConnection();
-            If (!$connection->inTransaction()) {
-                $connection->beginTransaction();
+            $user = $this->dao->getById($id);
+            if (is_null($user)) {
+                throw new Exception("User id# [$id] not found in the database.");
             }
-            
-            try {
-                $user = $this->dao->getById($id);
-                if (is_null($user)) {
-                    throw new Exception("User id# [$id] not found in the database.");
-                }
-                $user->setUsername($username);
-                $result = $this->dao->update($user);
-                $connection->commit();
-                return $result;
-                
-            } catch (Exception $inner_excep) {
-                $connection->rollBack();
-                throw $inner_excep;
-            }
+            $user->setUsername($username);
+            $result = $this->dao->update($user);
+            return $result;
             
         } catch (Exception $excep) {
             throw new RuntimeException("Failure to update user id# [$id].", $excep->getCode(), $excep);
         }
     }
-
+    
     /**
      * @throws RuntimeException
      */
-    public function deleteUserById(int $id) : void {
+    public function deleteUserById(int $id): void {
         try {
-            
-            $connection = DBConnectionService::getConnection();
-            If (!$connection->inTransaction()) {
-                $connection->beginTransaction();
+            $user = $this->dao->getById($id);
+            if (is_null($user)) {
+                throw new Exception("User id# [$id] not found in the database.");
             }
-            
-            try {
-                $user = $this->dao->getById($id);
-                if (is_null($user)) {
-                    throw new Exception("User id# [$id] not found in the database.");
-                }
-                $this->dao->delete($user);
-                $connection->commit();
-                
-            } catch (Exception $inner_excep) {
-                $connection->rollBack();
-                throw $inner_excep;
-            }
+            $this->dao->delete($user);
             
         } catch (Exception $excep) {
             throw new RuntimeException("Failure to delete user id# [$id].", $excep->getCode(), $excep);
         }
     }
-
+    
     /**
      * @throws RuntimeException
      * @throws ValidationException
      */
-    public function getUserGroups(UserDTO $user) : array {
+    public function getUserGroups(UserDTO $user): array {
         return $this->getUserGroupsByUserId($user->getId());
     }
-
+    
     /**
      * @throws RuntimeException
      * @throws ValidationException
      */
-    public function getUserGroupsByUserId(int $id) : array {
+    public function getUserGroupsByUserId(int $id): array {
         return $this->dao->getGroupsByUserId($id);
     }
-
-
-
+    
+    
 }
