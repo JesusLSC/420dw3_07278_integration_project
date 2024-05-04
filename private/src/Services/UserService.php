@@ -91,7 +91,9 @@ class UserService implements IService {
     public function updateUser(int $id, string $username, string $password, string $email) : UserDTO {
         try {
             $connection = DBConnectionService::getConnection();
-            $connection->beginTransaction();
+            If (!$connection->inTransaction()) {
+                $connection->beginTransaction();
+            }
             
             try {
                 $user = $this->dao->getById($id);
@@ -120,7 +122,9 @@ class UserService implements IService {
         try {
             
             $connection = DBConnectionService::getConnection();
-            $connection->beginTransaction();
+            If (!$connection->inTransaction()) {
+                $connection->beginTransaction();
+            }
             
             try {
                 $user = $this->dao->getById($id);

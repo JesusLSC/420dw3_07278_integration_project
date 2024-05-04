@@ -68,7 +68,9 @@ class GroupController extends AbstractController {
         
         // create a transaction as i will be making many operations in the datatbase
         $connection = DBConnectionService::getConnection();
-        $connection->beginTransaction();
+        If (!$connection->inTransaction()) {
+            $connection->beginTransaction();
+        }
         
         try {
             
@@ -135,7 +137,9 @@ class GroupController extends AbstractController {
         $int_group_id = (int) $_REQUEST["id"];
         
         $connection = DBConnectionService::getConnection();
-        $connection->beginTransaction();
+        If (!$connection->inTransaction()) {
+            $connection->beginTransaction();
+        }
         
         try {
 
@@ -197,7 +201,9 @@ class GroupController extends AbstractController {
         $int_group_id = (int) $_REQUEST["id"];
         
         $connection = DBConnectionService::getConnection();
-        $connection->beginTransaction();
+        If (!$connection->inTransaction()) {
+            $connection->beginTransaction();
+        }
         
         try {
             // I delete the group-user associations first then delete the group itself.

@@ -100,7 +100,9 @@ class UserController extends AbstractController {
         $int_user_id = (int) $_REQUEST["userId"];
 
         $connection = DBConnectionService::getConnection();
-        $connection->beginTransaction();
+        if (!$connection->inTransaction()) {
+            $connection->beginTransaction();
+        }
 
         $instance = $this->userService->updateUser($int_user_id, $_REQUEST["username"], $_REQUEST["password"], $_REQUEST["email"]);
         $instance->loadGroups();

@@ -82,10 +82,10 @@ class PermissionController extends AbstractController {
         }
 
         $request_contents = file_get_contents("php://input");
-        $requestData = json_decode($request_contents, true);
+        $_REQUEST = json_decode($request_contents, true);
 
         // Check if permissionId is present in the request data
-        if (empty($requestData["permission_id"])) {
+        if (empty($_REQUEST["permission_id"])) {
             throw new RequestException("Bad request: required parameter [permission_id] not found in the request.", 400);
         }
         if (!is_numeric($_REQUEST["permission_id"])) {
@@ -94,12 +94,12 @@ class PermissionController extends AbstractController {
         }
 
         // Check if name is present in the request data
-        if (empty($requestData["name"])) {
+        if (empty($_REQUEST["name"])) {
             throw new RequestException("Bad request: required parameter [name] not found in the request.", 400);
         }
 
         // Validate permissionId as needed
-        $int_id = $requestData["permission_id"];
+        $int_id = $_REQUEST["permission_id"];
 
         $instance = $this->permissionService->updatePermission($int_id, $_REQUEST["name"]);
         header("Content-Type: application/json;charset=UTF-8");

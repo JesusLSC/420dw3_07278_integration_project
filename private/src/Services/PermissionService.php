@@ -81,7 +81,9 @@ class PermissionService implements IService {
     public function updatePermission(int $id, string $name) : PermissionDTO {
         try {
             $connection = DBConnectionService::getConnection();
-            $connection->beginTransaction();
+            If (!$connection->inTransaction()) {
+                $connection->beginTransaction();
+            }
 
             try {
                 $permission = $this->dao->getById($id);
@@ -110,7 +112,9 @@ class PermissionService implements IService {
         try {
 
             $connection = DBConnectionService::getConnection();
-            $connection->beginTransaction();
+            If (!$connection->inTransaction()) {
+                $connection->beginTransaction();
+            }
 
             try {
                 $permission = $this->dao->getById($id);
