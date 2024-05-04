@@ -85,24 +85,24 @@ class UserController extends AbstractController {
         $raw_request_string = file_get_contents("php://input");
         parse_str($raw_request_string, $_REQUEST);
 
-        if (empty($requestData["id"])) {
-            throw new RequestException("Bad request: required parameter [id] not found in the request.", 400);
+        if (empty($_REQUEST["userId"])) {
+            throw new RequestException("Bad request: required parameter [userId] not found in the request.", 400);
         }
-        if (!is_numeric($_REQUEST["id"])) {
-            throw new RequestException("Bad request: invalid parameter [id] value: non-numeric value found [" .
-                $_REQUEST["id"] . "].", 400);
+        if (!is_numeric($_REQUEST["userId"])) {
+            throw new RequestException("Bad request: invalid parameter [userId] value: non-numeric value found [" .
+                $_REQUEST["userId"] . "].", 400);
         }
 
         if (empty($_REQUEST["username"])) {
             throw new RequestException("Bad request: required parameter [username] not found in the request.", 400);
         }
 
-        $int_user_id = (int) $_REQUEST["id"];
+        $int_user_id = (int) $_REQUEST["userId"];
 
         $connection = DBConnectionService::getConnection();
         $connection->beginTransaction();
 
-        $instance = $this->userService->updateUser($int_user_id, $_REQUEST["username"]);
+        $instance = $this->userService->updateUser($int_user_id, $_REQUEST["username"], $_REQUEST["password"], $_REQUEST["email"]);
         $instance->loadGroups();
         $connection->commit();
 
