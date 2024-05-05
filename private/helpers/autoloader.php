@@ -12,7 +12,8 @@ require_once "constants.php";
  * @param string $classFQN The class' fully qualified name
  * @return void
  */
-function project_autoloader(string $classFQN) : void {
+function project_autoloader(string $classFQN): void
+{
     $path_from_fqn = str_replace("\\", NAMESPACE_PATH_SEPARATOR, $classFQN);
     require_once PRJ_SRC_DIR . $path_from_fqn . ".php";
 }

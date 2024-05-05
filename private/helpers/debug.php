@@ -3,17 +3,19 @@ declare(strict_types=1);
 
 require_once "constants.php";
 
-class Debug {
+class Debug
+{
     public static bool $DEBUG_MODE = false;
-    
+
     /**
      * TODO: Function documentation
      *
      * @param string $message
-     * @param bool   $doDie
+     * @param bool $doDie
      * @return void
      */
-    public static function log(string $message, bool $doDie = false) : void {
+    public static function log(string $message, bool $doDie = false): void
+    {
         if (self::$DEBUG_MODE) {
             echo $message . "<br/>";
         }
@@ -26,7 +28,7 @@ class Debug {
             die(0);
         }
     }
-    
+
     /**
      * Basic debug helper function. Generates an HTML table string for whatever value is provided in <code>$input</code>.
      *  The table will contain the type data of the <code>$input</code> value, and its value(s). For container-types values
@@ -34,14 +36,15 @@ class Debug {
      *
      *  By default, the string is echoed before the function returns it.
      *
-     * @param mixed $input   The value to debug
-     * @param bool  $doEcho  OPTIONAL: Whether to echo the generated HTML table string before returning it or not.
+     * @param mixed $input The value to debug
+     * @param bool $doEcho OPTIONAL: Whether to echo the generated HTML table string before returning it or not.
      *                       Defaults to <code>true</code>
-     * @param bool  $doDie   OPTIONAL: Wheter to stop execution after echoing the HTML table. Defaults to <code>false</code>
+     * @param bool $doDie OPTIONAL: Wheter to stop execution after echoing the HTML table. Defaults to <code>false</code>
      *
      * @return string|null
      */
-    public static function debugToHtmlTable(mixed $input, bool $doEcho = true, bool $doDie = false) : ?string {
+    public static function debugToHtmlTable(mixed $input, bool $doEcho = true, bool $doDie = false): ?string
+    {
         $return_value = null;
         if (self::$DEBUG_MODE) {
             $return_value = "<table style='border: 1px solid black; border-collapse: collapse; max-width: 100%;'>";
@@ -111,13 +114,14 @@ class Debug {
         }
         return $return_value;
     }
-    
-    public static function logException(Throwable $thrown, bool $doDie = false) : void {
+
+    public static function logException(Throwable $thrown, bool $doDie = false): void
+    {
         $file_handle = fopen(PRJ_PRIVATE_DIR . "log.txt", "a");
         $reflect = new ReflectionClass($thrown);
         if ($file_handle) {
             fwrite($file_handle, (new DateTime())->format(DB_DATETIME_FORMAT) . ": " . $reflect->getShortName() . ": " .
-                               $thrown->getMessage() . PHP_EOL);
+                $thrown->getMessage() . PHP_EOL);
         }
         $return_string = "<h1 style='color: red;'>" . $reflect->getShortName() . "</h1>";
         $return_string .= "<h3 style='color: red;'>" . $thrown->getMessage() . "</h3>";
@@ -128,14 +132,14 @@ class Debug {
             $return_string .= "Caused by: " . $reflect->getShortName() . ": " . $thrown->getMessage() . "<br/>";
             if ($file_handle) {
                 fwrite($file_handle,
-                       "\tCaused by: " . $reflect->getShortName() . ": " . $thrown->getMessage() . PHP_EOL);
+                    "\tCaused by: " . $reflect->getShortName() . ": " . $thrown->getMessage() . PHP_EOL);
             }
         }
         if ($file_handle) {
             fwrite($file_handle, "\tStacktrace: " . str_replace("\n", "\n\t\t", $stack_trace) . PHP_EOL);
         }
         $return_string .= "<pre>" . $stack_trace . "</pre>";
-        
+
         fclose($file_handle);
         if (self::$DEBUG_MODE) {
             echo $return_string;
@@ -144,8 +148,9 @@ class Debug {
             die();
         }
     }
-    
-    public static function exceptionToArray(Throwable $thrown) : array {
+
+    public static function exceptionToArray(Throwable $thrown): array
+    {
         $array = [
             "exceptionClass" => $thrown::class,
             "message" => $thrown->getMessage(),
@@ -156,8 +161,9 @@ class Debug {
         }
         return $array;
     }
-    
-    public static function outputException(Throwable $thrown) : void {
+
+    public static function outputException(Throwable $thrown): void
+    {
         $headers = apache_request_headers();
         if (!empty($headers["Accept"]) && str_contains($headers["Accept"], "application/json")) {
             header("Content-Type: application/json;chrset=UTF-8");
@@ -183,10 +189,11 @@ class Debug {
         }
         http_response_code($status_code);
     }
-    
+
 }
 
-function debug(mixed $input, bool $doEcho = true, bool $doDie = false) : ?string {
+function debug(mixed $input, bool $doEcho = true, bool $doDie = false): ?string
+{
     $return_value = "<table style='border: 1px solid black; border-collapse: collapse; max-width: 100%;'>";
     $input_type = gettype($input);
     switch ($input_type) {
@@ -261,7 +268,8 @@ function debug(mixed $input, bool $doEcho = true, bool $doDie = false) : ?string
  * @param Throwable $thrown
  * @return string
  */
-function generate_exception_html(Throwable $thrown) : string {
+function generate_exception_html(Throwable $thrown): string
+{
     $html_string = "
 <div class='error-display'>
 <h1 style='color: darkred;'>" . $thrown::class . "</h1><br>
@@ -271,7 +279,7 @@ function generate_exception_html(Throwable $thrown) : string {
         $thrown = $thrown->getPrevious();
         $html_string .= "Caused by: " . $thrown::class . ": " . $thrown->getMessage() . "<br/>";
     }
-    
+
     $html_string .= "<pre>" . $stack_trace . "</pre>";
     $html_string .= "</div>";
     return $html_string;
@@ -282,7 +290,8 @@ function generate_exception_html(Throwable $thrown) : string {
  *
  * @return void
  */
-function get_debug_page() : void {
+function get_debug_page(): void
+{
     include PRJ_PAGES_DIR . "debug_page.php";
     die();
 }

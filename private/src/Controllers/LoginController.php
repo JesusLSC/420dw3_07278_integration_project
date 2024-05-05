@@ -11,12 +11,14 @@ use GivenCode\Exceptions\RequestException;
 use Services\UserService;
 
 
-class LoginController extends AbstractController {
+class LoginController extends AbstractController
+{
 
     private LoginService $loginService;
     private UserService $userService;
-    
-    public function __construct() {
+
+    public function __construct()
+    {
         parent::__construct();
         $this->loginService = new LoginService();
         $this->userService = new UserService();
@@ -25,7 +27,8 @@ class LoginController extends AbstractController {
     /**
      * @throws RequestException
      */
-    public function get() : void {
+    public function get(): void
+    {
         // Voluntary exception throw: no GET operation supported for login system
         throw new RequestException("NOT IMPLEMENTED.", 501);
     }
@@ -33,7 +36,8 @@ class LoginController extends AbstractController {
     /**
      * @throws Exception
      */
-    public function post() : void {
+    public function post(): void
+    {
         try {
             $username = $_POST["username"] ?? null;
             $password = $_POST["password"] ?? null;
@@ -80,20 +84,21 @@ class LoginController extends AbstractController {
     }
 
 
-
     /**
      * @throws RequestException
      */
-    public function put() : void {
+    public function put(): void
+    {
         // Voluntary exception throw: no PUT operation supported for login system
         throw new RequestException("NOT IMPLEMENTED.", 501);
     }
-    
-    public function delete() : void {
+
+    public function delete(): void
+    {
         /*
          * NOTE: I use the DELETE method to trigger the logout
          */
-        
+
         $this->loginService->doLogout();
         $response = [
             "navigateTo" => WEB_ROOT_DIR . "pages/login"

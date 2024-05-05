@@ -6,12 +6,13 @@ namespace GivenCode\Enumerations;
 use JetBrains\PhpStorm\Pure;
 
 
-enum HTTPMethodsEnum: string {
+enum HTTPMethodsEnum: string
+{
     case GET = "GET";
     case POST = "POST";
     case PUT = "PUT";
     case DELETE = "DELETE";
-    
+
     /**
      * TODO: Function documentation
      *
@@ -19,7 +20,8 @@ enum HTTPMethodsEnum: string {
      * @param string $methodString
      * @return HTTPMethodsEnum
      */
-    #[Pure] public static function getValue(string $methodString) : HTTPMethodsEnum {
+    #[Pure] public static function getValue(string $methodString): HTTPMethodsEnum
+    {
         return self::from(strtoupper(trim($methodString)));
     }
 }

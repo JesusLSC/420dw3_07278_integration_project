@@ -26,9 +26,9 @@ $all_users = $user_service->getAllUsers();
     <link rel="stylesheet" href="<?= WEB_CSS_DIR . "bootstrap.min.css" ?>">
     <link rel="stylesheet" href="<?= WEB_CSS_DIR . "standard.css" ?>">
     <script type="text/javascript">
-        
+
         const API_GROUP_URL = "<?= WEB_ROOT_DIR . "api/groups" ?>";
-    
+
     </script>
     <script type="text/javascript" src="<?= WEB_JS_DIR . "jquery-3.7.1.min.js" ?>" defer></script>
     <script type="text/javascript" src="<?= WEB_JS_DIR . "standard.js" ?>" defer></script>
@@ -55,7 +55,7 @@ $all_users = $user_service->getAllUsers();
                     <option value="" selected disabled>Select one...</option>
                     <?php
                     foreach ($all_groups as $instance) {
-                        echo ("<option class='" . "' value='" . $instance->getId() . "'>" . $instance->getName() . "</option>");
+                        echo("<option class='" . "' value='" . $instance->getId() . "'>" . $instance->getName() . "</option>");
                     }
                     ?>
                 </select>
@@ -68,7 +68,7 @@ $all_users = $user_service->getAllUsers();
             </div>
         </div>
         <div class="row">
-        
+
         </div>
         <div class="error-display hidden">
             <h1 id="error-class" class="col-12 error-text"></h1>
@@ -91,7 +91,7 @@ $all_users = $user_service->getAllUsers();
                 <div class="col-12">
                     <label class="form-label" for="group-description">Description:</label>
                     <input id="group-description" class="form-control" type="text" name="description"
-                           maxlength="<?= GroupDTO::DESCRIPTION_MAX_LENGTH ?>" >
+                           maxlength="<?= GroupDTO::DESCRIPTION_MAX_LENGTH ?>">
                 </div>
                 <div class="col-12 flex-column">
                     <label class="form-label col-12 text-start">Group users:</label>
@@ -110,7 +110,8 @@ HTDOC;
                 </div>
                 <div class="col-12">
                     <label class="form-label" for="group-date-created">Date created: </label>
-                    <input id="group-date-created" class="form-control form-control-sm" type="datetime-local" name="dateCreated"
+                    <input id="group-date-created" class="form-control form-control-sm" type="datetime-local"
+                           name="dateCreated"
                            readonly disabled>
                 </div>
                 <div class="col-12">
@@ -121,13 +122,21 @@ HTDOC;
                 </div>
             </form>
             <div class="col-12 d-flex flex-wrap justify-content-around button-row">
-                <button id="create-button" type="button" class="btn btn-primary col-12 col-md-2 my-1 my-md-0 text-uppercase">Create</button>
-                <button id="clear-button" type="button" class="btn btn-info col-12 col-md-2 my-1 my-md-0 text-uppercase" disabled>Clear Form</button>
-                <button id="update-button" type="button" class="btn btn-success col-12 col-md-2 my-1 my-md-0 text-uppercase" disabled>Update</button>
-                <button id="delete-button" type="button" class="btn btn-danger col-12 col-md-2 my-1 my-md-0 text-uppercase" disabled>Delete</button>
+                <button id="create-button" type="button"
+                        class="btn btn-primary col-12 col-md-2 my-1 my-md-0 text-uppercase">Create
+                </button>
+                <button id="clear-button" type="button" class="btn btn-info col-12 col-md-2 my-1 my-md-0 text-uppercase"
+                        disabled>Clear Form
+                </button>
+                <button id="update-button" type="button"
+                        class="btn btn-success col-12 col-md-2 my-1 my-md-0 text-uppercase" disabled>Update
+                </button>
+                <button id="delete-button" type="button"
+                        class="btn btn-danger col-12 col-md-2 my-1 my-md-0 text-uppercase" disabled>Delete
+                </button>
             </div>
         </div>
-    
+
     </div>
 </main>
 <footer id="footer">

@@ -10,11 +10,13 @@ use Services\LoginService;
 use GivenCode\Abstracts\AbstractController;
 use GivenCode\Exceptions\RequestException;
 
-class PermissionController extends AbstractController {
+class PermissionController extends AbstractController
+{
 
     private PermissionService $permissionService;
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->permissionService = new PermissionService();
     }
@@ -24,7 +26,8 @@ class PermissionController extends AbstractController {
      * @throws ValidationException
      * @throws RequestException
      */
-    public function get() : void {
+    public function get(): void
+    {
 
         if (!LoginService::isUserLoggedIn()) {
             throw new RequestException("NOT AUTHORIZED", 401, [], 401);
@@ -37,7 +40,7 @@ class PermissionController extends AbstractController {
             throw new RequestException("Bad request: parameter [permissionId] value [" . $_REQUEST["permissionId"] .
                 "] is not numeric.", 400);
         }
-        $int_id = (int) $_REQUEST["permissionId"];
+        $int_id = (int)$_REQUEST["permissionId"];
         $instance = $this->permissionService->getPermissionById($int_id);
         header("Content-Type: application/json;charset=UTF-8");
         echo json_encode($instance->toArray());
@@ -47,7 +50,8 @@ class PermissionController extends AbstractController {
      * @throws RuntimeException
      * @throws RequestException
      */
-    public function post() : void {
+    public function post(): void
+    {
 
         if (!LoginService::isUserLoggedIn()) {
             throw new RequestException("NOT AUTHORIZED", 401, [], 401);
@@ -72,7 +76,8 @@ class PermissionController extends AbstractController {
      * @throws ValidationException
      * @throws RequestException
      */
-    public function put() : void {
+    public function put(): void
+    {
 
         if (!LoginService::isUserLoggedIn()) {
             throw new RequestException("NOT AUTHORIZED", 401, [], 401);
@@ -105,7 +110,8 @@ class PermissionController extends AbstractController {
      * @throws RuntimeException
      * @throws RequestException
      */
-    public function delete() : void {
+    public function delete(): void
+    {
 
         // Login required to use this API functionality
         if (!LoginService::isUserLoggedIn()) {
@@ -123,7 +129,7 @@ class PermissionController extends AbstractController {
             throw new RequestException("Bad request: parameter [permission_id] value [" . $_REQUEST["permission_id"] .
                 "] is not numeric.", 400);
         }
-        $int_id = (int) $_REQUEST["permission_id"];
+        $int_id = (int)$_REQUEST["permission_id"];
         $this->permissionService->deletePermissionById($int_id);
         header("Content-Type: application/json;charset=UTF-8");
         http_response_code(204);

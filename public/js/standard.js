@@ -1,4 +1,3 @@
-
 const header = document.getElementById("header");
 const main = document.getElementById("main");
 
@@ -15,6 +14,7 @@ function ajustHeader() {
         main.style.marginTop = "0px";
     }
 }
+
 $(window).on("scroll", ajustHeader);
 $(window).on("resize", ajustHeader);
 
@@ -29,7 +29,7 @@ $(".nav-bar-entry").on("click", (event) => {
     if (typeof httpMethod === "undefined") {
         httpMethod = "get";
     }
-    
+
     if (typeof type !== "undefined" && type === "api") {
         $.ajax(navigationUrl, {
             method: httpMethod,
@@ -42,7 +42,7 @@ $(".nav-bar-entry").on("click", (event) => {
     } else {
         window.location = navigationUrl;
     }
-    
+
 });
 
 // </editor-fold>

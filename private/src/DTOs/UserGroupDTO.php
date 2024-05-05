@@ -9,14 +9,14 @@ use DAOs\UserGroupDAO;
 use GivenCode\Exceptions\RuntimeException;
 use GivenCode\Exceptions\ValidationException;
 
-class UserGroupDTO {
+class UserGroupDTO
+{
 
     /**
      * The database table name for this entity type.
      * @const
      */
     public const TABLE_NAME = "user_group";
-
     private int $user_id;
     private int $group_id;
 
@@ -26,22 +26,25 @@ class UserGroupDTO {
      * @var GroupDTO[]
      * @var UserDTO[]
      */
-    private array $groups = [];
-    private array $users = [];
+    private array $userGroups = [];
 
-
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     /**
      * TODO: Function documentation
      *
-     * @param string $username
-     * @return UserDTO
+     * @param int $user_id
+     * @param int $group_id
+     * @return UserGroupDTO
      * @throws ValidationException
      */
-    public static function fromValues(string $username) : UserDTO {
-        $instance = new UserDTO();
-        $instance->setUsername($username);
+    public static function fromValues(int $user_id, int $group_id): UserGroupDTO
+    {
+        $instance = new UserGroupDTO();
+        $instance->setUserId($user_id);
+        $instance->setGroupId($group_id);
         return $instance;
     }
 
@@ -49,21 +52,21 @@ class UserGroupDTO {
      * TODO: Function documentation
      *
      * @param array $dbArray
-     * @return UserDTO
+     * @return UserGroupDTO
      * @throws ValidationException
      */
-    public static function fromDbArray(array $dbArray) : UserDTO {
+    public static function fromDbArray(array $dbArray): UserGroupDTO
+    {
         self::validateDbArray($dbArray);
-        $instance = new UserDTO();
-        $instance->setId((int) $dbArray["id"]);
-        $instance->setUsername($dbArray["username"]);
-        $instance->setPassword($dbArray["password"]);
-        $instance->setEmail($dbArray["email"]);
-        $instance->setDateCreated(DateTime::createFromFormat(DB_DATETIME_FORMAT, $dbArray["created_at"]));
-        if (!empty($dbArray["modified_at"])) {
-            $instance->setDateLastModified(DateTime::createFromFormat(DB_DATETIME_FORMAT, $dbArray["modified_at"]));
-        }
+        $instance = new UserGroupDTO();
+        $instance->setUserId((int)$dbArray["user_id"]);
+        $instance->setGroupId((int)$dbArray["group_id"]);
         return $instance;
+    }
+
+    public function getDatabaseTableName(): string
+    {
+        return self::TABLE_NAME;
     }
 
     // <editor-fold defaultstate="collapsed" desc="VALIDATION METHODS">
@@ -71,7 +74,8 @@ class UserGroupDTO {
     /**
      * @throws ValidationException
      */
-    private static function validateDbArray(array $dbArray) : void {
+    private static function validateDbArray(array $dbArray): void
+    {
         if (empty($dbArray["id"])) {
             throw new ValidationException("Record array does not contain an [id] field. Check column names.");
         }
@@ -103,43 +107,17 @@ class UserGroupDTO {
     /**
      * @throws ValidationException
      */
-    public function validateForDbCreation(bool $optThrowExceptions = true) : bool {
-        // ID must not be set
-        if (!empty($this->id)) {
+    public function validateForDbCreation(bool $optThrowExceptions = true): bool
+    {
+        if (!empty($this->user_id)) {
             if ($optThrowExceptions) {
-                throw new ValidationException("UserDTO is not valid for DB creation: ID value already set.");
+                throw new ValidationException("UserGroupDTO is not valid for DB creation: ID value already set.");
             }
             return false;
         }
-        // username is required
-        if (empty($this->username)) {
+        if (!empty($this->group_id)) {
             if ($optThrowExceptions) {
-                throw new ValidationException("UserDTO is not valid for DB creation: username value not set.");
-            }
-            return false;
-        }
-        // password is required
-        if (empty($this->password)) {
-            if ($optThrowExceptions) {
-                throw new ValidationException("UserDTO is not valid for DB creation: password value not set.");
-            }
-            return false;
-        }
-        if (empty($this->email)) {
-            if ($optThrowExceptions) {
-                throw new ValidationException("UserDTO is not valid for DB creation: email value not set.");
-            }
-            return false;
-        }
-        if (!is_null($this->created_at)) {
-            if ($optThrowExceptions) {
-                throw new ValidationException("UserDTO is not valid for DB creation: created_at value already set.");
-            }
-            return false;
-        }
-        if (!is_null($this->modified_at)) {
-            if ($optThrowExceptions) {
-                throw new ValidationException("UserDTO is not valid for DB creation: modified_at value already set.");
+                throw new ValidationException("UserGroupDTO is not valid for DB creation: ID value already set.");
             }
             return false;
         }
@@ -149,25 +127,17 @@ class UserGroupDTO {
     /**
      * @throws ValidationException
      */
-    public function validateForDbUpdate(bool $optThrowExceptions = true) : bool {
-        // ID is required
-        if (empty($this->id)) {
+    public function validateForDbUpdate(bool $optThrowExceptions = true): bool
+    {
+        if (empty($this->user_id)) {
             if ($optThrowExceptions) {
-                throw new ValidationException("UserDTO is not valid for DB update: ID value is not set.");
+                throw new ValidationException("UserGroupDTO is not valid for DB update: ID value is not set.");
             }
             return false;
         }
-        // username is required
-        if (empty($this->username)) {
+        if (empty($this->group_id)) {
             if ($optThrowExceptions) {
-                throw new ValidationException("UserDTO is not valid for DB update: username value not set.");
-            }
-            return false;
-        }
-        // password is required
-        if (empty($this->password)) {
-            if ($optThrowExceptions) {
-                throw new ValidationException("UserDTO is not valid for DB update: password value not set.");
+                throw new ValidationException("UserGroupDTO is not valid for DB update: ID value is not set.");
             }
             return false;
         }
@@ -177,11 +147,17 @@ class UserGroupDTO {
     /**
      * @throws ValidationException
      */
-    public function validateForDbDelete(bool $optThrowExceptions = true) : bool {
-        // ID is required
-        if (empty($this->id)) {
+    public function validateForDbDelete(bool $optThrowExceptions = true): bool
+    {
+        if (empty($this->user_id)) {
             if ($optThrowExceptions) {
-                throw new ValidationException("UserDTO is not valid for DB creation: ID value is not set.");
+                throw new ValidationException("UserGroupDTO is not valid for DB creation: ID value is not set.");
+            }
+            return false;
+        }
+        if (empty($this->group_id)) {
+            if ($optThrowExceptions) {
+                throw new ValidationException("UserGroupDTO is not valid for DB creation: ID value is not set.");
             }
             return false;
         }
@@ -196,105 +172,43 @@ class UserGroupDTO {
     /**
      * @return int
      */
-    public function getId() : int {
-        return $this->id;
+    public function getUserId(): int
+    {
+        return $this->user_id;
     }
 
     /**
      * @param int $id
      * @throws ValidationException
      */
-    public function setId(int $id) : void {
+    public function setUserId(int $id): void
+    {
         if ($id <= 0) {
-            throw new ValidationException("Invalid value for UserDTO [id]: must be a positive integer > 0.");
+            throw new ValidationException("Invalid value for UserGroupDTO [UserId]: must be a positive integer > 0.");
         }
-        $this->id = $id;
+        $this->user_id = $id;
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getUsername() : string {
-        return $this->username;
+    public function getGroupId(): int
+    {
+        return $this->group_id;
     }
 
     /**
-     * @param string $username
+     * @param int $id
+     * @return void
      * @throws ValidationException
      */
-    public function setUsername(string $username) : void {
-        if (mb_strlen($username) > self::USERNAME_MAX_LENGTH) {
-            throw new ValidationException("Invalid value for UserDTO [username]: string length is > " .
-                self::USERNAME_MAX_LENGTH . ".");
+    public function setGroupId(int $id): void
+    {
+        if ($id <= 0) {
+            throw new ValidationException("Invalid value for UserGroupDTO [GroupId]: must be a positive integer > 0.");
         }
-        $this->username = $username;
+        $this->group_id = $id;
     }
-    /**
-     * @return string
-     */
-
-    public function getPassword() : string {
-        return $this->password;
-    }
-
-    /**
-     * @param string $password
-     * @throws ValidationException
-     */
-    public function setPassword(string $password) : void {
-        if (mb_strlen($password) > self::PASSWORD_MAX_LENGTH) {
-            throw new ValidationException("Invalid value for UserDTO [password]: string length is > " .
-                self::PASSWORD_MAX_LENGTH . ".");
-        }
-
-        $this->password = $password;
-    }
-    /**
-     * @return string
-     */
-
-    public function getEmail() : string {
-        return $this->email;
-    }
-
-    /**
-     * @param string $email
-     */
-    public function setEmail(string $email) : void {
-        $this->email = $email;
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getDateCreated() : DateTime {
-        return $this->created_at;
-    }
-
-    /**
-     * @param DateTime $created_at
-     */
-    public function setDateCreated(DateTime $created_at) : void {
-        $this->created_at = $created_at;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getDateLastModified() : ?DateTime {
-        return $this->modified_at;
-    }
-
-    /**
-     * @param DateTime|null $modified_at
-     */
-    public function setDateLastModified(?DateTime $modified_at) : void {
-        $this->modified_at = $modified_at;
-    }
-
-    /**
-     * @return DateTime|null
-     */
 
     /**
      * TODO: Function documentation
@@ -303,51 +217,19 @@ class UserGroupDTO {
      * @return array
      * @throws RuntimeException
      */
-    public function getGroups(bool $forceReload = false) : array {
-        try {
-            if (empty($this->groups) || $forceReload) {
-                $this->loadGroups();
-            }
-        } catch (Exception $excep) {
-            throw new RuntimeException("Failed to load group entity records for user userId# [$this->id].", $excep->getCode(), $excep);
-        }
-        return $this->groups;
-    }
+
 
     // </editor-fold>
-
-
-    /**
-     * @throws RuntimeException
-     * @throws ValidationException
-     */
-    public function loadGroups() : void {
-        $dao = new UserDAO();
-        $this->groups = $dao->getGroupsByUser($this);
-    }
-
-    public function toArray() : array {
+    public function toArray(): array
+    {
         $array = [
-            "userId" => $this->getId(),
-            "username" => $this->getUsername(),
-            "password" => $this->getPassword(),
-            "email" => $this->getEmail(),
-            "created_at" => $this->getDateCreated()?->format(HTML_DATETIME_FORMAT),
-            "modified_at" => $this->getDateLastModified()?->format(HTML_DATETIME_FORMAT),
-            "groups" => []
+            "user_id" => $this->getUserId(),
+            "group_id" => $this->getGroupId()
         ];
-        // Note: i'm not using getGroups() here in order not to trigger the loading of the groups.
-        // Include them in the array only if loaded previously.
-        // otherwise infinite loop user loads groups loads users loads groups loads users...
-        foreach ($this->groups as $group) {
-            $array["groups"][$group->getId()] = $group->toArray();
+        foreach ($this->userGroups as $userGroup) {
+            $array["userGroups"][$userGroup->getId()] = $userGroup->toArray();
         }
         return $array;
-    }
-
-
-    public function getDatabaseTableName() : string {
-        return self::TABLE_NAME;
     }
 
 

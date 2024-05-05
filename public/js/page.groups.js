@@ -53,12 +53,12 @@ function fillFormFromResponseObject(entityObject) {
     if ('dateLastModified' in entityObject) {
         $("#user-date-last-modified").val(entityObject.dateLastModified);
     }
-    
+
     // uncheck all users
     $(".group-users").each((index, inputElem) => {
         $(inputElem).prop("checked", false)
     });
-    
+
     if ('users' in entityObject) {
         if (typeof entityObject.users === "object") {
             console.log(Object.keys(entityObject.users));
@@ -67,7 +67,7 @@ function fillFormFromResponseObject(entityObject) {
             });
         }
     }
-    
+
     $("#create-button").prop("disabled", true);
     $("#clear-button").prop("disabled", false);
     $("#update-button").prop("disabled", false);
@@ -103,28 +103,28 @@ function displayResponseError(responseErrorObject) {
         stacktraceContainer.html(responseErrorObject.stacktrace.replace(/\r\n/g, '\n'));
     }
     errorContainer.slideToggle().delay(5000).slideToggle();
-    
+
 }
 
 function loadGroup() {
     let selectedRecordId = document.getElementById("group-selector").value;
-    
+
     const options = {
         "url": `${API_GROUP_URL}?groupId=${selectedRecordId}`,
         "method": "get",
         "dataType": "json"
     };
-    
+
     $.ajax(options)
-     .done((data, status, jqXHR) => {
-         console.log("Received data: ", data);
-         fillFormFromResponseObject(data);
-     })
-     .fail((jqXHR, textstatus, error) => {
-         if ('responseJSON' in jqXHR && typeof jqXHR.responseJSON === "object") {
-             displayResponseError(jqXHR.responseJSON);
-         }
-     });
+        .done((data, status, jqXHR) => {
+            console.log("Received data: ", data);
+            fillFormFromResponseObject(data);
+        })
+        .fail((jqXHR, textstatus, error) => {
+            if ('responseJSON' in jqXHR && typeof jqXHR.responseJSON === "object") {
+                displayResponseError(jqXHR.responseJSON);
+            }
+        });
 }
 
 function createGroup() {
@@ -134,26 +134,26 @@ function createGroup() {
         "data": getFormDataAsUrlEncoded(),
         "dataType": "json"
     };
-    
+
     $.ajax(options)
-     .done((data, status, jqXHR) => {
-         console.log("Received data: ", data);
-         
-         if ('name' in data) {
-             let selector = document.getElementById("group-selector");
-             let newOptionElement = document.createElement("option");
-             newOptionElement.value = data.id;
-             newOptionElement.innerHTML = `${data.name}`;
-             selector.appendChild(newOptionElement);
-             selector.value = data.id;
-         }
-         fillFormFromResponseObject(data);
-     })
-     .fail((jqXHR, textstatus, error) => {
-         if ('responseJSON' in jqXHR && typeof jqXHR.responseJSON === "object") {
-             displayResponseError(jqXHR.responseJSON);
-         }
-     });
+        .done((data, status, jqXHR) => {
+            console.log("Received data: ", data);
+
+            if ('name' in data) {
+                let selector = document.getElementById("group-selector");
+                let newOptionElement = document.createElement("option");
+                newOptionElement.value = data.id;
+                newOptionElement.innerHTML = `${data.name}`;
+                selector.appendChild(newOptionElement);
+                selector.value = data.id;
+            }
+            fillFormFromResponseObject(data);
+        })
+        .fail((jqXHR, textstatus, error) => {
+            if ('responseJSON' in jqXHR && typeof jqXHR.responseJSON === "object") {
+                displayResponseError(jqXHR.responseJSON);
+            }
+        });
 }
 
 function updateGroup() {
@@ -163,28 +163,28 @@ function updateGroup() {
         "data": getFormDataAsUrlEncoded(),
         "dataType": "json"
     };
-    
+
     $.ajax(options)
-     .done((data, status, jqXHR) => {
-         console.log("Received data: ", data);
-         
-         // Replace the text in the selector with the updated values
-         let formIdValue = document.getElementById("group-id").value;
-         if ('name' in data) {
-             let selector = /** @type {HTMLSelectElement} */ document.getElementById("group-selector");
-             // Note: voluntary non-identity equality check ( == instead of === ): disable warning
-             // noinspection EqualityComparisonWithCoercionJS
-             [...selector.options].filter(elem => elem.value == formIdValue).forEach(elem => {
-                 elem.innerHTML = `${data.name}`;
-             });
-         }
-         fillFormFromResponseObject(data);
-     })
-     .fail((jqXHR, textstatus, error) => {
-         if ('responseJSON' in jqXHR && typeof jqXHR.responseJSON === "object") {
-             displayResponseError(jqXHR.responseJSON);
-         }
-     });
+        .done((data, status, jqXHR) => {
+            console.log("Received data: ", data);
+
+            // Replace the text in the selector with the updated values
+            let formIdValue = document.getElementById("group-id").value;
+            if ('name' in data) {
+                let selector = /** @type {HTMLSelectElement} */ document.getElementById("group-selector");
+                // Note: voluntary non-identity equality check ( == instead of === ): disable warning
+                // noinspection EqualityComparisonWithCoercionJS
+                [...selector.options].filter(elem => elem.value == formIdValue).forEach(elem => {
+                    elem.innerHTML = `${data.name}`;
+                });
+            }
+            fillFormFromResponseObject(data);
+        })
+        .fail((jqXHR, textstatus, error) => {
+            if ('responseJSON' in jqXHR && typeof jqXHR.responseJSON === "object") {
+                displayResponseError(jqXHR.responseJSON);
+            }
+        });
 }
 
 function deleteGroup() {
@@ -194,25 +194,25 @@ function deleteGroup() {
         "data": getFormDataAsUrlEncoded(),
         "dataType": "json"
     };
-    
+
     $.ajax(options)
-     .done((data, status, jqXHR) => {
-         console.log("Received data: ", data);
-         let formIdValue = document.getElementById("group-id").value;
-         if (formIdValue) {
-             let selector = /** @type {HTMLSelectElement} */ document.getElementById("group-selector");
-             // Note: voluntary non-identity equality check ( == instead of === ): disable warning
-             // noinspection EqualityComparisonWithCoercionJS
-             [...selector.options].filter(elem => elem.value == formIdValue).forEach(elem => elem.remove());
-             selector.value = "";
-         }
-         clearForm();
-     })
-     .fail((jqXHR, textstatus, error) => {
-         if ('responseJSON' in jqXHR && typeof jqXHR.responseJSON === "object") {
-             displayResponseError(jqXHR.responseJSON);
-         }
-     });
+        .done((data, status, jqXHR) => {
+            console.log("Received data: ", data);
+            let formIdValue = document.getElementById("group-id").value;
+            if (formIdValue) {
+                let selector = /** @type {HTMLSelectElement} */ document.getElementById("group-selector");
+                // Note: voluntary non-identity equality check ( == instead of === ): disable warning
+                // noinspection EqualityComparisonWithCoercionJS
+                [...selector.options].filter(elem => elem.value == formIdValue).forEach(elem => elem.remove());
+                selector.value = "";
+            }
+            clearForm();
+        })
+        .fail((jqXHR, textstatus, error) => {
+            if ('responseJSON' in jqXHR && typeof jqXHR.responseJSON === "object") {
+                displayResponseError(jqXHR.responseJSON);
+            }
+        });
 }
 
 document.getElementById("view-instance-button").onclick = loadGroup;

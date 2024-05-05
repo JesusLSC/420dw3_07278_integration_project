@@ -25,33 +25,38 @@ use GivenCode\Exceptions\ValidationException;
  * @user Marc-Eric Boury
  * @since  2024-04-03
  */
-class GroupService implements IService {
-    
+class GroupService implements IService
+{
+
     private GroupDAO $dao;
     private UserGroupDAO $userGroupDao;
-    
-    public function __construct() {
+
+    public function __construct()
+    {
         $this->dao = new GroupDAO();
         $this->userGroupDao = new UserGroupDAO();
     }
-    
+
     /**
      * TODO: Function documentation
      *
      * @return GroupDTO[]
      */
-    public function getAllGroups() : array {
+    public function getAllGroups(): array
+    {
         return $this->dao->getAll();
     }
-    
-    public function getById(int $id) : ?GroupDTO {
+
+    public function getById(int $id): ?GroupDTO
+    {
         return $this->dao->getById($id);
     }
 
     /**
      * @throws ValidationException
      */
-    public function create(string $name, ?string $group_description = null) : GroupDTO {
+    public function create(string $name, ?string $group_description = null): GroupDTO
+    {
         $instance = GroupDTO::fromValues($name, $group_description);
         return $this->dao->insert($instance);
     }
@@ -59,15 +64,17 @@ class GroupService implements IService {
     /**
      * @throws ValidationException
      */
-    public function update(int $id, string $name, ?string $group_description = null) : GroupDTO {
+    public function update(int $id, string $name, ?string $group_description = null): GroupDTO
+    {
         // No transaction this time, contrary to the Example stack
         $instance = $this->dao->getById($id);
         $instance->setName($name);
         $instance->setDescription($group_description);
         return $this->dao->update($instance);
     }
-    
-    public function delete(int $id) : void {
+
+    public function delete(int $id): void
+    {
         $this->dao->deleteById($id);
     }
 
@@ -81,7 +88,8 @@ class GroupService implements IService {
      * @throws RuntimeException
      * @since  2024-04-04
      */
-    public function getGroupUsers(GroupDTO $group) : array {
+    public function getGroupUsers(GroupDTO $group): array
+    {
         return $this->getGroupUsersByGroupId($group->getId());
     }
 
@@ -92,26 +100,30 @@ class GroupService implements IService {
      * @return UserDTO[]
      * @throws RuntimeException
      */
-    public function getGroupUsersByGroupId(int $id) : array {
+    public function getGroupUsersByGroupId(int $id): array
+    {
         return $this->dao->getUsersByGroupId($id);
     }
-    
-    public function deleteAllGroupUserAssociationsForGroup(GroupDTO $group) : void {
+
+    public function deleteAllGroupUserAssociationsForGroup(GroupDTO $group): void
+    {
         $this->deleteAllGroupUserAssociationsForGroupId($group->getId());
     }
 
     /**
      * @throws RuntimeException
      */
-    public function deleteAllGroupUserAssociationsForGroupId(int $groupId) : void {
+    public function deleteAllGroupUserAssociationsForGroupId(int $groupId): void
+    {
         $this->userGroupDao->deleteAllByGroupId($groupId);
     }
 
     /**
      * @throws RuntimeException
      */
-    public function associateGroupWithUser(int $groupId, int $userId) : void {
+    public function associateGroupWithUser(int $groupId, int $userId): void
+    {
         $this->userGroupDao->createForUserAndGroup($userId, $groupId);
     }
-    
+
 }

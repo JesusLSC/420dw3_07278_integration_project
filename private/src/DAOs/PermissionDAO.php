@@ -9,13 +9,15 @@ use GivenCode\Exceptions\RuntimeException;
 use GivenCode\Exceptions\ValidationException;
 use GivenCode\Services\DBConnectionService;
 
-class PermissionDAO {
+class PermissionDAO
+{
 
     /**
      * @return PermissionDTO[]
      * @throws RuntimeException
      */
-    public function getAll(): array {
+    public function getAll(): array
+    {
         $query = "SELECT * FROM " . PermissionDTO::TABLE_NAME . ";";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
@@ -36,7 +38,8 @@ class PermissionDAO {
      * @return PermissionDTO|null
      * @throws RuntimeException
      */
-    public function getById(int $id): ?PermissionDTO {
+    public function getById(int $id): ?PermissionDTO
+    {
         $query = "SELECT * FROM " . PermissionDTO::TABLE_NAME . " WHERE permission_id = :id ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
@@ -51,7 +54,8 @@ class PermissionDAO {
      * @return PermissionDTO|null
      * @throws RuntimeException
      */
-    public function getByIdentifier(string $identifier): ?PermissionDTO {
+    public function getByIdentifier(string $identifier): ?PermissionDTO
+    {
         $query = "SELECT * FROM " . PermissionDTO::TABLE_NAME . " WHERE permission_identifier = :identifier ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
@@ -66,7 +70,8 @@ class PermissionDAO {
      * @return PermissionDTO
      * @throws ValidationException|RuntimeException
      */
-    public function insert(PermissionDTO $permission): PermissionDTO {
+    public function insert(PermissionDTO $permission): PermissionDTO
+    {
         $permission->validateForDbCreation();
         $query =
             "INSERT INTO " . PermissionDTO::TABLE_NAME . " (`permission_identifier`, `permission_name`, `permission_description`) VALUES (:identifier, :name, :description);";
@@ -76,7 +81,7 @@ class PermissionDAO {
         $statement->bindValue(":name", $permission->getName(), PDO::PARAM_STR);
         $statement->bindValue(":description", $permission->getDescription(), PDO::PARAM_STR);
         $statement->execute();
-        $new_id = (int) $connection->lastInsertId();
+        $new_id = (int)$connection->lastInsertId();
         return $this->getById($new_id);
     }
 
@@ -85,7 +90,8 @@ class PermissionDAO {
      * @return PermissionDTO
      * @throws RuntimeException
      */
-    public function update(PermissionDTO $permission): PermissionDTO {
+    public function update(PermissionDTO $permission): PermissionDTO
+    {
         $permission->validateForDbUpdate();
         $query =
             "UPDATE " . PermissionDTO::TABLE_NAME .
@@ -105,12 +111,13 @@ class PermissionDAO {
      * @return void
      * @throws RuntimeException
      */
-    public function delete(PermissionDTO $permission): void {
+    public function delete(PermissionDTO $permission): void
+    {
         $permission->validateForDbDelete();
         $this->deleteById($permission->getId());
     }
 
-    private function deleteById(int $permissionId): void
+    public function deleteById(int $permissionId): void
     {
         $query =
             "DELETE FROM `" . PermissionDTO::TABLE_NAME .
@@ -119,5 +126,20 @@ class PermissionDAO {
         $statement = $connection->prepare($query);
         $statement->bindValue(":id", $permissionId, PDO::PARAM_INT);
         $statement->execute();
+    }
+
+    /**
+     * @throws RuntimeException
+     * @throws ValidationException
+     */
+    public function getByName(string $name): PermissionDTO
+    {
+        $query = "SELECT * FROM " . PermissionDTO::TABLE_NAME . " WHERE permission_name = :name ;";
+        $connection = DBConnectionService::getConnection();
+        $statement = $connection->prepare($query);
+        $statement->bindValue(":name", $name, PDO::PARAM_STR);
+        $statement->execute();
+        $permission_array = $statement->fetch(PDO::FETCH_ASSOC);
+        return PermissionDTO::fromDbArray($permission_array);
     }
 }

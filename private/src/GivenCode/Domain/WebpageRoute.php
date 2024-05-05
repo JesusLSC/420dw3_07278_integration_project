@@ -5,14 +5,16 @@ namespace GivenCode\Domain;
 
 use GivenCode\Exceptions\ValidationException;
 
-class WebpageRoute extends AbstractRoute {
-    
+class WebpageRoute extends AbstractRoute
+{
+
     private string $webpagePath;
 
     /**
      * @throws ValidationException
      */
-    public function __construct(string $uri, string $webpage_path) {
+    public function __construct(string $uri, string $webpage_path)
+    {
         parent::__construct($uri);
         $webpage_path = PRJ_PAGES_DIR . $webpage_path;
         if (!file_exists($webpage_path)) {
@@ -20,8 +22,9 @@ class WebpageRoute extends AbstractRoute {
         }
         $this->webpagePath = $webpage_path;
     }
-    
-    public function route() : void {
+
+    public function route(): void
+    {
         include $this->webpagePath;
     }
 }

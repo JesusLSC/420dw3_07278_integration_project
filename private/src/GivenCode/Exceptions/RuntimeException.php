@@ -5,6 +5,7 @@ namespace GivenCode\Exceptions;
 
 use Exception;
 
-class RuntimeException extends Exception {
-    
+class RuntimeException extends Exception
+{
+
 }

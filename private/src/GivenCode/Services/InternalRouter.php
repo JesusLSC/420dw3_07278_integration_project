@@ -18,7 +18,8 @@ use GivenCode\Exceptions\RequestException;
 use GivenCode\Exceptions\ValidationException;
 
 
-class InternalRouter implements IService {
+class InternalRouter implements IService
+{
 
     private string $uriBaseDirectory;
     private RouteCollection $routes;
@@ -27,7 +28,8 @@ class InternalRouter implements IService {
      * @param string $uri_base_directory
      * @throws ValidationException
      */
-    public function __construct(string $uri_base_directory = "") {
+    public function __construct(string $uri_base_directory = "")
+    {
         $this->uriBaseDirectory = $uri_base_directory;
         $this->routes = new RouteCollection();
         $this->routes->addRoute(new APIRoute("/api/userDTO", UserController::class));
@@ -43,19 +45,20 @@ class InternalRouter implements IService {
         $this->routes->addRoute(new CallableRoute("/pages/permissions", [PageNavigator::class, "permissionsManagementPage"]));
     }
 
-    public function route() : void {
+    public function route(): void
+    {
         $path = REQUEST_PATH;
         $route = $this->routes->match($path);
-        
+
         if (is_null($route)) {
             // route not found
             throw new RequestException("Route [$path] not found.", 404);
         }
-        
+
         $route->route();
-        
+
     }
-    
+
     /**
      * Adds an {@see AbstractRoute internal route definition} to the {@see InternalRouter}'s {@see RouteCollection}.
      *
@@ -66,7 +69,8 @@ class InternalRouter implements IService {
      * @user Marc-Eric Boury
      * @since  2024-04-12
      */
-    public function addRoute(AbstractRoute $route) : void {
+    public function addRoute(AbstractRoute $route): void
+    {
         $this->routes->addRoute($route);
     }
 }

@@ -11,8 +11,9 @@ use GivenCode\Exceptions\ValidationException;
 use GivenCode\Services\DBConnectionService;
 
 
-class UserDAO {
-    
+class UserDAO
+{
+
     /**
      * TODO: Function documentation
      *
@@ -20,26 +21,28 @@ class UserDAO {
      *
      * @throws RuntimeException
      */
-    public function getAll() : array {
+    public function getAll(): array
+    {
         $query = "SELECT * FROM " . UserDTO::TABLE_NAME . ";";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
         $statement->execute();
         $result_set = $statement->fetchAll(PDO::FETCH_ASSOC);
         $users = [];
-        
+
         foreach ($result_set as $result) {
             $users[] = UserDTO::fromDbArray($result);
         }
         return $users;
-        
+
     }
 
     /**
      * @throws RuntimeException
      * @throws ValidationException
      */
-    public function getById(int $id) : ?UserDTO {
+    public function getById(int $id): ?UserDTO
+    {
         $query = "SELECT * FROM " . UserDTO::TABLE_NAME . " WHERE id = :id ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
@@ -71,7 +74,8 @@ class UserDAO {
      * @return UserDTO
      * @throws ValidationException|RuntimeException
      */
-    public function insert(UserDTO $user) : UserDTO {
+    public function insert(UserDTO $user): UserDTO
+    {
         $user->validateForDbCreation();
         $query =
             "INSERT INTO " . UserDTO::TABLE_NAME . " (`username`, `password`, `email`) VALUES (:username, :password, :email);";
@@ -81,7 +85,7 @@ class UserDAO {
         $statement->bindValue(":password", $user->getPassword(), PDO::PARAM_STR);
         $statement->bindValue(":email", $user->getEmail(), PDO::PARAM_STR);
         $statement->execute();
-        $new_id = (int) $connection->lastInsertId();
+        $new_id = (int)$connection->lastInsertId();
         return $this->getById($new_id);
     }
 
@@ -93,7 +97,8 @@ class UserDAO {
      *
      * @throws RuntimeException
      */
-    public function update(UserDTO $user) : UserDTO {
+    public function update(UserDTO $user): UserDTO
+    {
         $user->validateForDbUpdate();
         $query =
             "UPDATE " . UserDTO::TABLE_NAME .
@@ -116,7 +121,8 @@ class UserDAO {
      *
      * @throws RuntimeException
      */
-    public function delete(UserDTO $user) : void {
+    public function delete(UserDTO $user): void
+    {
         $user->validateForDbDelete();
         $this->deleteById($user->getId());
     }
@@ -124,7 +130,8 @@ class UserDAO {
     /**
      * @throws RuntimeException
      */
-    public function deleteById(int $userId) : void {
+    public function deleteById(int $userId): void
+    {
         $query =
             "DELETE FROM `" . GroupDTO::TABLE_NAME .
             "` WHERE `id` = :id ;";
@@ -133,7 +140,7 @@ class UserDAO {
         $statement->bindValue(":id", $userId, PDO::PARAM_INT);
         $statement->execute();
     }
-    
+
     /**
      * TODO: Function documentation
      *
@@ -142,14 +149,15 @@ class UserDAO {
      * @throws ValidationException
      * @throws RuntimeException
      */
-    public function getGroupsByUser(UserDTO $user) : array {
+    public function getGroupsByUser(UserDTO $user): array
+    {
         if (empty($user->getId())) {
             throw new ValidationException("Cannot get the group records for an user with no set [id] property value.");
         }
         return $this->getGroupsByUserId($user->getId());
-        
+
     }
-    
+
     /**
      * TODO: Function documentation
      *
@@ -158,7 +166,8 @@ class UserDAO {
      * @throws ValidationException
      * @throws RuntimeException
      */
-    public function getGroupsByUserId(int $id) : array {
+    public function getGroupsByUserId(int $id): array
+    {
         $query = "SELECT b.* FROM " . UserDTO::TABLE_NAME . " a JOIN " . UserGroupDAO::TABLE_NAME .
             " ab ON a.id = ab.user_id JOIN " . GroupDTO::TABLE_NAME . " b ON ab.group_id = b.id WHERE a.id = :userId ;";
         $connection = DBConnectionService::getConnection();

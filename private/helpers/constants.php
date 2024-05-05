@@ -18,7 +18,7 @@ const HTML_DATETIME_FORMAT = "Y-m-d\TH:i:s.v";
  * @const
  */
 define("PRJ_ROOT_DIR",
-       realpath(__DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "..") . DIRECTORY_SEPARATOR);
+    realpath(__DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "..") . DIRECTORY_SEPARATOR);
 
 /**
  * The name of the project's root directory

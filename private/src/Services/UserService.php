@@ -11,14 +11,16 @@ use GivenCode\Exceptions\RuntimeException;
 use GivenCode\Exceptions\ValidationException;
 use GivenCode\Services\DBConnectionService;
 
-class UserService implements IService {
-    
+class UserService implements IService
+{
+
     private UserDAO $dao;
-    
-    public function __construct() {
+
+    public function __construct()
+    {
         $this->dao = new UserDAO();
     }
-    
+
     /**
      * TODO: Function documentation
      *
@@ -26,20 +28,22 @@ class UserService implements IService {
      * @throws RuntimeException
      *
      */
-    public function getAllUsers(): array {
+    public function getAllUsers(): array
+    {
         return $this->dao->getAll();
     }
-    
+
     /**
      * @throws RuntimeException
      * @throws ValidationException
      */
-    public function getUserById(int $id): ?UserDTO {
+    public function getUserById(int $id): ?UserDTO
+    {
         $user = $this->dao->getById($id);
         $user?->loadGroups();
         return $user;
     }
-    
+
     /**
      * @throws RuntimeException
      * @throws ValidationException
@@ -50,45 +54,48 @@ class UserService implements IService {
         $user?->loadGroups();
         return $user;
     }
-    
+
     /**
      * @throws RuntimeException
      * @throws ValidationException
      */
-    public function authenticateUser(string $username, string $password): ?UserDTO {
+    public function authenticateUser(string $username, string $password): ?UserDTO
+    {
         $user = $this->getUserByUsername($username);
-        
+
         if (!$user) {
             // User not found
             return null;
         }
-        
+
         if ($password != $user->getPassword()) {
             // Incorrect password
             return null;
         }
-        
+
         // User authenticated
         return $user;
     }
-    
+
     /**
      * @throws RuntimeException
      */
-    public function createUser(string $username, string $password, string $email): UserDTO {
+    public function createUser(string $username, string $password, string $email): UserDTO
+    {
         try {
             $user = UserDTO::fromValues($username, $password, $email);
             return $this->dao->insert($user);
-            
+
         } catch (Exception $excep) {
             throw new RuntimeException("Failure to create user [$username].", $excep->getCode(), $excep);
         }
     }
-    
+
     /**
      * @throws RuntimeException
      */
-    public function updateUser(int $id, string $username, string $password, string $email): UserDTO {
+    public function updateUser(int $id, string $username, string $password, string $email): UserDTO
+    {
         try {
             $user = $this->dao->getById($id);
             if (is_null($user)) {
@@ -99,34 +106,37 @@ class UserService implements IService {
             $user->setEmail($email);
             $result = $this->dao->update($user);
             return $result;
-            
+
         } catch (Exception $excep) {
             throw new RuntimeException("Failure to update user id# [$id].", $excep->getCode(), $excep);
         }
     }
-    
+
     /**
      * @throws RuntimeException
      */
-    public function deleteUserById(int $id): void {
+    public function deleteUserById(int $id): void
+    {
         $this->dao->deleteById($id);
     }
-    
+
     /**
      * @throws RuntimeException
      * @throws ValidationException
      */
-    public function getUserGroups(UserDTO $user): array {
+    public function getUserGroups(UserDTO $user): array
+    {
         return $this->getUserGroupsByUserId($user->getId());
     }
-    
+
     /**
      * @throws RuntimeException
      * @throws ValidationException
      */
-    public function getUserGroupsByUserId(int $id): array {
+    public function getUserGroupsByUserId(int $id): array
+    {
         return $this->dao->getGroupsByUserId($id);
     }
-    
-    
+
+
 }

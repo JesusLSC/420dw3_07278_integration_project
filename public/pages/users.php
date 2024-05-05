@@ -39,7 +39,7 @@ $all_user_instances = $user_service->getAllUsers();
 <body>
 <header id="header" class="header">
     <?php
-    include PRJ_FRAGMENTS_DIR .  DIRECTORY_SEPARATOR .  "standard.page.header.php";
+    include PRJ_FRAGMENTS_DIR . DIRECTORY_SEPARATOR . "standard.page.header.php";
     ?>
 </header>
 <main id="main">
@@ -58,7 +58,7 @@ $all_user_instances = $user_service->getAllUsers();
                     <?php
                     foreach ($all_user_instances as $instance) {
 
-                        echo ("<option class='" . "' value='" . $instance->getId() . "'>" . $instance->getUsername() . "</option>");
+                        echo("<option class='" . "' value='" . $instance->getId() . "'>" . $instance->getUsername() . "</option>");
                     }
                     ?>
                 </select>
@@ -103,7 +103,8 @@ $all_user_instances = $user_service->getAllUsers();
                 </div>
                 <div class="col-12">
                     <label class="form-label" for="user-date-created">Date created: </label>
-                    <input id="user-date-created" class="form-control form-control-sm" type="datetime-local" name="dateCreated"
+                    <input id="user-date-created" class="form-control form-control-sm" type="datetime-local"
+                           name="dateCreated"
                            readonly disabled>
                 </div>
                 <div class="col-12">
@@ -114,17 +115,25 @@ $all_user_instances = $user_service->getAllUsers();
                 </div>
             </form>
             <div class="col-12 d-flex flex-wrap justify-content-around button-row">
-                <button id="create-button" type="button" class="btn btn-primary col-12 col-md-2 my-1 my-md-0 text-uppercase">Create</button>
-                <button id="clear-button" type="button" class="btn btn-info col-12 col-md-2 my-1 my-md-0 text-uppercase" disabled>Clear Form</button>
-                <button id="update-button" type="button" class="btn btn-success col-12 col-md-2 my-1 my-md-0 text-uppercase" disabled>Update</button>
-                <button id="delete-button" type="button" class="btn btn-danger col-12 col-md-2 my-1 my-md-0 text-uppercase" disabled>Delete</button>
+                <button id="create-button" type="button"
+                        class="btn btn-primary col-12 col-md-2 my-1 my-md-0 text-uppercase">Create
+                </button>
+                <button id="clear-button" type="button" class="btn btn-info col-12 col-md-2 my-1 my-md-0 text-uppercase"
+                        disabled>Clear Form
+                </button>
+                <button id="update-button" type="button"
+                        class="btn btn-success col-12 col-md-2 my-1 my-md-0 text-uppercase" disabled>Update
+                </button>
+                <button id="delete-button" type="button"
+                        class="btn btn-danger col-12 col-md-2 my-1 my-md-0 text-uppercase" disabled>Delete
+                </button>
             </div>
         </div>
     </div>
 </main>
 <footer>
     <?php
-    include PRJ_FRAGMENTS_DIR .  DIRECTORY_SEPARATOR .  "standard.page.footer.php";
+    include PRJ_FRAGMENTS_DIR . DIRECTORY_SEPARATOR . "standard.page.footer.php";
     ?>
 </footer>
 </body>

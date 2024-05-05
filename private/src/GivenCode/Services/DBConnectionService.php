@@ -11,10 +11,11 @@ use GivenCode\Abstracts\IService;
 use GivenCode\Exceptions\RuntimeException;
 use GivenCode\Exceptions\ValidationException;
 
-class DBConnectionService implements IService {
+class DBConnectionService implements IService
+{
     private const CONFIG_FILENAME = "dbconfig.json";
     private static ?PDO $connection = null;
-    
+
     /**
      * Creates or returns an existing a {@see PDO PDO connection} to the database.
      * Creates a new connection if none was created previously.
@@ -25,7 +26,8 @@ class DBConnectionService implements IService {
      *
      * @throws RuntimeException
      */
-    public static function getConnection() : PDO {
+    public static function getConnection(): PDO
+    {
         try {
             if (!(self::$connection instanceof PDO)) {
                 self::$connection = self::createConnection();
@@ -35,7 +37,7 @@ class DBConnectionService implements IService {
             throw new RuntimeException("Failure to obtain a connection to the database.", 0, $exception);
         }
     }
-    
+
     /**
      * Creates and returns a new {@see PDO} connection to the database based on configurations
      * found in the database connection configuration file found in the 'config' private directory of
@@ -46,7 +48,8 @@ class DBConnectionService implements IService {
      * @throws Exception If the connection could not be created.
      *
      */
-    private static function createConnection() : PDO {
+    private static function createConnection(): PDO
+    {
         try {
             $conn_config = self::readConfigFile();
             $dsn = $conn_config["db_type"] . ":host=" . $conn_config["db_host"] . ";port=" . $conn_config["db_port"] .
@@ -54,15 +57,15 @@ class DBConnectionService implements IService {
             $connection = new PDO($dsn, $conn_config["db_user"], $conn_config["db_password"]);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $connection;
-            
+
         } catch (PDOException $exception) {
             throw new Exception("PDO failed to establish a connection to the database: " . $exception->getMessage());
-            
+
         } catch (Exception $excep) {
             throw new Exception("Failed to create a connection to the database.", 0, $excep);
         }
     }
-    
+
     /**
      * Reads the database JSON connection configuration file and returns its contents as an array.
      * Also validates that all the required data is present.
@@ -72,7 +75,8 @@ class DBConnectionService implements IService {
      * @throws Exception If the configuration file could not be read or is invalid.
      *
      */
-    private static function readConfigFile() : array {
+    private static function readConfigFile(): array
+    {
         try {
             $config_file_path = PRJ_CONFIG_DIR . self::CONFIG_FILENAME;
             if (!file_exists($config_file_path)) {
@@ -89,12 +93,12 @@ class DBConnectionService implements IService {
             }
             self::validateConfigArray($config_array);
             return $config_array;
-            
+
         } catch (Exception $excep) {
             throw new Exception("Failed to read database connection configuration file.", 0, $excep);
         }
     }
-    
+
     /**
      * Validates an array containing database connection configuration data.
      * Throws an exception if invalid.
@@ -105,7 +109,8 @@ class DBConnectionService implements IService {
      * @throws Exception If the configuration array is not valid.
      *
      */
-    private static function validateConfigArray(array $config_array) : void {
+    private static function validateConfigArray(array $config_array): void
+    {
         try {
             if (empty($config_array["db_type"])) {
                 throw new ValidationException("Database connection configurations lack a required [db_type] entry.");
@@ -119,7 +124,7 @@ class DBConnectionService implements IService {
             if (!is_numeric($config_array["db_port"])) {
                 throw new ValidationException("Database connection configurations [db_port] value is not numeric.");
             }
-            $int_port = (int) $config_array["db_port"];
+            $int_port = (int)$config_array["db_port"];
             if ($int_port < 0 || $int_port > 65535) {
                 throw new ValidationException("Database connection configurations [db_port] value is not a valid port number (0 - 65535).");
             }
@@ -133,10 +138,10 @@ class DBConnectionService implements IService {
             if (!isset($config_array["db_password"])) {
                 throw new ValidationException("Database connection configurations lack a required [db_password] entry.");
             }
-            
+
         } catch (Exception $excep) {
             throw new Exception("Invalid database connection configuration data.", 0, $excep);
         }
     }
-    
+
 }

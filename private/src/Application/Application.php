@@ -9,21 +9,24 @@ use Exception;
 use GivenCode\Services\InternalRouter;
 
 
-class Application {
+class Application
+{
     private InternalRouter $router;
-    
-    public function __construct() {
+
+    public function __construct()
+    {
         $this->router = new InternalRouter();
     }
-    
 
-    public function run() : void {
+
+    public function run(): void
+    {
         // start the output buffering
         ob_start();
         try {
             // route the request
             $this->router->route();
-            
+
             $error = error_get_last();
             if ($error === null) {
                 // flush the output buffer
@@ -31,7 +34,7 @@ class Application {
                 return;
             }
             throw new ErrorException($error['message'], 500, $error['type'], $error['file'], $error['line']);
-            
+
         } catch (Exception $exception) {
             // empty the output buffer (without flushing)
             ob_end_clean();

@@ -7,8 +7,9 @@ namespace GivenCode\Abstracts;
  * Interface for DAO-type objects enforcing basic database operations methods.
  *
  */
-interface IDAO {
-    
+interface IDAO
+{
+
     /**
      * Retrieves a record of a certain DTO entity from the database and returns
      * an appropriate DTO object instance.
@@ -17,8 +18,8 @@ interface IDAO {
      * @return AbstractDTO|null The created object DTO instance or null if no record was found for the specified id.
      *
      */
-    public function getById(int $id) : ?AbstractDTO;
-    
+    public function getById(int $id): ?AbstractDTO;
+
     /**
      * Creates a record for a certain DTO entity in the database.
      * Returns an updated appropriate DTO object instance.
@@ -27,8 +28,8 @@ interface IDAO {
      * @return AbstractDTO An updated {@see AbstractDTO} instance.
      *
      */
-    public function create(AbstractDTO $dto) : AbstractDTO;
-    
+    public function create(AbstractDTO $dto): AbstractDTO;
+
     /**
      * Updates the record of a certain DTO entity in the database.
      * Returns an updated appropriate DTO object instance.
@@ -37,8 +38,8 @@ interface IDAO {
      * @return AbstractDTO An updated {@see AbstractDTO} instance.
      *
      */
-    public function update(AbstractDTO $dto) : AbstractDTO;
-    
+    public function update(AbstractDTO $dto): AbstractDTO;
+
     /**
      * Deletes the record of a certain DTO entity in the database.
      *
@@ -46,8 +47,8 @@ interface IDAO {
      * @return void
      *
      */
-    public function delete(AbstractDTO $dto) : void;
-    
+    public function delete(AbstractDTO $dto): void;
+
     /**
      * Deletes the record of a certain DTO entity in the database based on its identifier.
      *
@@ -55,6 +56,6 @@ interface IDAO {
      * @return void
      *
      */
-    public function deleteById(int $id) : void;
-    
+    public function deleteById(int $id): void;
+
 }

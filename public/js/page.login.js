@@ -1,4 +1,3 @@
-
 $("#loginButton").on("click", (event) => {
     event.stopPropagation();
     let data = $("#loginForm").serialize();

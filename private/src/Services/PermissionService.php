@@ -11,11 +11,13 @@ use GivenCode\Exceptions\RuntimeException;
 use GivenCode\Exceptions\ValidationException;
 use GivenCode\Services\DBConnectionService;
 
-class PermissionService implements IService {
+class PermissionService implements IService
+{
 
     private PermissionDAO $dao;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->dao = new PermissionDAO();
     }
 
@@ -26,7 +28,8 @@ class PermissionService implements IService {
      * @throws RuntimeException
      *
      */
-    public function getAllPermissions() : array {
+    public function getAllPermissions(): array
+    {
         return $this->dao->getAll();
     }
 
@@ -34,7 +37,8 @@ class PermissionService implements IService {
      * @throws RuntimeException
      * @throws ValidationException
      */
-    public function getPermissionById(int $id) : ?PermissionDTO {
+    public function getPermissionById(int $id): ?PermissionDTO
+    {
         $permission = $this->dao->getById($id);
         return $permission;
     }
@@ -53,8 +57,9 @@ class PermissionService implements IService {
      * @throws RuntimeException
      * @throws ValidationException
      */
-    public function authenticatePermission(string $name): ?PermissionDTO {
-            $permission = $this->getPermissionByName($name);
+    public function authenticatePermission(string $name): ?PermissionDTO
+    {
+        $permission = $this->getPermissionByName($name);
 
         if (!$permission) {
             return null;
@@ -65,7 +70,8 @@ class PermissionService implements IService {
     /**
      * @throws RuntimeException
      */
-    public function createPermission(string $identifier, string $name, string $description) : PermissionDTO {
+    public function createPermission(string $identifier, string $name, string $description): PermissionDTO
+    {
         try {
             $permission = PermissionDTO::fromValues($identifier, $name, $description);
             return $this->dao->insert($permission);
@@ -78,7 +84,8 @@ class PermissionService implements IService {
     /**
      * @throws RuntimeException
      */
-    public function updatePermission(int $id, string $identifier, string $name, string $description) : PermissionDTO {
+    public function updatePermission(int $id, string $identifier, string $name, string $description): PermissionDTO
+    {
         try {
             $permission = $this->dao->getById($id);
             if (is_null($permission)) {
@@ -89,11 +96,13 @@ class PermissionService implements IService {
             $permission->setDescription($description);
             $result = $this->dao->update($permission);
             return $result;
-            } catch (Exception $excep) {
+        } catch (Exception $excep) {
             throw new RuntimeException("Failure to update user id# [$id].", $excep->getCode(), $excep);
         }
     }
-    public function deletePermissionById(int $id) : void {
+
+    public function deletePermissionById(int $id): void
+    {
         $this->dao->deleteById($id);
     }
 

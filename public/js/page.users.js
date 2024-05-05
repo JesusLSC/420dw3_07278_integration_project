@@ -87,28 +87,28 @@ function displayResponseError(responseErrorObject) {
         stacktraceContainer.html(responseErrorObject.stacktrace.replace(/\r\n/g, '\n'));
     }
     errorContainer.slideToggle().delay(5000).slideToggle();
-    
+
 }
 
 function loadUser() {
     let selectedRecordId = document.getElementById("user-selector").value;
-    
+
     const options = {
         "url": `${API_USER_URL}?userId=${selectedRecordId}`,
         "method": "get",
         "dataType": "json"
     };
-    
+
     $.ajax(options)
-     .done((data, status, jqXHR) => {
-         console.log("Received data: ", data);
-         fillFormFromResponseObject(data);
-     })
-     .fail((jqXHR, textstatus, error) => {
-         if ('responseJSON' in jqXHR && typeof jqXHR.responseJSON === "object") {
-             displayResponseError(jqXHR.responseJSON);
-         }
-     });
+        .done((data, status, jqXHR) => {
+            console.log("Received data: ", data);
+            fillFormFromResponseObject(data);
+        })
+        .fail((jqXHR, textstatus, error) => {
+            if ('responseJSON' in jqXHR && typeof jqXHR.responseJSON === "object") {
+                displayResponseError(jqXHR.responseJSON);
+            }
+        });
 }
 
 function createUser() {
@@ -118,26 +118,26 @@ function createUser() {
         "data": getFormDataAsUrlEncoded(),
         "dataType": "json"
     };
-    
+
     $.ajax(options)
-     .done((data, status, jqXHR) => {
-         console.log("Received data: ", data);
-         
-         if ('username' in data) {
-             let selector = document.getElementById("user-selector");
-             let newOptionElement = document.createElement("option");
-             newOptionElement.value = data.id;
-             newOptionElement.innerHTML = `${data.username}`;
-             selector.appendChild(newOptionElement);
-             selector.value = data.id;
-         }
-         fillFormFromResponseObject(data);
-     })
-     .fail((jqXHR, textstatus, error) => {
-         if ('responseJSON' in jqXHR && typeof jqXHR.responseJSON === "object") {
-             displayResponseError(jqXHR.responseJSON);
-         }
-     });
+        .done((data, status, jqXHR) => {
+            console.log("Received data: ", data);
+
+            if ('username' in data) {
+                let selector = document.getElementById("user-selector");
+                let newOptionElement = document.createElement("option");
+                newOptionElement.value = data.id;
+                newOptionElement.innerHTML = `${data.username}`;
+                selector.appendChild(newOptionElement);
+                selector.value = data.id;
+            }
+            fillFormFromResponseObject(data);
+        })
+        .fail((jqXHR, textstatus, error) => {
+            if ('responseJSON' in jqXHR && typeof jqXHR.responseJSON === "object") {
+                displayResponseError(jqXHR.responseJSON);
+            }
+        });
 }
 
 function updateUser() {
@@ -147,28 +147,28 @@ function updateUser() {
         "data": getFormDataAsUrlEncoded(),
         "dataType": "json"
     };
-    
+
     $.ajax(options)
-     .done((data, status, jqXHR) => {
-         console.log("Received data: ", data);
-         
-         // Replace the text in the selector with the updated values
-         let formIdValue = document.getElementById("user-id").value;
-         if ('username' in data) {
-             let selector = /** @type {HTMLSelectElement} */ document.getElementById("user-selector");
-             // Note: voluntary non-identity equality check ( == instead of === ): disable warning
-             // noinspection EqualityComparisonWithCoercionJS
-             [...selector.options].filter(elem => elem.value == formIdValue).forEach(elem => {
-                 elem.innerHTML = `${data.username}`;
-             });
-         }
-         fillFormFromResponseObject(data);
-     })
-     .fail((jqXHR, textstatus, error) => {
-         if ('responseJSON' in jqXHR && typeof jqXHR.responseJSON === "object") {
-             displayResponseError(jqXHR.responseJSON);
-         }
-     });
+        .done((data, status, jqXHR) => {
+            console.log("Received data: ", data);
+
+            // Replace the text in the selector with the updated values
+            let formIdValue = document.getElementById("user-id").value;
+            if ('username' in data) {
+                let selector = /** @type {HTMLSelectElement} */ document.getElementById("user-selector");
+                // Note: voluntary non-identity equality check ( == instead of === ): disable warning
+                // noinspection EqualityComparisonWithCoercionJS
+                [...selector.options].filter(elem => elem.value == formIdValue).forEach(elem => {
+                    elem.innerHTML = `${data.username}`;
+                });
+            }
+            fillFormFromResponseObject(data);
+        })
+        .fail((jqXHR, textstatus, error) => {
+            if ('responseJSON' in jqXHR && typeof jqXHR.responseJSON === "object") {
+                displayResponseError(jqXHR.responseJSON);
+            }
+        });
 }
 
 function deleteUser() {
@@ -178,25 +178,25 @@ function deleteUser() {
         "data": getFormDataAsUrlEncoded(),
         "dataType": "json"
     };
-    
+
     $.ajax(options)
-     .done((data, status, jqXHR) => {
-         console.log("Received data: ", data);
-         let formIdValue = document.getElementById("user-id").value;
-         if (formIdValue) {
-             let selector = /** @type {HTMLSelectElement} */ document.getElementById("user-selector");
-             // Note: voluntary non-identity equality check ( == instead of === ): disable warning
-             // noinspection EqualityComparisonWithCoercionJS
-             [...selector.options].filter(elem => elem.value == formIdValue).forEach(elem => elem.remove());
-             selector.value = "";
-         }
-         clearForm();
-     })
-     .fail((jqXHR, textstatus, error) => {
-         if ('responseJSON' in jqXHR && typeof jqXHR.responseJSON === "object") {
-             displayResponseError(jqXHR.responseJSON);
-         }
-     });
+        .done((data, status, jqXHR) => {
+            console.log("Received data: ", data);
+            let formIdValue = document.getElementById("user-id").value;
+            if (formIdValue) {
+                let selector = /** @type {HTMLSelectElement} */ document.getElementById("user-selector");
+                // Note: voluntary non-identity equality check ( == instead of === ): disable warning
+                // noinspection EqualityComparisonWithCoercionJS
+                [...selector.options].filter(elem => elem.value == formIdValue).forEach(elem => elem.remove());
+                selector.value = "";
+            }
+            clearForm();
+        })
+        .fail((jqXHR, textstatus, error) => {
+            if ('responseJSON' in jqXHR && typeof jqXHR.responseJSON === "object") {
+                displayResponseError(jqXHR.responseJSON);
+            }
+        });
 }
 
 document.getElementById("view-instance-button").onclick = loadUser;

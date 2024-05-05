@@ -6,7 +6,8 @@ namespace DTOs;
 use DateTime;
 use GivenCode\Exceptions\ValidationException;
 
-class PermissionDTO {
+class PermissionDTO
+{
 
     public const TABLE_NAME = "permissions";
 
@@ -17,8 +18,12 @@ class PermissionDTO {
     private ?DateTime $created_at = null;
     private ?DateTime $modified_at = null;
 
-    public function __construct() {}
-    public static function fromValues(string $permission_identifier, string $permission_name, string $permission_description) : PermissionDTO {
+    public function __construct()
+    {
+    }
+
+    public static function fromValues(string $permission_identifier, string $permission_name, string $permission_description): PermissionDTO
+    {
         $instance = new PermissionDTO();
         $instance->setIdentifier($permission_identifier);
         $instance->setName($permission_name);
@@ -29,10 +34,11 @@ class PermissionDTO {
     /**
      * @throws ValidationException
      */
-    public static function fromDbArray(array $dbArray) : PermissionDTO {
+    public static function fromDbArray(array $dbArray): PermissionDTO
+    {
         self::validateDbArray($dbArray);
         $instance = new PermissionDTO();
-        $instance->setId((int) $dbArray["permission_id"]);
+        $instance->setId((int)$dbArray["permission_id"]);
         $instance->setIdentifier($dbArray["permission_identifier"]);
         $instance->setName($dbArray["permission_name"]);
         $instance->setDescription($dbArray["permission_description"]);
@@ -43,60 +49,77 @@ class PermissionDTO {
         return $instance;
     }
 
-    public function getId(): int {
+    public function getId(): int
+    {
         return $this->permission_id;
     }
 
     /**
      * @throws ValidationException
      */
-    public function setId(int $permission_id) : void {
+    public function setId(int $permission_id): void
+    {
         if ($permission_id <= 0) {
             throw new ValidationException("Invalid value for PermissionDTO [permission_id]: must be a positive integer > 0.");
         }
         $this->permission_id = $permission_id;
     }
-    public function getIdentifier(): string {
+
+    public function getIdentifier(): string
+    {
         return $this->permission_identifier;
     }
-    public function setIdentifier(string $permission_identifier) : void {
+
+    public function setIdentifier(string $permission_identifier): void
+    {
         $this->permission_identifier = $permission_identifier;
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->permission_name;
     }
-    public function setName(string $permission_name) : void {
+
+    public function setName(string $permission_name): void
+    {
         $this->permission_name = $permission_name;
     }
 
-    public function getDescription(): string {
+    public function getDescription(): string
+    {
         return $this->permission_description;
     }
-    public function setDescription(string $permission_description) : void {
+
+    public function setDescription(string $permission_description): void
+    {
         $this->permission_description = $permission_description;
     }
 
-    public function getDateCreated(): DateTime {
+    public function getDateCreated(): DateTime
+    {
         return $this->created_at;
     }
 
-    public function setDateCreated(DateTime $created_at) : void {
+    public function setDateCreated(DateTime $created_at): void
+    {
         $this->created_at = $created_at;
     }
 
-    public function getDateLastModified(): DateTime {
+    public function getDateLastModified(): DateTime
+    {
         return $this->modified_at;
     }
 
-    public function setDateLastModified(?DateTime $modified_at) : void {
+    public function setDateLastModified(?DateTime $modified_at): void
+    {
         $this->modified_at = $modified_at;
     }
 
     /**
      * @throws ValidationException
      */
-    private static function validateDbArray(array $dbArray) : void {
+    private static function validateDbArray(array $dbArray): void
+    {
         if (empty($dbArray["permission_id"])) {
             throw new ValidationException("Record array does not contain an [permission_id] field. Check column names.");
         }
@@ -128,7 +151,8 @@ class PermissionDTO {
     /**
      * @throws ValidationException
      */
-    public function validateForDbCreation(bool $optThrowExceptions = true) : bool {
+    public function validateForDbCreation(bool $optThrowExceptions = true): bool
+    {
         // ID must not be set
         if (!empty($this->permission_id)) {
             if ($optThrowExceptions) {
@@ -174,7 +198,8 @@ class PermissionDTO {
     /**
      * @throws ValidationException
      */
-    public function validateForDbUpdate(bool $optThrowExceptions = true) : bool {
+    public function validateForDbUpdate(bool $optThrowExceptions = true): bool
+    {
         // ID is required
         if (empty($this->permission_id)) {
             if ($optThrowExceptions) {
@@ -202,7 +227,8 @@ class PermissionDTO {
     /**
      * @throws ValidationException
      */
-    public function validateForDbDelete(bool $optThrowExceptions = true) : bool {
+    public function validateForDbDelete(bool $optThrowExceptions = true): bool
+    {
         // ID is required
         if (empty($this->permission_id)) {
             if ($optThrowExceptions) {
@@ -212,7 +238,9 @@ class PermissionDTO {
         }
         return true;
     }
-    public function toArray() : array {
+
+    public function toArray(): array
+    {
         $array = [
             "permissionId" => $this->getId(),
             "permission_name" => $this->getName(),

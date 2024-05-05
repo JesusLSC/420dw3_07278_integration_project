@@ -9,8 +9,9 @@ use DAOs\UserDAO;
 use GivenCode\Exceptions\RuntimeException;
 use GivenCode\Exceptions\ValidationException;
 
-class UserDTO {
-    
+class UserDTO
+{
+
     /**
      * The database table name for this entity type.
      * @const
@@ -19,14 +20,14 @@ class UserDTO {
     public const USERNAME_MAX_LENGTH = 255;
     public const PASSWORD_MAX_LENGTH = 255;
     public const EMAIL_MAX_LENGTH = 255;
-    
+
     private int $id;
     private string $username;
     private string $password;
     private string $email;
     private ?DateTime $created_at = null;
     private ?DateTime $modified_at = null;
-    
+
     /**
      * TODO: Property documentation
      *
@@ -35,7 +36,9 @@ class UserDTO {
     private array $groups = [];
 
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     /**
      * TODO: Function documentation
@@ -46,7 +49,8 @@ class UserDTO {
      * @return UserDTO
      * @throws ValidationException
      */
-    public static function fromValues(string $username, string $password, string $email) : UserDTO {
+    public static function fromValues(string $username, string $password, string $email): UserDTO
+    {
         $instance = new UserDTO();
         $instance->setUsername($username);
         $instance->setPassword($password);
@@ -61,10 +65,11 @@ class UserDTO {
      * @return UserDTO
      * @throws ValidationException
      */
-    public static function fromDbArray(array $dbArray) : UserDTO {
+    public static function fromDbArray(array $dbArray): UserDTO
+    {
         self::validateDbArray($dbArray);
         $instance = new UserDTO();
-        $instance->setId((int) $dbArray["id"]);
+        $instance->setId((int)$dbArray["id"]);
         $instance->setUsername($dbArray["username"]);
         $instance->setPassword($dbArray["password"]);
         $instance->setEmail($dbArray["email"]);
@@ -80,7 +85,8 @@ class UserDTO {
     /**
      * @throws ValidationException
      */
-    private static function validateDbArray(array $dbArray) : void {
+    private static function validateDbArray(array $dbArray): void
+    {
         if (empty($dbArray["id"])) {
             throw new ValidationException("Record array does not contain an [id] field. Check column names.");
         }
@@ -112,7 +118,8 @@ class UserDTO {
     /**
      * @throws ValidationException
      */
-    public function validateForDbCreation(bool $optThrowExceptions = true) : bool {
+    public function validateForDbCreation(bool $optThrowExceptions = true): bool
+    {
         // ID must not be set
         if (!empty($this->id)) {
             if ($optThrowExceptions) {
@@ -158,7 +165,8 @@ class UserDTO {
     /**
      * @throws ValidationException
      */
-    public function validateForDbUpdate(bool $optThrowExceptions = true) : bool {
+    public function validateForDbUpdate(bool $optThrowExceptions = true): bool
+    {
         // ID is required
         if (empty($this->id)) {
             if ($optThrowExceptions) {
@@ -186,7 +194,8 @@ class UserDTO {
     /**
      * @throws ValidationException
      */
-    public function validateForDbDelete(bool $optThrowExceptions = true) : bool {
+    public function validateForDbDelete(bool $optThrowExceptions = true): bool
+    {
         // ID is required
         if (empty($this->id)) {
             if ($optThrowExceptions) {
@@ -205,7 +214,8 @@ class UserDTO {
     /**
      * @return int
      */
-    public function getId() : int {
+    public function getId(): int
+    {
         return $this->id;
     }
 
@@ -213,7 +223,8 @@ class UserDTO {
      * @param int $id
      * @throws ValidationException
      */
-    public function setId(int $id) : void {
+    public function setId(int $id): void
+    {
         if ($id <= 0) {
             throw new ValidationException("Invalid value for UserDTO [id]: must be a positive integer > 0.");
         }
@@ -223,7 +234,8 @@ class UserDTO {
     /**
      * @return string
      */
-    public function getUsername() : string {
+    public function getUsername(): string
+    {
         return $this->username;
     }
 
@@ -231,18 +243,21 @@ class UserDTO {
      * @param string $username
      * @throws ValidationException
      */
-    public function setUsername(string $username) : void {
+    public function setUsername(string $username): void
+    {
         if (mb_strlen($username) > self::USERNAME_MAX_LENGTH) {
             throw new ValidationException("Invalid value for UserDTO [username]: string length is > " .
-                                          self::USERNAME_MAX_LENGTH . ".");
+                self::USERNAME_MAX_LENGTH . ".");
         }
         $this->username = $username;
     }
+
     /**
      * @return string
      */
 
-    public function getPassword() : string {
+    public function getPassword(): string
+    {
         return $this->password;
     }
 
@@ -250,7 +265,8 @@ class UserDTO {
      * @param string $password
      * @throws ValidationException
      */
-    public function setPassword(string $password) : void {
+    public function setPassword(string $password): void
+    {
         if (mb_strlen($password) > self::PASSWORD_MAX_LENGTH) {
             throw new ValidationException("Invalid value for UserDTO [password]: string length is > " .
                 self::PASSWORD_MAX_LENGTH . ".");
@@ -258,46 +274,53 @@ class UserDTO {
 
         $this->password = $password;
     }
+
     /**
      * @return string
      */
 
-    public function getEmail() : string {
+    public function getEmail(): string
+    {
         return $this->email;
     }
 
     /**
      * @param string $email
      */
-    public function setEmail(string $email) : void {
+    public function setEmail(string $email): void
+    {
         $this->email = $email;
     }
 
     /**
      * @return DateTime
      */
-    public function getDateCreated() : DateTime {
+    public function getDateCreated(): DateTime
+    {
         return $this->created_at;
     }
 
     /**
      * @param DateTime $created_at
      */
-    public function setDateCreated(DateTime $created_at) : void {
+    public function setDateCreated(DateTime $created_at): void
+    {
         $this->created_at = $created_at;
     }
 
     /**
      * @return DateTime|null
      */
-    public function getDateLastModified() : ?DateTime {
+    public function getDateLastModified(): ?DateTime
+    {
         return $this->modified_at;
     }
 
     /**
      * @param DateTime|null $modified_at
      */
-    public function setDateLastModified(?DateTime $modified_at) : void {
+    public function setDateLastModified(?DateTime $modified_at): void
+    {
         $this->modified_at = $modified_at;
     }
 
@@ -312,7 +335,8 @@ class UserDTO {
      * @return array
      * @throws RuntimeException
      */
-    public function getGroups(bool $forceReload = false) : array {
+    public function getGroups(bool $forceReload = false): array
+    {
         try {
             if (empty($this->groups) || $forceReload) {
                 $this->loadGroups();
@@ -330,12 +354,14 @@ class UserDTO {
      * @throws RuntimeException
      * @throws ValidationException
      */
-    public function loadGroups() : void {
+    public function loadGroups(): void
+    {
         $dao = new UserDAO();
         $this->groups = $dao->getGroupsByUser($this);
     }
 
-    public function toArray() : array {
+    public function toArray(): array
+    {
         $array = [
             "userId" => $this->getId(),
             "username" => $this->getUsername(),
@@ -350,11 +376,12 @@ class UserDTO {
         }
         return $array;
     }
-    
-    
-    public function getDatabaseTableName() : string {
+
+
+    public function getDatabaseTableName(): string
+    {
         return self::TABLE_NAME;
     }
 
-    
+
 }

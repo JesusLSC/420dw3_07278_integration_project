@@ -4,24 +4,26 @@ declare(strict_types=1);
 use Services\LoginService;
 
 
-
 ?>
 <div class="container header-container">
     <div class="d-flex row title-bar justify-content-center">
         <h1 class="col-12 text-center">{CodeBloc} Inc.</h1>
     </div>
     <div class="row flex-wrap flex-md-nowrap nav-bar justify-content-md-center">
-        <div class="nav-bar-entry d-flex col-12 col-md-2 justify-content-center" data-url="<?= WEB_ROOT_DIR . "pages/users"?>">
+        <div class="nav-bar-entry d-flex col-12 col-md-2 justify-content-center"
+             data-url="<?= WEB_ROOT_DIR . "pages/users" ?>">
             <span class="text-uppercase">Users</span>
         </div>
-        <div class="nav-bar-entry d-flex col-12 col-md-2 justify-content-center" data-url="<?= WEB_ROOT_DIR . "pages/groups" ?>">
+        <div class="nav-bar-entry d-flex col-12 col-md-2 justify-content-center"
+             data-url="<?= WEB_ROOT_DIR . "pages/groups" ?>">
             <span class="text-uppercase">Groups</span>
         </div>
-        <div class="nav-bar-entry d-flex col-12 col-md-2 justify-content-center" data-url="<?= WEB_ROOT_DIR . "pages/permissions" ?>">
+        <div class="nav-bar-entry d-flex col-12 col-md-2 justify-content-center"
+             data-url="<?= WEB_ROOT_DIR . "pages/permissions" ?>">
             <span class="text-uppercase">Permissions</span>
         </div>
         <?php
-        
+
         if (LoginService::isUserLoggedIn()) {
             $api_login_url = WEB_ROOT_DIR . "api/login";
             $method = "delete";
@@ -38,7 +40,7 @@ HTDOC;
         </div>
 HTDOC;
         }
-        
+
         ?>
     </div>
 </div>

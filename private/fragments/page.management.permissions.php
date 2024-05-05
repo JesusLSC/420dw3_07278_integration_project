@@ -2,7 +2,6 @@
 declare(strict_types=1);
 
 
-
 use DTOs\PermissionDTO;
 use Services\PermissionService;
 use Services\LoginService;
@@ -64,7 +63,7 @@ $all_permissions = $permission_service->getAllPermissions();
                     <?php
                     foreach ($all_permissions as $instance) {
 
-                        echo ("<option class='" . "' value='" . $instance->getId() . "'>" . $instance->getName() . "</option>");
+                        echo("<option class='" . "' value='" . $instance->getId() . "'>" . $instance->getName() . "</option>");
                     }
                     ?>
                 </select>
@@ -90,7 +89,8 @@ $all_permissions = $permission_service->getAllPermissions();
             <form id="permission-form" class="row">
                 <div class="col-12">
                     <label class="form-label" for="permission-id">Id: </label>
-                    <input id="permission-id" class="form-control form-control-sm" type="number" name="id" readonly disabled>
+                    <input id="permission-id" class="form-control form-control-sm" type="number" name="id" readonly
+                           disabled>
                 </div>
                 <div class="col-12">
                     <label class="form-label" for="permission-name">Name:</label>
@@ -106,7 +106,8 @@ $all_permissions = $permission_service->getAllPermissions();
                 </div>
                 <div class="col-12">
                     <label class="form-label" for="author-date-created">Date created: </label>
-                    <input id="author-date-created" class="form-control form-control-sm" type="datetime-local" name="dateCreated"
+                    <input id="author-date-created" class="form-control form-control-sm" type="datetime-local"
+                           name="dateCreated"
                            readonly disabled>
                 </div>
                 <div class="col-12">
@@ -117,10 +118,18 @@ $all_permissions = $permission_service->getAllPermissions();
                 </div>
             </form>
             <div class="col-12 d-flex flex-wrap justify-content-around button-row">
-                <button id="create-button" type="button" class="btn btn-primary col-12 col-md-2 my-1 my-md-0 text-uppercase">Create</button>
-                <button id="clear-button" type="button" class="btn btn-info col-12 col-md-2 my-1 my-md-0 text-uppercase" disabled>Clear Form</button>
-                <button id="update-button" type="button" class="btn btn-success col-12 col-md-2 my-1 my-md-0 text-uppercase" disabled>Update</button>
-                <button id="delete-button" type="button" class="btn btn-danger col-12 col-md-2 my-1 my-md-0 text-uppercase" disabled>Delete</button>
+                <button id="create-button" type="button"
+                        class="btn btn-primary col-12 col-md-2 my-1 my-md-0 text-uppercase">Create
+                </button>
+                <button id="clear-button" type="button" class="btn btn-info col-12 col-md-2 my-1 my-md-0 text-uppercase"
+                        disabled>Clear Form
+                </button>
+                <button id="update-button" type="button"
+                        class="btn btn-success col-12 col-md-2 my-1 my-md-0 text-uppercase" disabled>Update
+                </button>
+                <button id="delete-button" type="button"
+                        class="btn btn-danger col-12 col-md-2 my-1 my-md-0 text-uppercase" disabled>Delete
+                </button>
             </div>
         </div>
     </div>
