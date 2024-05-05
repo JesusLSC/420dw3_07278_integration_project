@@ -41,12 +41,16 @@ class UserDTO {
      * TODO: Function documentation
      *
      * @param string $username
+     * @param string $password
+     * @param string $email
      * @return UserDTO
      * @throws ValidationException
      */
-    public static function fromValues(string $username) : UserDTO {
+    public static function fromValues(string $username, string $password, string $email) : UserDTO {
         $instance = new UserDTO();
         $instance->setUsername($username);
+        $instance->setPassword($password);
+        $instance->setEmail($email);
         return $instance;
     }
 

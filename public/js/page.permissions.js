@@ -1,5 +1,5 @@
 function clearForm() {
-    $('#form').get(0).reset();
+    $('#permission-form').get(0).reset();
     $("#create-button").prop("disabled", false);
     $("#clear-button").prop("disabled", true);
     $("#update-button").prop("disabled", true);
@@ -89,7 +89,7 @@ function displayResponseError(responseErrorObject) {
 
 }
 
-function loadUser() {
+function loadPermission() {
     let selectedRecordId = document.getElementById("permission-selector").value;
 
     const options = {
@@ -110,7 +110,7 @@ function loadUser() {
         });
 }
 
-function createUser() {
+function createPermission() {
     const options = {
         "url": `${API_PERMISSION_URL}`,
         "method": "post",
@@ -139,7 +139,7 @@ function createUser() {
         });
 }
 
-function updateUser() {
+function updatePermission() {
     const options = {
         "url": `${API_PERMISSION_URL}`,
         "method": "put",
@@ -170,7 +170,7 @@ function updateUser() {
         });
 }
 
-function deleteUser() {
+function deletePermission() {
     const options = {
         "url": `${API_PERMISSION_URL}`,
         "method": "delete",
@@ -198,9 +198,9 @@ function deleteUser() {
         });
 }
 
-document.getElementById("view-instance-button").onclick = loadUser;
+document.getElementById("view-instance-button").onclick = loadPermission;
 document.getElementById("clear-button").onclick = clearForm;
-document.getElementById("create-button").onclick = createUser;
-document.getElementById("update-button").onclick = updateUser;
-document.getElementById("delete-button").onclick = deleteUser;
+document.getElementById("create-button").onclick = createPermission;
+document.getElementById("update-button").onclick = updatePermission;
+document.getElementById("delete-button").onclick = deletePermission;
 $("#form").on("change", ":input", updateClearButtonState);

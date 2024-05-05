@@ -1,5 +1,5 @@
 function clearForm() {
-    $('#form').get(0).reset();
+    $('#user-form').get(0).reset();
     $("#create-button").prop("disabled", false);
     $("#clear-button").prop("disabled", true);
     $("#update-button").prop("disabled", true);
@@ -29,6 +29,7 @@ function getFormDataAsUrlEncoded() {
     formData.set("email", $("#user-email").val());
     formData.set("dateCreated", $("#user-date-created").val());
     formData.set("dateLastModified", $("#user-date-last-modified").val());
+    console.log(Object.fromEntries(formData));
     return (new URLSearchParams(formData)).toString();
 }
 
@@ -203,4 +204,4 @@ document.getElementById("clear-button").onclick = clearForm;
 document.getElementById("create-button").onclick = createUser;
 document.getElementById("update-button").onclick = updateUser;
 document.getElementById("delete-button").onclick = deleteUser;
-$("#form").on("change", ":input", updateClearButtonState);
+$("#user-form").on("change", ":input", updateClearButtonState);

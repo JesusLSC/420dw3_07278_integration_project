@@ -74,9 +74,9 @@ class UserService implements IService {
     /**
      * @throws RuntimeException
      */
-    public function createUser(string $username): UserDTO {
+    public function createUser(string $username, string $password, string $email): UserDTO {
         try {
-            $user = UserDTO::fromValues($username);
+            $user = UserDTO::fromValues($username, $password, $email);
             return $this->dao->insert($user);
             
         } catch (Exception $excep) {
@@ -106,16 +106,7 @@ class UserService implements IService {
      * @throws RuntimeException
      */
     public function deleteUserById(int $id): void {
-        try {
-            $user = $this->dao->getById($id);
-            if (is_null($user)) {
-                throw new Exception("User id# [$id] not found in the database.");
-            }
-            $this->dao->delete($user);
-            
-        } catch (Exception $excep) {
-            throw new RuntimeException("Failure to delete user id# [$id].", $excep->getCode(), $excep);
-        }
+        $this->dao->deleteById($id);
     }
     
     /**

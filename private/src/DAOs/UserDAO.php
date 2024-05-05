@@ -74,10 +74,12 @@ class UserDAO {
     public function insert(UserDTO $user) : UserDTO {
         $user->validateForDbCreation();
         $query =
-            "INSERT INTO " . UserDTO::TABLE_NAME . " (`username`) VALUES (:username);";
+            "INSERT INTO " . UserDTO::TABLE_NAME . " (`username`, `password`, `email`) VALUES (:username, :password, :email);";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
         $statement->bindValue(":username", $user->getUsername(), PDO::PARAM_STR);
+        $statement->bindValue(":password", $user->getPassword(), PDO::PARAM_STR);
+        $statement->bindValue(":email", $user->getEmail(), PDO::PARAM_STR);
         $statement->execute();
         $new_id = (int) $connection->lastInsertId();
         return $this->getById($new_id);
@@ -119,6 +121,9 @@ class UserDAO {
         $this->deleteById($user->getId());
     }
 
+    /**
+     * @throws RuntimeException
+     */
     public function deleteById(int $userId) : void {
         $query =
             "DELETE FROM `" . GroupDTO::TABLE_NAME .

@@ -4,7 +4,17 @@ declare(strict_types=1);
 require_once __DIR__ . "/../../private/helpers/init.php";
 
 use DTOs\UserDTO;
+use Services\LoginService;
 use Services\UserService;
+
+if (!LoginService::requireAdmin()) {
+    if (!LoginService::isUserLoggedIn()) {
+        LoginService::redirectToLogin();
+    } else {
+        (new LoginService())->doLogout();
+        LoginService::redirectToLogin();
+    }
+}
 
 $user_service = new UserService();
 $all_user_instances = $user_service->getAllUsers();
@@ -71,7 +81,7 @@ $all_user_instances = $user_service->getAllUsers();
         </div>
         <br/>
         <div class="container">
-            <form id="user-form" class="row">
+            <form id="users-form" class="row">
                 <div class="col-12">
                     <label class="form-label" for="user-id">Id: </label>
                     <input id="user-id" class="form-control form-control-sm" type="number" name="id" readonly disabled>

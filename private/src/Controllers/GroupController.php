@@ -56,19 +56,12 @@ class GroupController extends AbstractController {
             // not logged-in: respond with 401 NOT AUTHORIZED
             throw new RequestException("NOT AUTHORIZED", 401, [], 401);
         }
-        
-        
-        // I create the new group first then deal with the group-user associations.
-        // I have to do this in that order in the create operation because the group does not already exists
-        // in the database so the foreign key checks would fail if i tried creating associations first.
-        
         if (empty($_REQUEST["name"])) {
             throw new RequestException("Bad request: required parameter [name] not found in the request.", 400);
         }
-        
-        // create a transaction as i will be making many operations in the datatbase
+
         $connection = DBConnectionService::getConnection();
-        If (!$connection->inTransaction()) {
+        if (!$connection->inTransaction()) {
             $connection->beginTransaction();
         }
         
@@ -179,10 +172,8 @@ class GroupController extends AbstractController {
      * @throws RequestException
      */
     public function delete() : void {
-        
-        // Login required to use this API functionality
+
         if (!LoginService::isUserLoggedIn()) {
-            // not logged-in: respond with 401 NOT AUTHORIZED
             throw new RequestException("NOT AUTHORIZED", 401, [], 401);
         }
         

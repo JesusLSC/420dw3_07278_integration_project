@@ -48,7 +48,7 @@ $all_users = $user_service->getAllUsers();
         <div class="row justify-content-center">
             <div class="col-12 col-md-4 row align-items-end align-items-md-center justify-content-center justify-content-md-end">
                 <label class="col-12 text-start text-md-end align-items-md-center"
-                       for="example-selector">Select a group:</label>
+                       for="group-selector">Select a group:</label>
             </div>
             <div class="col-12 col-md-4 row justify-content-center">
                 <select id="group-selector" class="">

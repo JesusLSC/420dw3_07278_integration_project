@@ -57,15 +57,17 @@ class UserController extends AbstractController {
             // not logged-in: respond with 401 NOT AUTHORIZED
             throw new RequestException("NOT AUTHORIZED", 401, [], 401);
         }
-        
         if (empty($_REQUEST["username"])) {
             throw new RequestException("Bad request: required parameter [username] not found in the request.", 400);
         }
+        if (empty($_REQUEST["password"])) {
+            throw new RequestException("Bad request: required parameter [password] not found in the request.", 400);
+        }
+        if (empty($_REQUEST["email"])) {
+            throw new RequestException("Bad request: required parameter [email] not found in the request.", 400);
+        }
         
-        // NOTE: no need for validation of the string lengths here, as that is done by the setter methods of the
-        // ExampleDTO class used when creating an ExampleDTO instance in the creation method of ExampleService.
-        
-        $instance = $this->userService->createUser($_REQUEST["username"]);
+        $instance = $this->userService->createUser($_REQUEST["username"], $_REQUEST["password"], $_REQUEST["email"]);
         header("Content-Type: application/json;charset=UTF-8");
         echo json_encode($instance->toArray());
     }
@@ -109,7 +111,7 @@ class UserController extends AbstractController {
             $instance->loadGroups();
             $connection->commit();
             
-        } catch (Exception $inner_excep) {
+        } catch (\Exception $inner_excep) {
             $connection->rollBack();
             throw $inner_excep;
         }
@@ -124,9 +126,7 @@ class UserController extends AbstractController {
      */
     public function delete(): void {
         
-        // Login required to use this API functionality
         if (!LoginService::isUserLoggedIn()) {
-            // not logged-in: respond with 401 NOT AUTHORIZED
             throw new RequestException("NOT AUTHORIZED", 401, [], 401);
         }
         
@@ -140,8 +140,8 @@ class UserController extends AbstractController {
             throw new RequestException("Bad request: parameter [userId] value [" . $_REQUEST["userId"] .
                                        "] is not numeric.", 400);
         }
-        $int_id = (int)$_REQUEST["userId"];
-        $this->userService->deleteUserById($int_id);
+        $int_user_id = (int)$_REQUEST["userId"];
+        $this->userService->deleteUserById($int_user_id);
         header("Content-Type: application/json;charset=UTF-8");
         http_response_code(204);
     }

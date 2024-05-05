@@ -1,305 +1,48 @@
-2024-05-04 21:15:14: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:15:14: Controller: calling method Controllers\UserController::put().
-2024-05-04 21:15:14: true
-2024-05-04 21:15:14: RequestException: Bad request: required parameter [id] not found in the request.
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#5 {main}
-2024-05-04 21:15:50: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 21:15:50: true
-2024-05-04 21:15:53: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:15:53: Controller: calling method Controllers\UserController::get().
-2024-05-04 21:15:53: true
-2024-05-04 21:15:54: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:15:54: Controller: calling method Controllers\UserController::put().
-2024-05-04 21:15:54: true
-2024-05-04 21:15:54: RequestException: Bad request: required parameter [userId] not found in the request.
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#5 {main}
-2024-05-04 21:17:11: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 21:17:11: true
-2024-05-04 21:17:12: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:17:12: Controller: calling method Controllers\UserController::get().
-2024-05-04 21:17:12: true
-2024-05-04 21:17:14: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:17:14: Controller: calling method Controllers\UserController::put().
-2024-05-04 21:17:14: true
-2024-05-04 21:17:14: RuntimeException: Failure to update user id# [2].
-	Caused by: PDOException: There is already an active transaction
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(105): Services\UserService->updateUser(2, 'editor12', 'editor123', 'editor1@example...')
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#5 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#6 {main}
-2024-05-04 21:18:03: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 21:18:03: true
-2024-05-04 21:18:04: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:18:04: Controller: calling method Controllers\UserController::get().
-2024-05-04 21:18:04: true
-2024-05-04 21:18:07: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:18:07: Controller: calling method Controllers\UserController::put().
-2024-05-04 21:18:07: true
-2024-05-04 21:18:07: RuntimeException: Failure to update user id# [2].
-	Caused by: PDOException: There is already an active transaction
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(106): Services\UserService->updateUser(2, 'editor12', 'editor123', 'editor1@example...')
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#5 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#6 {main}
-2024-05-04 21:18:14: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:18:14: Controller: calling method Controllers\UserController::get().
-2024-05-04 21:18:14: true
-2024-05-04 21:18:16: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:18:16: Controller: calling method Controllers\UserController::put().
-2024-05-04 21:18:16: true
-2024-05-04 21:18:16: RuntimeException: Failure to update user id# [3].
-	Caused by: PDOException: There is already an active transaction
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(106): Services\UserService->updateUser(3, 'editor22', 'editor123', 'editor2@example...')
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#5 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#6 {main}
-2024-05-04 21:18:23: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 21:18:23: true
-2024-05-04 21:18:25: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:18:25: Controller: calling method Controllers\UserController::get().
-2024-05-04 21:18:25: true
-2024-05-04 21:18:27: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:18:27: Controller: calling method Controllers\UserController::put().
-2024-05-04 21:18:27: true
-2024-05-04 21:18:27: RuntimeException: Failure to update user id# [2].
-	Caused by: PDOException: There is already an active transaction
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(105): Services\UserService->updateUser(2, 'editor12', 'editor123', 'editor1@example...')
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#5 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#6 {main}
-2024-05-04 21:18:52: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:18:52: Controller: calling method Controllers\UserController::put().
-2024-05-04 21:18:52: true
-2024-05-04 21:18:52: RuntimeException: Failure to update user id# [2].
-	Caused by: PDOException: There is already an active transaction
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(105): Services\UserService->updateUser(2, 'editor12', 'editor123', 'editor1@example...')
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#5 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#6 {main}
-2024-05-04 21:19:27: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:19:27: Controller: calling method Controllers\UserController::get().
-2024-05-04 21:19:27: true
-2024-05-04 21:19:29: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:19:29: Controller: calling method Controllers\UserController::put().
-2024-05-04 21:19:29: true
-2024-05-04 21:19:29: RuntimeException: Failure to update user id# [2].
-	Caused by: PDOException: There is already an active transaction
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(105): Services\UserService->updateUser(2, 'editor12', 'editor123', 'editor1@example...')
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#5 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#6 {main}
-2024-05-04 21:19:45: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:19:45: Controller: calling method Controllers\UserController::put().
-2024-05-04 21:19:45: true
-2024-05-04 21:19:45: RuntimeException: Failure to update user id# [2].
-	Caused by: PDOException: There is already an active transaction
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(105): Services\UserService->updateUser(2, 'editor12', 'editor123', 'editor1@example...')
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#5 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#6 {main}
-2024-05-04 21:50:48: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:50:48: Controller: calling method Controllers\UserController::put().
-2024-05-04 21:50:48: true
-2024-05-04 21:50:48: RuntimeException: Failure to update user id# [2].
-	Caused by: PDOException: There is already an active transaction
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(105): Services\UserService->updateUser(2, 'editor12', 'editor123', 'editor1@example...')
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#5 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#6 {main}
-2024-05-04 21:50:57: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 21:50:57: true
-2024-05-04 21:51:01: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:51:01: Controller: calling method Controllers\UserController::get().
-2024-05-04 21:51:01: true
-2024-05-04 21:51:04: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:51:04: Controller: calling method Controllers\UserController::put().
-2024-05-04 21:51:04: true
-2024-05-04 21:51:04: RuntimeException: Failure to update user id# [2].
-	Caused by: PDOException: There is already an active transaction
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(105): Services\UserService->updateUser(2, 'editor12', 'editor123', 'editor1@example...')
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#5 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#6 {main}
-2024-05-04 21:51:16: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 21:51:16: Controller: calling method Controllers\UserController::put().
-2024-05-04 21:51:16: true
-2024-05-04 21:51:16: RuntimeException: Failure to update user id# [2].
-	Caused by: PDOException: There is already an active transaction
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(105): Services\UserService->updateUser(2, 'editor12', 'editor123', 'editor1@example...')
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#5 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#6 {main}
-2024-05-04 22:21:25: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 22:21:25: true
-2024-05-04 22:21:27: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 22:21:27: Controller: calling method Controllers\UserController::get().
-2024-05-04 22:21:27: true
-2024-05-04 22:21:28: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 22:21:28: Controller: calling method Controllers\UserController::put().
-2024-05-04 22:21:28: true
-2024-05-04 22:21:28: PDOException: There is no active transaction
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(106): PDO->commit()
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#5 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#6 {main}
-2024-05-04 22:24:13: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 22:24:13: true
-2024-05-04 22:24:16: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 22:24:16: Controller: calling method Controllers\UserController::get().
-2024-05-04 22:24:16: true
-2024-05-04 22:24:18: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 22:24:18: Controller: calling method Controllers\UserController::put().
-2024-05-04 22:24:18: true
-2024-05-04 22:24:18: PDOException: There is no active transaction
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(109): PDO->commit()
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#5 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#6 {main}
-2024-05-04 22:24:24: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 22:24:24: true
-2024-05-04 22:24:43: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 22:24:43: Controller: calling method Controllers\UserController::get().
-2024-05-04 22:24:43: true
-2024-05-04 22:24:45: Route found: matched [/420dw3_07278_integration_project/pages/permissions] with route [/420dw3_07278_integration_project/pages/permissions]
-2024-05-04 22:24:45: true
-2024-05-04 22:24:47: Route found: matched [/420dw3_07278_integration_project/api/permissions] with route [/420dw3_07278_integration_project/api/permissions]
-2024-05-04 22:24:47: Controller: calling method Controllers\PermissionController::get().
-2024-05-04 22:24:47: true
-2024-05-04 22:24:51: Route found: matched [/420dw3_07278_integration_project/api/permissions] with route [/420dw3_07278_integration_project/api/permissions]
-2024-05-04 22:24:51: Controller: calling method Controllers\PermissionController::put().
-2024-05-04 22:24:51: true
-2024-05-04 22:24:51: RequestException: Bad request: required parameter [permission_id] not found in the request.
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\PermissionController->put()
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#5 {main}
-2024-05-04 22:25:13: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 22:25:13: true
-2024-05-04 22:25:15: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 22:25:15: true
-2024-05-04 22:25:19: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 22:25:19: Controller: calling method Controllers\UserController::get().
-2024-05-04 22:25:19: true
-2024-05-04 22:25:22: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 22:25:22: Controller: calling method Controllers\UserController::put().
-2024-05-04 22:25:22: true
-2024-05-04 22:25:22: PDOException: There is no active transaction
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(109): PDO->commit()
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#5 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#6 {main}
-2024-05-04 22:26:36: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 22:26:36: true
-2024-05-04 22:26:38: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 22:26:38: Controller: calling method Controllers\UserController::get().
-2024-05-04 22:26:38: true
-2024-05-04 22:26:40: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 22:26:40: Controller: calling method Controllers\UserController::put().
-2024-05-04 22:26:40: true
-2024-05-04 22:26:40: RuntimeException: Failure to update user id# [2].
-	Caused by: PDOException: There is no active transaction
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#5 {main}
-2024-05-04 22:27:17: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 22:27:17: true
-2024-05-04 22:27:19: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 22:27:19: Controller: calling method Controllers\UserController::get().
-2024-05-04 22:27:19: true
-2024-05-04 22:27:21: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 22:27:21: Controller: calling method Controllers\UserController::put().
-2024-05-04 22:27:21: true
-2024-05-04 22:27:21: PDOException: There is no active transaction
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(115): PDO->rollBack()
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#5 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#6 {main}
-2024-05-04 22:28:13: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 22:28:13: true
-2024-05-04 22:28:16: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 22:28:16: Controller: calling method Controllers\UserController::get().
-2024-05-04 22:28:16: true
-2024-05-04 22:28:19: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 22:28:19: Controller: calling method Controllers\UserController::put().
-2024-05-04 22:28:19: true
-2024-05-04 22:28:19: PDOException: There is no active transaction
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(109): PDO->commit()
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#5 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#6 {main}
-2024-05-04 22:28:21: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
-2024-05-04 22:28:21: true
-2024-05-04 22:28:28: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 22:28:28: Controller: calling method Controllers\UserController::get().
-2024-05-04 22:28:28: true
-2024-05-04 22:28:30: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
-2024-05-04 22:28:30: Controller: calling method Controllers\UserController::put().
-2024-05-04 22:28:30: true
-2024-05-04 22:28:30: PDOException: There is no active transaction
-	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(109): PDO->commit()
-		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->put()
-		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
-		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
-		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
-		#5 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
-		#6 {main}
+2024-05-05 17:57:02: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
+2024-05-05 17:57:02: true
+2024-05-05 17:57:09: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
+2024-05-05 17:57:09: Controller: calling method Controllers\UserController::post().
+2024-05-05 17:57:09: true
+2024-05-05 17:57:48: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
+2024-05-05 17:57:48: Controller: calling method Controllers\UserController::delete().
+2024-05-05 17:57:48: true
+2024-05-05 17:57:50: Route found: matched [/420dw3_07278_integration_project/pages/users] with route [/420dw3_07278_integration_project/pages/users]
+2024-05-05 17:57:50: true
+2024-05-05 18:01:55: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
+2024-05-05 18:01:55: Controller: calling method Controllers\UserController::get().
+2024-05-05 18:01:55: true
+2024-05-05 18:01:57: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
+2024-05-05 18:01:57: Controller: calling method Controllers\UserController::delete().
+2024-05-05 18:01:57: true
+2024-05-05 18:01:57: PDOException: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`420dw3_07278_integration_project`.`user_group`, CONSTRAINT `user_group_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`))
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\DAOs\UserDAO.php(134): PDOStatement->execute()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Services\UserService.php(109): DAOs\UserDAO->deleteById(4)
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(144): Services\UserService->deleteUserById(4)
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->delete()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#5 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
+		#6 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#7 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
+		#8 {main}
+2024-05-05 18:02:05: Route found: matched [/420dw3_07278_integration_project/api/users] with route [/420dw3_07278_integration_project/api/users]
+2024-05-05 18:02:05: Controller: calling method Controllers\UserController::delete().
+2024-05-05 18:02:05: true
+2024-05-05 18:02:05: PDOException: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`420dw3_07278_integration_project`.`user_group`, CONSTRAINT `user_group_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`))
+	Stacktrace: #0 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\DAOs\UserDAO.php(134): PDOStatement->execute()
+		#1 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Services\UserService.php(109): DAOs\UserDAO->deleteById(4)
+		#2 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Controllers\UserController.php(144): Services\UserService->deleteUserById(4)
+		#3 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Abstracts\AbstractController.php(53): Controllers\UserController->delete()
+		#4 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Domain\APIRoute.php(59): GivenCode\Abstracts\AbstractController->callHttpMethod(Object(GivenCode\Enumerations\HTTPMethodsEnum))
+		#5 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\GivenCode\Services\InternalRouter.php(55): GivenCode\Domain\APIRoute->route()
+		#6 C:\xampp\htdocs\420dw3_07278_integration_project\private\src\Application\Application.php(25): GivenCode\Services\InternalRouter->route()
+		#7 C:\xampp\htdocs\420dw3_07278_integration_project\index.php(15): Application\Application->run()
+		#8 {main}
+2024-05-05 18:02:59: Route found: matched [/420dw3_07278_integration_project/pages/groups] with route [/420dw3_07278_integration_project/pages/groups]
+2024-05-05 18:02:59: true
+2024-05-05 18:02:59: true
+2024-05-05 18:03:01: Route found: matched [/420dw3_07278_integration_project/api/groups] with route [/420dw3_07278_integration_project/api/groups]
+2024-05-05 18:03:01: Controller: calling method Controllers\GroupController::get().
+2024-05-05 18:03:01: true
+2024-05-05 18:03:02: Route found: matched [/420dw3_07278_integration_project/api/groups] with route [/420dw3_07278_integration_project/api/groups]
+2024-05-05 18:03:02: Controller: calling method Controllers\GroupController::delete().
+2024-05-05 18:03:02: true
