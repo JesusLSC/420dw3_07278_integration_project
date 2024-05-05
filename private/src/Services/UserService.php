@@ -44,7 +44,8 @@ class UserService implements IService {
      * @throws RuntimeException
      * @throws ValidationException
      */
-    public function getUserByUsername(string $username) {
+    public function getUserByUsername(string $username): ?UserDTO
+    {
         $user = $this->dao->getByUsername($username);
         $user?->loadGroups();
         return $user;
@@ -94,6 +95,8 @@ class UserService implements IService {
                 throw new Exception("User id# [$id] not found in the database.");
             }
             $user->setUsername($username);
+            $user->setPassword($password);
+            $user->setEmail($email);
             $result = $this->dao->update($user);
             return $result;
             

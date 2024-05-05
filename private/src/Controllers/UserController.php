@@ -27,9 +27,7 @@ class UserController extends AbstractController {
      */
     public function get(): void {
         
-        // Login required to use this API functionality
         if (!LoginService::isUserLoggedIn()) {
-            // not logged-in: respond with 401 NOT AUTHORIZED
             throw new RequestException("NOT AUTHORIZED", 401, [], 401);
         }
         
@@ -52,9 +50,7 @@ class UserController extends AbstractController {
      */
     public function post(): void {
         
-        // Login required to use this API functionality
         if (!LoginService::isUserLoggedIn()) {
-            // not logged-in: respond with 401 NOT AUTHORIZED
             throw new RequestException("NOT AUTHORIZED", 401, [], 401);
         }
         if (empty($_REQUEST["username"])) {
@@ -80,7 +76,6 @@ class UserController extends AbstractController {
     public function put(): void {
         
         if (!LoginService::isUserLoggedIn()) {
-            // not logged-in: respond with 401 NOT AUTHORIZED
             throw new RequestException("NOT AUTHORIZED", 401, [], 401);
         }
         

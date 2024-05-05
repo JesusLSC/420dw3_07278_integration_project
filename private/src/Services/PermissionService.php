@@ -43,7 +43,7 @@ class PermissionService implements IService {
      * @throws RuntimeException
      * @throws ValidationException
      */
-    public function getPermissionByName(string $name)
+    public function getPermissionByName(string $name): ?PermissionDTO
     {
         $permission = $this->dao->getByName($name);
         return $permission;
@@ -65,9 +65,9 @@ class PermissionService implements IService {
     /**
      * @throws RuntimeException
      */
-    public function createPermission(string $name) : PermissionDTO {
+    public function createPermission(string $identifier, string $name, string $description) : PermissionDTO {
         try {
-            $permission = PermissionDTO::fromValues($name);
+            $permission = PermissionDTO::fromValues($identifier, $name, $description);
             return $this->dao->insert($permission);
 
         } catch (Exception $excep) {
@@ -78,60 +78,23 @@ class PermissionService implements IService {
     /**
      * @throws RuntimeException
      */
-    public function updatePermission(int $id, string $name) : PermissionDTO {
+    public function updatePermission(int $id, string $identifier, string $name, string $description) : PermissionDTO {
         try {
-            $connection = DBConnectionService::getConnection();
-            If (!$connection->inTransaction()) {
-                $connection->beginTransaction();
+            $permission = $this->dao->getById($id);
+            if (is_null($permission)) {
+                throw new Exception("Permission id# [$id] not found in the database.");
             }
-
-            try {
-                $permission = $this->dao->getById($id);
-                if (is_null($permission)) {
-                    throw new Exception("Permission id# [$id] not found in the database.");
-                }
-                $permission->setName($name);
-                $result = $this->dao->update($permission);
-                $connection->commit();
-                return $result;
-
-            } catch (Exception $inner_excep) {
-                $connection->rollBack();
-                throw $inner_excep;
-            }
-
-        } catch (Exception $excep) {
-            throw new RuntimeException("Failure to update permission id# [$id].", $excep->getCode(), $excep);
+            $permission->setName($name);
+            $permission->setIdentifier($identifier);
+            $permission->setDescription($description);
+            $result = $this->dao->update($permission);
+            return $result;
+            } catch (Exception $excep) {
+            throw new RuntimeException("Failure to update user id# [$id].", $excep->getCode(), $excep);
         }
     }
-
-    /**
-     * @throws RuntimeException
-     */
     public function deletePermissionById(int $id) : void {
-        try {
-
-            $connection = DBConnectionService::getConnection();
-            If (!$connection->inTransaction()) {
-                $connection->beginTransaction();
-            }
-
-            try {
-                $permission = $this->dao->getById($id);
-                if (is_null($permission)) {
-                    throw new Exception("Permission id# [$id] not found in the database.");
-                }
-                $this->dao->delete($permission);
-                $connection->commit();
-
-            } catch (Exception $inner_excep) {
-                $connection->rollBack();
-                throw $inner_excep;
-            }
-
-        } catch (Exception $excep) {
-            throw new RuntimeException("Failure to delete permission id# [$id].", $excep->getCode(), $excep);
-        }
+        $this->dao->deleteById($id);
     }
 
 }

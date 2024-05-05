@@ -16,7 +16,7 @@ class PermissionDAO {
      * @throws RuntimeException
      */
     public function getAll(): array {
-        $query = "SELECT * FROM permissions;";
+        $query = "SELECT * FROM " . PermissionDTO::TABLE_NAME . ";";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
         $statement->execute();
@@ -37,13 +37,12 @@ class PermissionDAO {
      * @throws RuntimeException
      */
     public function getById(int $id): ?PermissionDTO {
-        $query = "SELECT * FROM permissions WHERE permission_id = :id;";
+        $query = "SELECT * FROM " . PermissionDTO::TABLE_NAME . " WHERE permission_id = :id ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
         $statement->bindValue(":id", $id, PDO::PARAM_INT);
         $statement->execute();
         $permission_array = $statement->fetch(PDO::FETCH_ASSOC);
-
         return PermissionDTO::fromDbArray($permission_array);
     }
 
@@ -52,14 +51,13 @@ class PermissionDAO {
      * @return PermissionDTO|null
      * @throws RuntimeException
      */
-    public function getByIdentifier(string $permissionIdentifier): ?PermissionDTO {
-        $query = "SELECT * FROM permissions WHERE permission_identifier = :identifier;";
+    public function getByIdentifier(string $identifier): ?PermissionDTO {
+        $query = "SELECT * FROM " . PermissionDTO::TABLE_NAME . " WHERE permission_identifier = :identifier ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
-        $statement->bindValue(":identifier", $permissionIdentifier, PDO::PARAM_STR);
+        $statement->bindValue(":identifier", $identifier, PDO::PARAM_STR);
         $statement->execute();
         $permission_array = $statement->fetch(PDO::FETCH_ASSOC);
-
         return PermissionDTO::fromDbArray($permission_array);
     }
 
@@ -69,16 +67,17 @@ class PermissionDAO {
      * @throws ValidationException|RuntimeException
      */
     public function insert(PermissionDTO $permission): PermissionDTO {
-        $query = "INSERT INTO permissions (permission_identifier, permission_name, permission_description) VALUES (:identifier, :name, :description);";
+        $permission->validateForDbCreation();
+        $query =
+            "INSERT INTO " . PermissionDTO::TABLE_NAME . " (`permission_identifier`, `permission_name`, `permission_description`) VALUES (:identifier, :name, :description);";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
         $statement->bindValue(":identifier", $permission->getIdentifier(), PDO::PARAM_STR);
         $statement->bindValue(":name", $permission->getName(), PDO::PARAM_STR);
         $statement->bindValue(":description", $permission->getDescription(), PDO::PARAM_STR);
         $statement->execute();
-
-        $newId = (int)$connection->lastInsertId();
-        return $this->getById($newId);
+        $new_id = (int) $connection->lastInsertId();
+        return $this->getById($new_id);
     }
 
     /**
@@ -87,15 +86,17 @@ class PermissionDAO {
      * @throws RuntimeException
      */
     public function update(PermissionDTO $permission): PermissionDTO {
-        $query = "UPDATE permissions SET permission_identifier = :identifier, permission_name = :name, permission_description = :description WHERE permission_id = :id;";
+        $permission->validateForDbUpdate();
+        $query =
+            "UPDATE " . PermissionDTO::TABLE_NAME .
+            " SET `permission_identifier` = :identifier, `permission_name` = :name, `permission_description` = :description WHERE `permission_id` = :id ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
-        $statement->bindValue(":id", $permission->getId(), PDO::PARAM_INT);
         $statement->bindValue(":identifier", $permission->getIdentifier(), PDO::PARAM_STR);
         $statement->bindValue(":name", $permission->getName(), PDO::PARAM_STR);
         $statement->bindValue(":description", $permission->getDescription(), PDO::PARAM_STR);
+        $statement->bindValue(":id", $permission->getId(), PDO::PARAM_INT);
         $statement->execute();
-
         return $this->getById($permission->getId());
     }
 
@@ -105,10 +106,18 @@ class PermissionDAO {
      * @throws RuntimeException
      */
     public function delete(PermissionDTO $permission): void {
-        $query = "DELETE FROM permissions WHERE permission_id = :id;";
+        $permission->validateForDbDelete();
+        $this->deleteById($permission->getId());
+    }
+
+    private function deleteById(int $permissionId): void
+    {
+        $query =
+            "DELETE FROM `" . PermissionDTO::TABLE_NAME .
+            "` WHERE `permission_id` = :id ;";
         $connection = DBConnectionService::getConnection();
         $statement = $connection->prepare($query);
-        $statement->bindValue(":id", $permission->getId(), PDO::PARAM_INT);
+        $statement->bindValue(":id", $permissionId, PDO::PARAM_INT);
         $statement->execute();
     }
 }

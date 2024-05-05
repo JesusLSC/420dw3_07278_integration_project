@@ -7,6 +7,9 @@ use DateTime;
 use GivenCode\Exceptions\ValidationException;
 
 class PermissionDTO {
+
+    public const TABLE_NAME = "permissions";
+
     private int $permission_id;
     private string $permission_identifier;
     private string $permission_name;
@@ -15,9 +18,11 @@ class PermissionDTO {
     private ?DateTime $modified_at = null;
 
     public function __construct() {}
-    public static function fromValues(string $permission_name) : PermissionDTO {
+    public static function fromValues(string $permission_identifier, string $permission_name, string $permission_description) : PermissionDTO {
         $instance = new PermissionDTO();
+        $instance->setIdentifier($permission_identifier);
         $instance->setName($permission_name);
+        $instance->setDescription($permission_description);
         return $instance;
     }
 
